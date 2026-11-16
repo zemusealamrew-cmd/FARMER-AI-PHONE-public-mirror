@@ -1,0 +1,43 @@
+# G1 ማረጋገጫ፦ ከገዢ (binary)ና ከውሁብ (model) ጭነቶች ማስቀረት
+# እነዚህ ፋይሎች በባለቤቱ መመሪያ መሠረት በላፕቶፕ ላይ ይወርዱ እንጂ ወደ Git ማከማቻ አይገቡም።
+app/bin/
+app/models/
+app/.tmp/
+
+# የፊርማ የግል ቁልፎች — ለማከማቻ ተከልክሏል (F-15 / NR-05)
+# ይህ ማስቀመጫ የG1 ሙከራ ብቻ ነው፤ ምንም የምርት ሥልጣን የለውም።
+data/updates/private/
+
+node_modules/
+*.log
+
+# የማረጋገጫ ጊዜያዊ ቅሪት (debug wav/jsonl) — ማስረጃ ስለሆነ አይከማችም
+.tmp/
+
+# የG2/G3 እውነተኛ የመስክ ውሂብ ከተሰበሰበ በፍቃድ ጉዳይ ሳይዘጋት ይከለከላል (F-16)
+data/field/**
+
+# በመጫን ጊዜ የሚፈጠር ሁኔታ (runtime state) — በእያንዳንዱ ማሽን ላይ የተለየ ነው፤ ማከማቻ አይሆንም (F-07 / NR-05)
+data/updates/state.json
+data/updates/backups/
+data/updates/applied/
+data/knowledge/*.old-*
+data/knowledge/*.staged-*
+
+# በእውነተኛ ሩጫ የሚጨምር የG1 ማሳያ ክስተት መዝገብ — የማሽን-ዕጣት ሁኔታ ነው፤ የተቋረጠ ማስረጃ በ `evidence/g1-*-guard-*.jsonl`
+# እንደ ቋሚ ቅጂ ይከማჩም (የመከላከያ ክፍል F-22/NR-05፦ ተደጋጋሚ ሩጫ የማከማቻ ማስረጃ ሃሽ አይቀይርም)
+evidence/g1-demo-events.jsonl
+
+# Local Python compilation and virtual environments for offline G1 inference
+__pycache__/
+*.pyc
+research/native-mic-tests/**/bin/
+research/native-mic-tests/**/obj/
+research/onnx-export-20261111/*.onnx
+research/onnx-export-20261111/*.onnx*
+android-shell/libs/
+
+android-app/assets/
+android-app/build/
+android-app/*.apk
+android-app/libs/

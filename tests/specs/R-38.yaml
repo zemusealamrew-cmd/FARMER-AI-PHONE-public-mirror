@@ -1,0 +1,23 @@
+# የR-38 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-38
+requirement: "የተጋራ ስልክ ግላዊነትና በድምፅ የግል መረጃ አለመግለጥ"
+owner_role: "የፈቃድ/ግላዊነት ቁጥጥር"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/evidence.test.mjs", name: "R-38 / F-20፦ የተመዘገቡ entries ሰለባውን ያጸኑና seq ከ1 ይጀምራል"}
+  - {file: "tests/evidence.test.mjs", name: "R-38፦ መዝገቡ ዳግም ሲከፈት ሰለባው አይቆረጥም (reopen continues the chain)"}
+  - {file: "tests/evidence.test.mjs", name: "R-38 / NR-08፦ entry ይዘት ቢቀየር hash ስለማይገናኝ ፍተሻው ወዲያውኑ ይይዛል"}
+  - {file: "tests/evidence.test.mjs", name: "R-38፦ entry ቢደበቅ ወይም ቅደም ተከተል ቢቀየር CHAIN_BREAK ይመዘገባል"}
+  - {file: "tests/evidence.test.mjs", name: "R-38 / F-20፦ የማንበብ ያልቻለ መስመር UNPARSEABLE_LINE በማለት ይገለጻል (silent skip አይደለም)"}
+  - {file: "tests/evidence.test.mjs", name: "F-07 / R-38፦ seq በENV ብቻ ይቀጥላል — እያንዳንዱ መዝገብ ሙሉ ፋይሉን አያነብም (O(n²) ማራኪ የለም)"}
+  - {file: "tests/manifest.test.mjs", name: "F-06 / R-38፦ ማኒፌስቱ ለውጥን ይይዛል፣ የተቀየረ ሰነድ MISMATCH ይሆናል"}
+  - {file: "tests/server.test.mjs", name: "R-38 / F-11 / CI-14፦ የማስረጃ ሰለባና የሀብት ልኬት በHTTP ተገኝተው ያገለግላሉ"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-26 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

@@ -1,0 +1,17 @@
+# የR-08 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-08
+requirement: "ትግርኛ/ሌሎች ቋንቋዎች ከተጨመሩ በተለየ ማረጋገጫ"
+owner_role: "የድምፅ AI ኃላፊ"
+owner_named: null
+gates: [G1, G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G1+G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/server.test.mjs", name: "F-12 / R-08 / NR-07፦ የFM ማስመሰያ ሲገባ ወቅታዊነትና ግጭት በማስረጃ ይታያል"}
+doc_acceptance: "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""
+overlap_arbitration: "የቋንቋ ማስፋጫ (ትግርኛ/ሌሎች) ሙከራ ከCI-03 የዘዬ ሙከላ ጋር አይደራረብም — R-08 የአዲስ ቋንቋ መግቢያ ድንበር ብቻ ይፈትሻል።"

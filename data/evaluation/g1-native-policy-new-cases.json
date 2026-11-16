@@ -1,0 +1,102 @@
+[
+  {
+    "id": "am-native-policy-cows-english-control",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Reply in Amharic. Use the current user's earlier reports. Later corrected quantities replace earlier ones for the same owner and entity. Do not mix another person's property with the current user's. Preserve name, counted entity and owner. Answer the latest question. Never invent missing facts."
+      },
+      {
+        "role": "user",
+        "content": "ስሜ ትዕግሥት ነው። አምስት ላሞች አሉኝ።"
+      },
+      {
+        "role": "user",
+        "content": "እህቴ ሁለት በጎች አሏት።"
+      },
+      {
+        "role": "user",
+        "content": "የላሞቼን ብዛት አስተካክል፤ ዘጠኝ ናቸው።"
+      },
+      {
+        "role": "user",
+        "content": "ስሜ ማን ነው? ስንት ላሞች አሉኝ? በጎቹ የማን ናቸው?"
+      }
+    ]
+  },
+  {
+    "id": "am-native-policy-cows-native-policy",
+    "messages": [
+      {
+        "role": "system",
+        "content": "በአማርኛ መልስ። ተጠቃሚው ቀድሞ የነገረህን መረጃ ተጠቀም። በኋላ የተስተካከለ ቁጥር የቀድሞውን ይተካል። የሌላ ሰው ንብረት የተጠቃሚው እንደሆነ አትቁጠር። ስሙን፣ የተቆጠረውን ነገርና ባለቤቱን አትቀይር። የመጨረሻውን ጥያቄ መልስ። ያልተነገረህን አትፍጠር።"
+      },
+      {
+        "role": "user",
+        "content": "ስሜ ትዕግሥት ነው። አምስት ላሞች አሉኝ።"
+      },
+      {
+        "role": "user",
+        "content": "እህቴ ሁለት በጎች አሏት።"
+      },
+      {
+        "role": "user",
+        "content": "የላሞቼን ብዛት አስተካክል፤ ዘጠኝ ናቸው።"
+      },
+      {
+        "role": "user",
+        "content": "ስሜ ማን ነው? ስንት ላሞች አሉኝ? በጎቹ የማን ናቸው?"
+      }
+    ]
+  },
+  {
+    "id": "om-native-policy-cows-english-control",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Reply in Afaan Oromo. Use the current user's earlier reports. Later corrected quantities replace earlier ones for the same owner and entity. Do not mix another person's property with the current user's. Preserve name, counted entity and owner. Answer the latest question. Never invent missing facts."
+      },
+      {
+        "role": "user",
+        "content": "Maqaan koo Fayyisaa dha. Saawwan shan qaba."
+      },
+      {
+        "role": "user",
+        "content": "Obboleettiin koo hoolota lama qabdi."
+      },
+      {
+        "role": "user",
+        "content": "Lakkoofsa saawwan koo sirreessi: sagal qaba."
+      },
+      {
+        "role": "user",
+        "content": "Maqaan koo eenyu? Saawwan meeqa qaba? Hoolonni kan eenyuu?"
+      }
+    ]
+  },
+  {
+    "id": "om-native-policy-cows-native-policy",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Afaan Oromootiin deebisi. Odeeffannoo duraan namni si gaafatu kenne yaadadhu. Lakkoofsa durii kan sirreeffameen bakka buusi. Qabeenya nama biraa kan nama si gaafatuutti hin makiin. Maqaa, wanta lakkaa’amu fi abbaa isaa hin jijjiirin. Gaaffii isa dhumaa deebisi. Waan hin beekne hin kalaqin."
+      },
+      {
+        "role": "user",
+        "content": "Maqaan koo Fayyisaa dha. Saawwan shan qaba."
+      },
+      {
+        "role": "user",
+        "content": "Obboleettiin koo hoolota lama qabdi."
+      },
+      {
+        "role": "user",
+        "content": "Lakkoofsa saawwan koo sirreessi: sagal qaba."
+      },
+      {
+        "role": "user",
+        "content": "Maqaan koo eenyu? Saawwan meeqa qaba? Hoolonni kan eenyuu?"
+      }
+    ]
+  }
+]

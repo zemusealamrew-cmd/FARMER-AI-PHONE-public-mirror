@@ -1,0 +1,18 @@
+# የR-41 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-41
+requirement: "ለእያንዳንዱ የምርት መስፈርት አንድ ዋና መዝገብና የለውጥ ታሪክ"
+owner_role: "የምርት መስፈርት አስተዳዳሪ"
+owner_named: null
+gates: [G0]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G0 ላይ ይሰጣል"
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/etime.test.mjs", name: "NR-02 / R-41፦ 120 ዓመታት ሙሉ ቀናት ተገላቢጦሽ ያልፋሉ (exhaustive sweep)"}
+  - {file: "tests/etime.test.mjs", name: "NR-02 / R-41፦ ዕርገት ዓመት — ጳጉሜን 6 በ(ዓ.ም+1)%4==0 ብቻ ይኖራል"}
+  - {file: "tests/etime.test.mjs", name: "NR-02 / R-41፦ ዛሬው እርግጠኛ ልወጣ ወደ አማርኛ ሪፖርት ይዞራል፤ G0 ውሳኔ ግን ይጠብቃል"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

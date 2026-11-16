@@ -1,0 +1,16 @@
+# የR-36 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-36
+requirement: "የወቅታዊነት፣ የግጭት፣ የተሳሳተ መረጃ መመለስ/መሰረዝ ሂደት"
+owner_role: "የአካባቢ እውቀት መዝገብ"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/sms.test.mjs", name: "F-20 / R-36፦ በናሙና ላይ ያሉ ልሙድ ቅሪቶች አይደገሙም (preview masking)"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-24 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

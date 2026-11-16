@@ -1,0 +1,275 @@
+# FARMER-AI-PHONE — የሥራ ፓኬጅ አዛምዶ (F-04)፦ W01–W21 ↔ G1-D01–D11 ↔ መስፈርት ↔ ማስረጃ
+# ይህ ፋይል አዲስ ዋና መዝገብ አይፈጥርም፤ ሦስቱን አሁን ካሉ ምንጮች በማጣቀሻ ብቻ ያዛምዳል፦
+#   docs/OWNER_PROGRESS_LEDGER_v5_0_AM.md §2 (W01–W21 መለያና በር)፣
+#   docs/G1_OFFLINE_DEPLOYMENT_AND_DEVICE_FEASIBILITY_NOTE_AM.md §2 (G1-D01–D11)፣
+#   requirements/requirements.yaml (የ85 መስፈርት መለያ) + evidence/g1-run-summary.json (የተለካ ውጤት)።
+# ማስታወሻ 1፦ በG1 ማስታወሻው ሰንጠረዥ G1-D01–D11 ሁሉ "NOT STARTED" ተብለው ተመዝግበዋል። ይህ ከእውነተኛው
+#   ሥራ ጋር አይጣጣም (STALE)፤ ሰነዱ ስለማይሰረዝ እዚህ `stale: true` ብቻ ተመዝግቧል።
+# ማስታወሻ 2፦ `ledger_status` የሰነዱ ቃል ነው፤ `actual` በኮድ/ፍተሻ/ማስረጃ የተረጋገጠው ዛሬው እውነታ ነው።
+# ማስታወሻ 3፦ MET የሚለው ለG1 የላፕቶፕ ማረጋገጫ ብቻ ነው። የላፕቶፕ ማሳያ የስልክ አቅም ማረጋገጫ አይደለም (R-24)።
+# ማስተካከያ ዘዴ፦ መጀመሪያ በሁለቱም ሰነዶችና በ`requirements/requirements.yaml` ላይ አስተካክል፣
+#   ከዚያ `node --test tests/work-packages.test.mjs` — ፍተሻው ይህን አዛምዶ ከምንጮቹ ጋር ያነጻጽራል።
+schema_version: 1
+source_docs:
+  - docs/OWNER_PROGRESS_LEDGER_v5_0_AM.md
+  - docs/G1_OFFLINE_DEPLOYMENT_AND_DEVICE_FEASIBILITY_NOTE_AM.md
+  - requirements/requirements.yaml
+status_vocabulary: [MET, PARTIAL, GAP, UNKNOWN, REQUIRES_EVIDENCE, NOT_AUTHORIZED]
+
+packages:
+  - id: W01
+    ledger_title: "የተጠሪዎች ሹመትና የመስፈርት ግንዛቤ"
+    gate: G1
+    g1_steps: [G1-D01]
+    requirements: [R-29, R-30, R-41, R-42]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [requirements/requirements.yaml, requirements/ownership_raci.yaml, tests/specs, docs/SOURCE_DOCUMENT_REGISTRY.md]
+    note: "የ85ቱ መለያዎች በማሽን-ሚነበብ መዝገብ ተመዝግበዋል፤ 123ቱ መለያዎች በ11 RACI ክፍል ውስጥ አንድ A ብቻ አላቸው (F-05)፤ የተጠሪ ስም/ፊርማ ግን ገና የባለቤት ውሳኔ ይጠብቃል (owner_named: null — F-03)"
+
+  - id: W02
+    ledger_title: "የሞዴል/ዳታ ምንጭና ፈቃድ"
+    gate: G1
+    g1_steps: [G1-D07]
+    requirements: [R-21, R-22, RU-11, RU-12]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [data/knowledge/entries.json, tools/make-keys.mjs]
+    note: "የእውቀት መዝገቦች source/license_scope አሏቸው፤ የሞዴል ፈቃድ ማጣራት (whisper.cpp/ቅጂ)ና model_registry/ ገና የለም (F-09 ክፍት)"
+
+  - id: W03
+    ledger_title: "የሙከራ ናሙናና የቁጥር ወሰን ማጽደቅ"
+    gate: G1
+    g1_steps: [G1-D08]
+    requirements: [R-28, OP-02, VE-01]
+    ledger_status: NOT STARTED
+    actual: GAP
+    evidence: [docs/FARMER_AI_PHONE_MEASUREMENT_STOP_EVIDENCE_CONTRACT_v4_8_AM.md]
+    note: "የቁጥር ወሰኖች (ናሙና ብዛት፣ p95፣ STOP/HOLD) በሰነዱ PENDING ሆነዋል፤ ማጽደቅ የባለቤት ውሳኔ ነው (F-07/F-11)"
+
+  - id: W04
+    ledger_title: "አማርኛ ASR"
+    gate: G1
+    g1_steps: [G1-D02]
+    requirements: [R-02, R-05, R-07, CI-12]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [evidence/g1-run-summary.json, app/src/asr.mjs, tests/speech.test.mjs, tests/audio-input.test.mjs, evidence/voice-check-am-silent-guard.json]
+    note: "ኢንጂኑ በላፕቶፑ ላይ ይሠራል (10.1–32 ሰ/አነጋገር ተለክቷል)፤ በናሙና ድምፅ ላይ EMPTY_TRANSCRIPT ተመዝግቦ ነበር፤ አሁን የግብይት ጥበቃ ያለ ድምፅ/አጭር ግብይት ለኢንጂን አያደርስም (SILENT_CAPTURE በ2 ms)፤ WER/CER የሰው ድምጅ ማስታወሻ ገና አልተሠራም (F-08)"
+
+  - id: W05
+    ledger_title: "አፋን ኦሮሞ ASR"
+    gate: G1
+    g1_steps: [G1-D02]
+    requirements: [R-07, R-08, CI-03, RU-03]
+    ledger_status: NOT STARTED
+    actual: GAP
+    evidence: [tests/speech.test.mjs]
+    note: "ለአፋን ኦሮሞ የተረጋገጠ የASR ትርጉም/ልክት ማስረጃ የለም፤ የዘዬና የአልጋባብ ግምገማ REQUIRES EVIDENCE (F-08/F-21)"
+
+  - id: W06
+    ledger_title: "አማርኛ TTS"
+    gate: G1
+    g1_steps: [G1-D02]
+    requirements: [R-03, R-07]
+    ledger_status: NOT STARTED
+    actual: GAP
+    evidence: [evidence/g1-run-summary.json, app/src/tts.mjs]
+    note: "በላፕቶፕ ላይ ያለው SAPI አማርኛ ድምፅ የለውም (NO_LOCAL_VOICE)፤ ምክንያቱም የአካባቢ ድምፅ ግዢ ችግር ነው እንጂ ኮዱ አይደለም (F-11)"
+
+  - id: W07
+    ledger_title: "አፋን ኦሮሞ TTS"
+    gate: G1
+    g1_steps: [G1-D02]
+    requirements: [R-07, R-08]
+    ledger_status: NOT STARTED
+    actual: GAP
+    evidence: [app/src/tts.mjs]
+    note: "የአፋን ኦሮሞ ድምፅ ምንጭ አልተመረጠም፤ ምርጫና ፈቃድ ማረጋገጥ ይጠብቃል (F-11/F-21)"
+
+  - id: W08
+    ledger_title: "ክፍት ብዙ-ዙር ውይይት"
+    gate: G1
+    g1_steps: [G1-D02, G1-D03]
+    requirements: [R-01, R-06, CI-01, CI-06, CI-08, RU-09]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [evidence/g1-run-summary.json, app/src/dialogue.mjs, tests/dialogue.test.mjs]
+    note: "ተከታታይ አውድ መያዝና ያልተገኘውን ሳይፈጥር ወደ ባለሙያ መመላከት በፍተሻ ተረጋግጧል፤ ያልታዩ የእውነተኛ ገበሬ ጥያቄዎች ግምገማ ግን መስክ ይጠብቃል (OP-01)"
+
+  - id: W09
+    ledger_title: "የ15 የሕይወት መስኮች ሽፋን"
+    gate: G1
+    g1_steps: [G1-D04]
+    requirements: [LC-01, LC-02, LC-03, LC-04, LC-05, LC-06, LC-07, LC-08, LC-09, LC-10, LC-11, LC-12, LC-13, LC-14, LC-15]
+    ledger_status: NOT STARTED
+    actual: GAP
+    evidence: [data/knowledge/entries.json]
+    note: "የናሙና እውቀት 11 መዝገብና 6 ርዕስ ብቻ አሉት፤ 15ቱ መስኮች በየቦታው የተለዩ የጥራት/ደህንነት ሙከራዎች አልተሠሩም (OP-04)"
+
+  - id: W10
+    ledger_title: "የምንጭ/ጊዜ/ግጭት የእውቀት መዝገብ"
+    gate: G1
+    g1_steps: [G1-D05]
+    requirements: [R-09, R-35, R-36, RU-06, RU-07, RU-08]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [app/src/knowledge.mjs, tests/knowledge.test.mjs, data/knowledge/entries.json]
+    note: "ምንጭ/ማብቂያ/ግጭት ማሳየት በኮድና በፍተሻ ተረጋግጧል፤ ይዘቱ ግን DEMO_FIXTURE_UNVERIFIED ነው — የተረጋገጠ የምርት እውቀት አይደለም (F-17)"
+
+  - id: W11
+    ledger_title: "የደህንነት ማጣሪያ"
+    gate: G1
+    g1_steps: [G1-D03]
+    requirements: [R-10, CI-10]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [app/src/safety.mjs, tests/safety.test.mjs]
+    note: "አደገኛ ምክር መከላከል፣ ያለ አደጋ ጥያቄ አለመከልከል፣ የእርግጠኝነት ግልጽነት ተፈትሸዋል፤ በ15 መስኮች ላይ የሙሉ ሽፋን ግምገማ አልተሠራም"
+
+  - id: W12
+    ledger_title: "የግላዊነት/ማስታወሻ ቁጥጥር"
+    gate: G1
+    g1_steps: [G1-D06]
+    requirements: [R-11, R-37, R-38, R-39, CI-11]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [app/src/sms.mjs, tests/sms.test.mjs]
+    note: "በፈቃድ የተለያየ ወሰንና ማጥፋት (wipeDerived) ተፈትሸዋል፤ የተጋራ ስልክ ፈቃድ (OP-26) ግን ድንበሩ ስላልጸደቀ BLOCKED_ON_UNDEFINED_TEST ነው (F-02)"
+
+  - id: W13
+    ledger_title: "SMS ማስመሰያና የAI ቁልፍ ፈቃድ"
+    gate: G1
+    g1_steps: [G1-D06]
+    requirements: [R-12, R-13, R-14, R-15, RU-05]
+    ledger_status: NOT STARTED
+    actual: MET
+    evidence: [evidence/g1-run-summary.json, app/src/sms.mjs, tests/sms.test.mjs]
+    note: "በG1 ማስመሰያ ውስጥ ብቻ፦ ያለ AI ቁልፍ/ፈቃድ አለመንበብ፣ OTP መከላከል፣ SMS እንደ ትዕዛዝ አለመሠራት ተረጋግጧል፤ በእውነተኛ ስልክ ላይ ማረጋገጫ G2 ይጠብቃል (F-20)"
+
+  - id: W14
+    ledger_title: "FM ድምፅ ማስመሰያ"
+    gate: G1
+    g1_steps: [G1-D05]
+    requirements: [R-16, R-31, R-32, R-33, RU-01, RU-02]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [evidence/g1-run-summary.json, app/src/fm.mjs, tests/fm.test.mjs]
+    note: "ድምፅ ከዳይ ውስጥ ሲወሰድ የዛሬነት/ትዕዛዝ አለመፈጸም ተፍትሷል፤ እውነተኛ የFM→PCM መንገድና ሕጋዊ መዳረሻ አልተረጋገጠም (F-12፣ G2 REQUIRES EVIDENCE)"
+
+  - id: W15
+    ledger_title: "የተፈረመ ዝማኔ"
+    gate: G1
+    g1_steps: [G1-D07]
+    requirements: [R-18, R-19, R-20, RU-12]
+    ledger_status: NOT STARTED
+    actual: MET
+    evidence: [evidence/g1-run-summary.json, app/src/update.mjs, tests/update.test.mjs, tools/make-update.mjs]
+    note: "ፊርማ ማረጋገጥ፣ የቁልፍ ስረዛ፣ replay/rollback መከላከል በማሽን ቁልፍና በእውነተኛ Ed25519 ፊርማ ተሞክረዋል፤ የSMS/ዝማኔ ትልቅነት ሂሳብ (F-13)ና FM ዲጂታል (F-14) ውሳኔ ይጠብቃሉ"
+
+  - id: W16
+    ledger_title: "የሙሉ ኦፍላይን ውህደት"
+    gate: G1
+    g1_steps: [G1-D08]
+    requirements: [R-23, R-24, R-42, CI-12]
+    ledger_status: NOT STARTED
+    actual: PARTIAL
+    evidence: [evidence/offline-static-check.json, tests/offline.test.mjs, evidence/g1-run-summary.json]
+    note: "ያለ ኔትወርክ የጽሑፍ ውይይት ሙሉ ሂደት ይሰራል፤ የድምፅ ሰንሰለት ግን W04–W07 ጉድለቶች ስላሉ ሙሉ በሙሉ አልተዘጋም። የላፕቶፕ ውጤት የስልክ ተስማሚነት አይደለም (R-24)"
+
+  - id: W17
+    ledger_title: "የገለልተኛ የG1 ሙከራ ግምገማ"
+    gate: G1
+    g1_steps: [G1-D11]
+    requirements: [VE-01, VE-02, OP-02]
+    ledger_status: NOT STARTED
+    actual: REQUIRES_EVIDENCE
+    evidence: [docs/FARMER_AI_PHONE_INDEPENDENT_TECHNICAL_REVIEW_AM.md]
+    note: "የተደረገው ገለልተኛ ግምገማ የንድፍ/ማከማቻ ሁኔታ ላይ ነው፤ የG1 ማረጋገጫ ውጤቶች ገና በሦስተኛ ወገን አልተገመገሙም — ባለቤት ማረጋገጫ እስከሚጀምር ድረስ MET አይባልም"
+
+  - id: W18
+    ledger_title: "የትክክለኛ ስልክ ሞዴል/OS/ቺፕ ማስረጃ"
+    gate: G2
+    g1_steps: [G1-D09]
+    requirements: [R-17, R-26, R-27, CI-14]
+    ledger_status: NOT AUTHORIZED
+    actual: NOT_AUTHORIZED
+    evidence: [docs/FARMER_AI_PHONE_CHIPSET_OS_FM_CANDIDATE_EVIDENCE_AUDIT_v2_3_AM.md]
+    note: "G1 ውስጥ የሚቻለው የአምራች ማስረጃ ጥያቄ (HC-01–08) ማዘጋጀት ብቻ ነው፤ መሣሪን መፈተሽ G2 ፈቃድ ይጠብቃል"
+
+  - id: W19
+    ledger_title: "የስልክ ጥሪ/FM/ባትሪ አካላዊ ሙከራ"
+    gate: G2
+    g1_steps: [G1-D10]
+    requirements: [R-04, R-25, RU-10, RU-13]
+    ledger_status: NOT AUTHORIZED
+    actual: NOT_AUTHORIZED
+    evidence: []
+    note: "G2/G3 ያለ ፈቃድ አይጀመርም፤ የG1 ማስመሰያ ውጤት ለእነዚህ ቦታ ማረጋገጫ አይሆንም (R-24፣ F-20)"
+
+  - id: W20
+    ledger_title: "የገበሬ መስክ ሙከራ"
+    gate: G3
+    g1_steps: [G1-D11]
+    requirements: [FD-01, FD-02, FD-03, FD-04, FD-05, FD-06, FD-07, FD-08]
+    ledger_status: NOT AUTHORIZED
+    actual: NOT_AUTHORIZED
+    evidence: [docs/FARMER_AI_PHONE_ETHIOPIAN_FARMER_FIELD_RESEARCH_AND_OWNER_ACCEPTANCE_v1_9_AM.md]
+    note: "የመስክ ምርምር ዘዴ በሰነድ ተገልጿል፤ መጀመሪያ FD-A/FD-B መለያ ማስተካከል ያስፈልጋል (F-23)፤ G3 ፈቃድ የባለቤት ውሳኔ ነው"
+
+  - id: W21
+    ledger_title: "የማምረት የመጨረሻ ውሳኔ"
+    gate: G4
+    g1_steps: [G1-D11]
+    requirements: [R-30, R-40, R-42]
+    ledger_status: NOT AUTHORIZED
+    actual: NOT_AUTHORIZED
+    evidence: [docs/STATUS_SUPERSEDED.md]
+    note: "G4 ማምረት NO-GO ነው፤ ማንኛውም ማለፊያ G1/G2/G3 ማስረጃና የባለቤት ፈቃድ ይጠብቃል"
+
+# -- G1-D01–D11 ↔ W አዛምዶ (ተገላቢጦሽ) --------------------------------
+g1_steps:
+  - id: G1-D01
+    stale: true
+    note: "በማስታወሻው ሰንጠረዥ NOT STARTED ተብሏል፤ በእውነት መካኒካል አዛምዶ ተሠርቷል"
+    work_packages: [W01]
+  - id: G1-D02
+    stale: true
+    note: "የድምፅ ሰንሰለት ኮድና ሙከራ አሉ፤ TTS/ASR ይዘት ግን ይቀራል"
+    work_packages: [W04, W05, W06, W07, W08]
+  - id: G1-D03
+    stale: true
+    note: "ክፍት ውይይትና የስህተት አያያዝ ተከታታይ ፍተሻ አላቸው"
+    work_packages: [W08, W11]
+  - id: G1-D04
+    stale: true
+    note: "የ15 መስኮች ሽፋን በናሙናው አልተሟላም"
+    work_packages: [W09]
+  - id: G1-D05
+    stale: true
+    note: "የFM እና የምንጭ/ጊዜ/ግጭት ቁጥጥር በማስመሰያ ተፈትሸዋል"
+    work_packages: [W10, W14]
+  - id: G1-D06
+    stale: true
+    note: "SMS ፈቃድ/ቁልፍ/OTP እና ግላዊነት ቁጥጥር ተፈትሸዋል"
+    work_packages: [W12, W13]
+  - id: G1-D07
+    stale: true
+    note: "የተፈረመ ዝማኔ ተሠርቷል፤ የሞዴል/ፈቃድ መዝገብ ግና ክፍት ነው"
+    work_packages: [W02, W15]
+  - id: G1-D08
+    stale: true
+    note: "ሃብት/ፍጥነት/ስህተት ተለክተዋል፤ የቁጥር ወሰን ማጽደቅ አልተጠናቀቀም"
+    work_packages: [W03, W16]
+  - id: G1-D09
+    stale: true
+    note: "የእጩ መሣሪያ ማስረጃ መጠየቅ G1 ነው፤ መፈተሽ G2"
+    work_packages: [W18]
+  - id: G1-D10
+    stale: true
+    note: "የሞዴል/መሣሪያ ማዛመድ G2 ስላልተፈቀደ አልተጀመረም"
+    work_packages: [W19]
+  - id: G1-D11
+    stale: true
+    note: "ለG2 የውሳኔ ግቤት ማዘጋጀት ቀጥያልኳ ገለልተኛ ግምገማ ተጨርሷል አይባልም"
+    work_packages: [W17, W20, W21]

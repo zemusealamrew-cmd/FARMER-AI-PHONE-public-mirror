@@ -1,0 +1,24 @@
+# የR-37 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-37
+requirement: "ለSMS ድምፅ ንባብ፣ ለእውቀት ማውጣትና ለረጅም ጊዜ ማከማቸት የተለያዩ ፈቃዶች"
+owner_role: "የፈቃድ/ግላዊነት ቁጥጥር"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/call.test.mjs", name: "R-04 / R-37 / F-18፦ የማቋረጥ ናሙና የተቋረጠውን ዙር መታወቂያ ይዞ ይመዝገባል"}
+  - {file: "tests/call.test.mjs", name: "R-37 / F-18፦ AI ሲያልቅ ናሙናው ይጠፋል፣ ያለጥሪ ማቋረጥ አይደለም"}
+  - {file: "tests/safety.test.mjs", name: "R-37 / LC-08፦ የማረጋገጫ ኮድ (OTP) በድምፅ አይነበብም"}
+  - {file: "tests/server.test.mjs", name: "R-37 / R-12 / F-15 / S-5፦ የSMS ንባብ በHTTP ላይም ሁለት ማረጋገጫ ይፈልጋል"}
+  - {file: "tests/server.test.mjs", name: "R-37 / CI-06 / VE-01፦ ፈቃድ በአንድ ክፍለ-ጊዜ ላይ ሲሰጣት በGET መልሶ ሲነበብ ይዛመዳል"}
+  - {file: "tests/sms.test.mjs", name: "R-37 / S-5፦ ንባብ ሁለት ማረጋገጫ ይፈልጋል — የAI ቁልፍና ፈቃድ"}
+  - {file: "tests/sms.test.mjs", name: "R-37 / F-15፦ የመረጃ አጠቃቀም ፈቃድ ከንባብ ፈቃድ ጭምብል አይደለም (separate scopes)"}
+  - {file: "tests/sms.test.mjs", name: "R-37 / LC-08፦ OTP ፈቃድ ቢኖርም በድምፅ አይነበብም"}
+  - {file: "tests/sms.test.mjs", name: "F-15 / R-37 / OP-08፦ ፈቃድ መሻር የተሠራ ውጤቶችን ማጥፋት አለበት (revocation wipe)"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-26 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

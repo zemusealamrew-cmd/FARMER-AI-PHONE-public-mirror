@@ -1,0 +1,16 @@
+# የRU-12 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-12
+requirement: "የተፈረመ የሞዴል/የውሂብ ዝማኔ ከተራ መረጃ መለየት"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G1, G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G1+G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/update.test.mjs", name: "F-15 / RU-12፦ ወደ ኋላ የሄደ counter (replay/rollback attack) ይከለከላል"}
+doc_acceptance: "ትክክለኛ/የተሰረዘ/የተደገመ ፊርማ ሙከራ፣ የቁልፍ ለውጥ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-21 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

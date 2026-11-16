@@ -1,0 +1,44 @@
+{
+  "update_id": "upd-fixture-1.0.3-tamper-payload",
+  "issuer_id": "issuer-demo",
+  "key_id": "key-2026-11-04-1",
+  "version": "1.0.3-tamper-payload",
+  "monotonic_counter": 3,
+  "payload": {
+    "kb_version": "1.0.3-tamper-payload",
+    "kb_status": "SIGNED_FIXTURE",
+    "mode": "delta",
+    "notice_am": "ይህ የG1 የሙከራ ናሙና ነው፤ የተረጋገጠ ምክር አይደለም።",
+    "notice_om": "Kun yaalii G1 ti; gorsa mirkanaa'e miti.",
+    "entries": [
+      {
+        "claim_id": "claim-fixture-tampered",
+        "topic_id": "market_price",
+        "locale": "am",
+        "title": "የነጭ ሽንፈር ዋጋ",
+        "answer": "የተሳሳተ ዋጋ፦ ኪሎ 2,000 ብር — ማጭበርበሪያ ናሙና (በተሰረጠ)።",
+        "answer_short": "የተሳሳተ ዋጋ፦ ኪሎ 2,000 ብር — ማጭበርበሪያ ናሙና።",
+        "keywords": [
+          "ዋጋ",
+          "ገበያ"
+        ],
+        "requires_expert": false,
+        "source": {
+          "kind": "signed_demo_update",
+          "id": "issuer-demo",
+          "title": "የG1 የተፈረመ ናሙና ዝማኔ",
+          "captured_at": "2026-11-04T15:00:00.000Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-11T15:00:00.000Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none",
+        "risk_level": "low",
+        "geography": "ET"
+      }
+    ]
+  },
+  "payload_hash": "sha256:0de9ae60f0daaa8f669d6269b092ff9c42a4fe751ef2f19c8af4d818d1b87cd2",
+  "expiry": "2026-12-04T15:00:00.000Z",
+  "signature": "GBm7+YsHPNKTO1R9z7LLg/yrofF9gkeYiD6a05VL0l8doN+bGACoac58gqebGa1Q//UlmgdL8TVwOiCNV2PNCg=="
+}

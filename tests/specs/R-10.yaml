@@ -1,0 +1,26 @@
+# የR-10 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-10
+requirement: "አደገኛ ምክር መከላከል፣ እርግጠኝነት ሲጎድል መግለጽ"
+owner_role: "የግብርና እውቀት ኃላፊ"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / R-10፦ ጠቋሚ የሌለውና ያልተያያዘ ጥያቄ ከርዕስ በኋላም አልፎ አይፈጥርም (no eager reuse)"}
+  - {file: "tests/dialogue.test.mjs", name: "R-10 / NR-12፦ ያልታወቀ ጥያቄ \"አላውቅም\" ብሎ ወደ ባለሙያ ይመራል፣ አልፎ አልፎ አይፈጥርም"}
+  - {file: "tests/dialogue.test.mjs", name: "R-10 / F-21፦ የተሳሳተ ርዕስ ላይ ያለ ቃል ብቻውን መልስ አይፈጥርም (no keyword-only hallucination)"}
+  - {file: "tests/dialogue.test.mjs", name: "R-10 / F-21፦ ያልተመዘገበ ርዕስ ላይ የተነሳ ጥያቄ በተሳሳተ ርዕስ መልስ አይሰጥም (no wrong-topic answer)"}
+  - {file: "tests/dialogue.test.mjs", name: "R-10 / CI-04፦ የቅጠል አውድ አዲስ ርዕስንና ሌላ ውይይትን አይወርስም"}
+  - {file: "tests/dialogue.test.mjs", name: "R-10 / CI-04፦ የቅጠል ጥያቄ የቀድሞ አዘራር አውድን አይጠቀምም"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ ረዘም ያለ የቅጠል መልስ ወደ አዘራር አይመለስም"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ ያልተለየ የቅጠል ተከታይ መልስ ይጣራል"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ አሉታዊ ምልከታ በተቃራኒው አይመዘገብም"}
+  - {file: "tests/knowledge.test.mjs", name: "R-10 / NR-12፦ ያልተገለጸ ጥያቄ ዜሮ ማረጋገጫ ይመልሳል (no silent guessing)"}
+  - {file: "tests/knowledge.test.mjs", name: "R-10 / F-10፦ አናገራዊ ቃላት የተሳሳተ ርዕስ መልስ አይምረጡም (particle noise regression)"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)", "OP-24 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

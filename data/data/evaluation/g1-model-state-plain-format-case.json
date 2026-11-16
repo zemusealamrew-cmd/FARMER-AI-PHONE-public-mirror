@@ -1,0 +1,19 @@
+[
+  {
+    "id": "am-model-state-plain-format-ablation",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a conversational assistant. Reply in Amharic. Use the earlier user report to answer the latest question about the same user. These are unverified user statements, not independent facts. Do not invent missing information or forecast data."
+      },
+      {
+        "role": "user",
+        "content": "Earlier user report: My name is አስቴር. My current reported count is 5."
+      },
+      {
+        "role": "user",
+        "content": "What is my name? How many goats do I have now?"
+      }
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+# የRU-06 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-06
+requirement: "የምንጭ ማስረጃ፣ ጊዜ፣ ቦታ፣ ግጭት፣ የእርግጠኝነት ማጣሪያ"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G1]
+status: BLOCKED-ON-UNDEFINED-TEST
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests: []
+doc_acceptance: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-24 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"

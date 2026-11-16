@@ -1,0 +1,44 @@
+{
+  "update_id": "upd-fixture-1.0.1-delta",
+  "issuer_id": "issuer-demo",
+  "key_id": "key-2026-11-04-1",
+  "version": "1.0.1-delta",
+  "monotonic_counter": 1,
+  "payload": {
+    "kb_version": "1.0.1-delta",
+    "kb_status": "SIGNED_FIXTURE",
+    "mode": "delta",
+    "notice_am": "ይህ የG1 የሙከራ ናሙና ነው፤ የተረጋገጠ ምክር አይደለም።",
+    "notice_om": "Kun yaalii G1 ti; gorsa mirkanaa'e miti.",
+    "entries": [
+      {
+        "claim_id": "claim-fixture-teff-price",
+        "topic_id": "market_price",
+        "locale": "am",
+        "title": "የነጭ ሽንፈር ዋጋ ናሙና",
+        "answer": "የማሳያ ዋጋ፦ ኪሎ 14,500 ብር (2026-11-04)። ይህ ቁጥር የተረጋገጠ አይደለም።",
+        "answer_short": "የማሳያ ዋጋ፦ ኪሎ 14,500 ብር (2026-11-04)። ይህ ቁጥር የተረጋገጠ አይደለም።",
+        "keywords": [
+          "ዋጋ",
+          "ገበያ"
+        ],
+        "requires_expert": false,
+        "source": {
+          "kind": "signed_demo_update",
+          "id": "issuer-demo",
+          "title": "የG1 የተፈረመ ናሙና ዝማኔ",
+          "captured_at": "2026-11-04T15:00:00.000Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-11T15:00:00.000Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none",
+        "risk_level": "low",
+        "geography": "ET"
+      }
+    ]
+  },
+  "payload_hash": "sha256:dcca7020c36152c8313b31ff5c02a6ab4da3ba7a4294048e6124496a373804e5",
+  "expiry": "2026-12-04T15:00:00.000Z",
+  "signature": "/kwm0dmPyPt4dv140Ybq7OCCVJFvj1Tf/ahJo49bdpailmfCuluiyT0Sh1cxBStGkbjvlV8l6O9QaG0ONnKDAQ=="
+}

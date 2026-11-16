@@ -1,0 +1,19 @@
+# የR-18 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-18
+requirement: "የተፈረመ ዝማኔ፣ የቁልፍ ስረዛ፣ የድግግሞሽ መከላከል"
+owner_role: "የደህንነት ኃላፊ"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/update.test.mjs", name: "F-15 / R-18፦ ድጋሚ መተግበር (idempotence) — አንድ update_id ሁለት ጊዜ አይተገበርም"}
+  - {file: "tests/update.test.mjs", name: "F-15 / R-18፦ ሙሉ ጥቅል መዝገቡን ሙሉ በሙሉ ይተካል"}
+  - {file: "tests/update.test.mjs", name: "F-15 / R-18፦ KnowledgeBase ሲንጠቀለል አዲሱ ይዘት ይታያል (reload contract)"}
+  - {file: "tests/update.test.mjs", name: "F-15 / R-18፦ ማረጋገጫው ያልፈጸመ መልክ አይጽፍም (verify does not mutate)"}
+doc_acceptance: "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-21 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

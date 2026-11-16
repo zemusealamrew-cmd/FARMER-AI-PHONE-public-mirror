@@ -1,0 +1,24 @@
+# የR-05 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-05
+requirement: "ኢንተርኔት የማይፈልግ የድምፅ ውይይት"
+owner_role: "የAI ውህደት ኃላፊ"
+owner_named: null
+gates: [G1, G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G1+G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-01፦ ክፍት ውይይት ከምንጭ ጋር ይመልሳል (grounded answer)"}
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / OP-02፦ ተከታታይ ጥያቄ የቀድሞውን ርዕስ ይይዛል (multi-turn context)"}
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / G1-D03፦ ወደ ቀድሞው ርዕስ የሚመልስ ተከታታይ ጥያቄ (anaphora) ርዕሱን ይዞ መልስ ይሰጣል"}
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / R-10፦ ጠቋሚ የሌለውና ያልተያያዘ ጥያቄ ከርዕስ በኋላም አልፎ አይፈጥርም (no eager reuse)"}
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-03፦ በአፋን ኦሮሞ ተከታታይ ጥያቄ ርዕስ ይይዛል (Oromo anaphora)"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-05፦ የቢጫ ቅጠል ጥያቄ በሁለቱም ቋንቋዎች ያጣራል፣ የታች መልስንም ያስታውሳል"}
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-04፦ ባዶ ግቤት አውድን ያቆያል፤ ሰላምታ ግን ማጣሪያውን ይዘጋል"}
+  - {file: "tests/knowledge.test.mjs", name: "F-10 / R-05፦ አማርኛ ጥያቄ ከእውቀት መዝገብ ይመልሳል (retrieval-first)"}
+  - {file: "tests/server.test.mjs", name: "R-05 / CI-01 / OP-02፦ ክፍት ውይይት፣ ተከታታይ ጥያቄና ያልታወቀ ጥያቄ በHTTP ትክክል ይመልሳሉ"}
+doc_acceptance: "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

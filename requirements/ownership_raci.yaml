@@ -1,0 +1,250 @@
+# FARMER-AI-PHONE — የባለቤትነት RACIና የክፍል API (F-05) ማሽን-ሚነበብ አልት
+# ይህ ፋይል አዲስ ዋና መዝገብ አይፈጥርም፤ ባለቤትነቱ የሚወሰደው ከአንዱ ዋና መዝገብ ብቻ ነው፦
+#   docs/FARMER_AI_PHONE_CANONICAL_REQUIREMENT_OWNER_EVIDENCE_REGISTRY_v2_8_AM.md §3 (owner_role)፣
+#   requirements/requirements.yaml (ከv2.8 የተመነጨ 123 መለያ)፣
+#   docs/OWNERSHIP_RACI_AND_SECTION_API_v1_0_AM.md §2/§3/§5 (የሰው ሚና ካርታና API ውል)።
+# ሕግ 1፦ አንድ ኃላፊነት → አንድ A (የባለቤት መስፈርት R-29)። 123ቱ መለያዎች በአንድ ክፍል A ውስጥ ብቻ ይመዘገባሉ።
+# ሕግ 2፦ `roles` ዝርዝሩ የv2.8 `owner_role` ዋጋዎች ናቸው (ቃል በቃል)፤ እያንዳንዱ የv2.8 ባለቤት ስም
+#   በአንድ ክፍል ውስጥ ብቻ ይኖራል — 29 ስሞች 11 ክፍሎች ውስጥ ተደራጅተዋል።
+# ሕግ 3፦ ክፍል 5 ላይ ያሉ ማዛመሪያ ጥያቄዎች `status: PROPOSED`ና`owner_decision: PENDING` ብቻ ናቸው።
+#   ባለቤቱ ሳይወስን v2.8 የተቀየረበት አይደለም፤ ለውጥ የሚፈጸመው CR በኩል ብቻ ነው (R-41)።
+# ማረጋገጫ ዘዴ፦ `node --test tests/ownership.test.mjs` — ክፍልና መለያ ከv2.8፣ ከሰንጠረዥ ሰነድና
+#   ከመስፈርት መዝገብ ጋር ይነጻጸራል። ይህ ፋይል ብቻ ከተቀየረ ፍተሻው ወድቆ ግጭቱ ግልጽ ይሆናል።
+schema_version: 1
+source_owner_registry: docs/FARMER_AI_PHONE_CANONICAL_REQUIREMENT_OWNER_EVIDENCE_REGISTRY_v2_8_AM.md
+human_doc: docs/OWNERSHIP_RACI_AND_SECTION_API_v1_0_AM.md
+status: PARTIAL
+owner_decision: PENDING
+one_accountable_rule: R-29
+sections:
+  - id: S-01
+    title: "OS/ቴሌኮም (ጥሪ፣ SMS ማከማቻ፣ የመሣሪያ ተስማሚነት)"
+    api_label: "OS/ቴሌኮም"
+    accountable: "የቴሌኮም ኃላፊ"
+    roles: ["የቴሌኮም ኃላፊ", "የቴሌኮም/ተስማሚነት ኃላፊ"]
+    responsible: ["ሙከራ ቡድን", "የመሣሪያ መቆጣጠሪያ ኃላፊ"]
+    consulted: ["OS/ቴሌኮም እጩዎች (v2.3 HC)"]
+    informed: ["ባለቤት", "ውይይት ክፍል"]
+    requirements: [R-03, R-04, R-15, R-26]
+    pending_transfer: []
+    api_input: "የጥሪ/SMS ክስተት፣ የSIM ሁኔታ"
+    api_output: "ዝቅተኛ የጥሪ/SMS ሁኔታ ምልክት"
+    api_invariant: "ጥሪ ሁልጊዜ ከAI በላይ (R-04)፤ የSMS ዋና ቅጂ እዚህ ብቻ (R-15)"
+    api_on_error: "AI ውድቀት ጥሪን አይቋረጥም"
+
+  - id: S-02
+    title: "የመሣሪያ ቁልፍና መቆጣጠሪያ"
+    api_label: "ቁልፍና መቆጣጠሪያ"
+    accountable: "የመሣሪያ መቆጣጠሪያ ኃላፊ"
+    roles: ["የመሣሪያ መቆጣጠሪያ ኃላፊ"]
+    responsible: ["ሃርድዌር ኃላፊ"]
+    consulted: ["የፈቃድ/ግላዊነት ቁጥጥር"]
+    informed: ["ውይይት ክፍል"]
+    requirements: [R-02, R-12]
+    pending_transfer: [R-12]
+    api_input: "የቁልፍ መጫን (AI ቁልፍ ጨምሮ)"
+    api_output: "ጽዳት ያለው የቁልፍ ክስተት"
+    api_invariant: "ያለ AI ቁልፍ ድምፅ ግብይት የለም (R-02)"
+    api_on_error: "ቁልፍ ካልተጫነ ምንም አይጀመርም"
+
+  - id: S-03
+    title: "ፈቃድና ግላዊነት አገልግሎት"
+    api_label: "ፈቃድና ግላዊነት"
+    accountable: "የፈቃድ/ግላዊነት ቁጥጥር"
+    roles: ["የግላዊነት ኃላፊ", "የፈቃድ/ግላዊነት ቁጥጥር"]
+    responsible: ["የመሣሪያ መቆጣጠሪያ ኃላፊ", "ውይይት ክፍል"]
+    consulted: ["ሕግ/የመረጃ መብት (R-40)"]
+    informed: ["ባለቤት", "ሁሉም ክፍሎች"]
+    requirements: [R-11, R-13, R-37, R-38, R-40]
+    pending_transfer: []
+    api_input: "የተጠቃሚ ምርጫ፣ የዓይነት ፈቃድ"
+    api_output: "scope ያለው ፈቃድ ሁኔታ"
+    api_invariant: "ለንባብ ፈቃድና ለአውድ ፈቃድ ሁለት የተለያዩ ድንበሮች (R-13፣ R-37)"
+    api_on_error: "ፈቃድ ከሌለ CONSENT_REQUIRED ብቻ"
+
+  - id: S-04
+    title: "የድምፅ AI (ASR/TTS/ቋንቋ)"
+    api_label: "የድምፅ AI"
+    accountable: "የድምፅ AI ኃላፊ"
+    roles: ["የድምፅ AI ኃላፊ", "የኦፍላይን ቋንቋ ክፍል"]
+    responsible: ["የኦፍላይን ቋንቋ ክፍል"]
+    consulted: ["ገለልተኛ የሙከራ ኃላፊ (OP-02)"]
+    informed: ["ውይይት ክፍል", "ባለቤት"]
+    requirements: [R-07, R-08, R-33]
+    pending_transfer: []
+    api_input: "ድምፅ ግብይት/ውጤት"
+    api_output: "ትርጉም + እርግጠኝነት ወይም ግልጽ ስህተት"
+    api_invariant: "ያለተረጋገጠ ድምፅ አልተናገርም ብቻ ይባላል (F-08)፤ ያለ ድምፅ/አጭር ግብይት ለኢንጂን አይደርስም"
+    api_on_error: "SILENT_CAPTURE፣ AUDIO_TOO_SHORT፣ EMPTY_TRANSCRIPT፣ NO_LOCAL_VOICE"
+
+  - id: S-05
+    title: "ክፍት ውይይትና አውድ"
+    api_label: "ውይይትና አውድ"
+    accountable: "የኦፍላይን ውይይት ክፍል"
+    roles: ["የኦፍላይን ውይይት ክፍል", "የAI ውህደት ኃላፊ", "የAI ሞዴል ኃላፊ"]
+    responsible: ["የAI ሞዴል ኃላፊ", "የAI ውህደት ኃላፊ"]
+    consulted: ["የእውቀት መዝገብ", "የደህንነት ኃላፊ"]
+    informed: ["ባለቤት"]
+    requirements: [R-05, R-06, R-22, R-23, R-42, CI-01, CI-02, CI-03, CI-04, CI-05, CI-06, CI-07, CI-08, CI-09, CI-10, CI-11, CI-12, CI-13, CI-14]
+    pending_transfer: [R-42, CI-13, CI-14]
+    api_input: "ጽሑፍ ጥያቄ + ያለፈ አውድ"
+    api_output: "ተከታታይ ዙር ያለው መልስ/ጥያቄ"
+    api_invariant: "ተጨማሪ ግምት አይፈጠርም፤ ያልታወቀውን ይናገራል (R-06)"
+    api_on_error: "ወደ ባለሙያ መምራት (EXPERT_REFERRAL)"
+
+  - id: S-06
+    title: "የእውቀት መዝገብና የይዘት አስተዳደር"
+    api_label: "እውቀት መዝገብ"
+    accountable: "የአካባቢ እውቀት መዝገብ"
+    roles: ["የአካባቢ እውቀት መዝገብ", "የግብርና እውቀት ኃላፊ", "የተጠቃሚ ፍላጎት/የይዘት ክፍል", "የሞዴል መረጃ ኃላፊ"]
+    responsible: ["የግብርና እውቀት ኃላፊ", "የተጠቃሚ ፍላጎት/የይዘት ክፍል"]
+    consulted: ["የመስክ ምርምር ኃላፊ (FD)"]
+    informed: ["ውይይት ክፍል", "ባለቤት"]
+    requirements: [R-09, R-10, R-21, R-34, R-35, R-36, LC-01, LC-02, LC-03, LC-04, LC-05, LC-06, LC-07, LC-08, LC-09, LC-10, LC-11, LC-12, LC-13, LC-14, LC-15]
+    pending_transfer: []
+    api_input: "የፍለጋ ጥያቄ + አካባቢ/ወቅት"
+    api_output: "claim + ምንጭ + ቀን + እርግጠኝነት"
+    api_invariant: "ምንጭ የለሌለ claim ወደ ተጠቃሚ አይወጣም (R-09)"
+    api_on_error: "ይዘቱ DEMO_FIXTURE ተብሎ ይታወቃል"
+
+  - id: S-07
+    title: "ደህንነትና የተፈረመ ዝማኔ ማረጋገጫ"
+    api_label: "ደህንነትና ዝማኔ"
+    accountable: "የደህንነት ኃላፊ"
+    roles: ["የደህንነት ኃላፊ", "የዝማኔ ኃላፊ", "የማረጋገጫ ኃላፊ"]
+    responsible: ["የዝማኔ ኃላፊ", "የማረጋገጫ ኃላፊ"]
+    consulted: ["ሕግ", "ሃርድዌር ማስረጃ ኃላፊ"]
+    informed: ["ባለቤት", "ሁሉም ክፍሎች"]
+    requirements: [R-14, R-18, R-19, R-20, R-24]
+    pending_transfer: []
+    api_input: "ማስተካከያ/መልዕክት + ፊርማ ቁልፍ"
+    api_output: "ተቀባይነት ወይም እገዳ ውሳኔ"
+    api_invariant: "ፊርማ የተሳሳተ ወይም ድግግሞሽ ያለው ይወረዳል (R-18)"
+    api_on_error: "BLOCKED + የተመዘገበ ምክንያት"
+
+  - id: S-08
+    title: "ሃርድዌር፣ ሬዲዮ ተቀባይነትና ሀብት"
+    api_label: "ሃርድዌርና ሀብት"
+    accountable: "የሃርድዌር ኃላፊ"
+    roles: ["የሃርድዌር ኃላፊ", "የሬዲዮ/ሃርድዌር ክፍል", "የመሣሪያ ሀብት አስተዳዳሪ"]
+    responsible: ["የሬዲዮ/ሃርድዌር ክፍል", "የመሣሪያ ሀብት አስተዳዳሪ"]
+    consulted: ["የሃርድዌር ማስረጃ ኃላፊ (VE)"]
+    informed: ["ውይይት ክፍል", "ባለቤት"]
+    requirements: [R-01, R-16, R-17, R-25, R-31, R-32, R-39]
+    pending_transfer: []
+    api_input: "የRAM/flash/ባትሪ/ሙቀት ሁኔታ"
+    api_output: "ወሰን የተጣለ ሥራ ፈቃድ"
+    api_invariant: "microSD ማከማቻ ነው RAM አይደለም (R-17)"
+    api_on_error: "ከወሰን በላይ AI ተቋረጠ፣ ጥሪ ቀጠለ"
+
+  - id: S-09
+    title: "የመስፈርት አስተዳደር፣ ወጪና በር"
+    api_label: "መስፈርት አስተዳደር"
+    accountable: "የምርት መስፈርት አስተዳዳሪ"
+    roles: ["የምርት መስፈርት አስተዳዳሪ", "የምርት/ወጪ ኃላፊ", "የተጠቃሚ ሙከራ ኃላፊ", "የሥርዓት ንድፍ ኃላፊ", "የፕሮጀክት ኃላፊ"]
+    responsible: ["የሥርዓት ንድፍ ኃላፊ", "የፕሮጀክት ኃላፊ"]
+    consulted: ["የምርት/ወጪ ኃላፊ", "የተጠቃሚ ሙከራ ኃላፊ"]
+    informed: ["ባለቤት"]
+    requirements: [R-27, R-28, R-29, R-30, R-41]
+    pending_transfer: []
+    api_input: "የመስፈርት ለውጥ ጥያቄ"
+    api_output: "አዲስ መለያ የለም፤ ታሪክና ደረጃ"
+    api_invariant: "አንድ ዋና መዝገብ ብቻ (R-41)፤ G0–G4 በሮች (R-30)"
+    api_on_error: "ለውጥ CR ያስፈልገዋል"
+
+  - id: S-10
+    title: "የሬዲዮ/SMS ውህደትና ምንጭ ቁጥጥር"
+    api_label: "ሬዲዮ/SMS ውህደት"
+    accountable: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    roles: ["የሬዲዮ/SMS መረጃ ውህደት ክፍል"]
+    responsible: ["የአካባቢ እውቀት መዝገብ", "የቴሌኮም ኃላፊ"]
+    consulted: ["የደህንነት ኃላፊ", "የፈቃድ ኃላፊ"]
+    informed: ["ባለቤት"]
+    requirements: [RU-01, RU-02, RU-03, RU-04, RU-05, RU-06, RU-07, RU-08, RU-09, RU-10, RU-11, RU-12, RU-13, RU-14]
+    pending_transfer: [RU-12, RU-13]
+    api_input: "የFM/SMS ጽሑፍ + ዛሬነት"
+    api_output: "ያልተጠቀመ መረጃ ማጣቀሻ"
+    api_invariant: "ማስመሰያ ወይም SMS የሥርዓት ትእዛዝ አይሆንም (R-14)"
+    api_on_error: "ውህደት ተከለከለ"
+
+  - id: S-11
+    title: "የገለልተኛ ማስረጃ (OP/VE/FD)"
+    api_label: "ገለልተኛ ማስረጃ"
+    accountable: "ገለልተኛ የሙከራ ኃላፊ"
+    roles: ["ገለልተኛ የሙከራ ኃላፊ", "የሃርድዌር ማስረጃ ኃላፊ", "የመስክ ምርምር ኃላፊ"]
+    responsible: ["የሃርድዌር ማስረጃ ኃላፊ", "የመስክ ምርምር ኃላፊ"]
+    consulted: ["ሁሉም R ክፍሎች"]
+    informed: ["ባለቤት"]
+    requirements: [OP-01, OP-02, OP-03, OP-04, OP-05, OP-06, OP-07, OP-08, OP-09, OP-10, OP-11, OP-12, OP-13, OP-14, OP-15, OP-16, OP-17, OP-18, OP-19, OP-20, VE-01, VE-02, VE-03, VE-04, VE-05, VE-06, VE-07, VE-08, VE-09, VE-10, FD-01, FD-02, FD-03, FD-04, FD-05, FD-06, FD-07, FD-08]
+    pending_transfer: []
+    api_input: "የሙከራ ውጤት + ልኬት"
+    api_output: "MET/PARTIAL/GAP ደረጃ"
+    api_invariant: "ያለ ማስረጃ MET አይባልም"
+    api_on_error: "REQUIRES EVIDENCE"
+
+proposals:
+  - id: P-01
+    requirement: CI-13
+    from_section: S-05
+    to_section: S-01
+    current_owner: "የኦፍላይን ውይይት ክፍል"
+    proposed_owner: "የቴሌኮም ኃላፊ"
+    reason: "የጥሪ/SMS መለየት የሥርዓት ባሕል ነው እንጂ የውይይት አይደለም"
+    evidence: "v2.8:99"
+    status: PROPOSED
+    owner_decision: PENDING
+
+  - id: P-02
+    requirement: CI-14
+    from_section: S-05
+    to_section: S-08
+    current_owner: "የኦፍላይን ውይይት ክፍል"
+    proposed_owner: "የመሣሪያ ሀብት አስተዳዳሪ"
+    reason: "የሃርድዌር ወሰን ላይ የሚመሠረት አፈጻጸም"
+    evidence: "v2.8:100"
+    status: PROPOSED
+    owner_decision: PENDING
+
+  - id: P-03
+    requirement: R-12
+    from_section: S-02
+    to_section: S-03
+    current_owner: "የመሣሪያ መቆጣጠሪያ ኃላፊ"
+    proposed_owner: "የፈቃድ/ግላዊነት ቁጥጥር"
+    reason: "ቁልፍ = መሣሪያ፤ ምርጫ = ፈቃድ። የፈቃድ ክፍል አንድ ተጠያቂ ይሆናል"
+    evidence: "v2.8:52"
+    status: PROPOSED
+    owner_decision: PENDING
+
+  - id: P-04
+    requirement: R-42
+    from_section: S-05
+    to_section: S-09
+    current_owner: "የኦፍላይን ውይይት ክፍል"
+    proposed_owner: "የምርት መስፈርት አስተዳዳሪ"
+    reason: "በሁሉም ክፍሎች የሚሠራርግ ድንጋጌ — የውህደት ቁጥጥር"
+    evidence: "v2.8:82"
+    status: PROPOSED
+    owner_decision: PENDING
+
+  - id: P-05
+    requirement: RU-12
+    from_section: S-10
+    to_section: S-07
+    current_owner: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    proposed_owner: "የደህንነት ኃላፊ"
+    reason: "የተፈረመ ዝማኔ ከተራ መረጃ መለየት የፊርማ ጥበቃ ነው"
+    evidence: "v2.8:135"
+    status: PROPOSED
+    owner_decision: PENDING
+
+  - id: P-06
+    requirement: RU-13
+    from_section: S-10
+    to_section: S-01
+    current_owner: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    proposed_owner: "የቴሌኮም ኃላፊ"
+    reason: "የጥሪ ቅድሚያ ከR-04 ጋር አንድ ባለቤት መያዝ አለበት"
+    evidence: "v2.8:136"
+    status: PROPOSED
+    owner_decision: PENDING

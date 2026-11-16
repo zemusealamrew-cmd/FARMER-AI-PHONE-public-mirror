@@ -1,0 +1,19 @@
+# የRU-07 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-07
+requirement: "የጊዜ ማብቂያና የወቅታዊነት አስተዳደር"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G1]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G1 ላይ ይሰጣል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/etime.test.mjs", name: "NR-02 / RU-07፦ የኢትዮጵያ ዘመን መሠረታዊ እሴት እና እንቁጣጣሽ"}
+  - {file: "tests/etime.test.mjs", name: "NR-02 / RU-07፦ ወደ ኋላና ወደ ፊት ልወጣ ተገላቢጦሽ ነው (round-trip)"}
+  - {file: "tests/etime.test.mjs", name: "NR-02 / RU-07፦ የኢትዮጵያ ሰዓት (+6) ልወጣ"}
+  - {file: "tests/etime.test.mjs", name: "NR-02 / RU-07፦ አርባዊ ወቅቶች በወሩ መሠረት ይለያያሉ"}
+doc_acceptance: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-24 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

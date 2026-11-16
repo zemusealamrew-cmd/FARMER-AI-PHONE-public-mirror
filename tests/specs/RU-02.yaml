@@ -1,0 +1,16 @@
+# የRU-02 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-02
+requirement: "የFM ድምፅ ወደ AI በሕጋዊ መዳረሻ ማስተላለፍ"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/fm.test.mjs", name: "F-20 / LC-03 / RU-02፦ ከ24 ሰዓት በላይ የሆነ ማስታወሻ \"ዛሬ\" ተብሎ አይቀርብም"}
+doc_acceptance: "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

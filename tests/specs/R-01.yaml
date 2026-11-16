@@ -1,0 +1,17 @@
+# የR-01 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-01
+requirement: "አንድ ስልክ፣ ሁለተኛ ስልክ አያስፈልግም"
+owner_role: "የሃርድዌር ኃላፊ"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/dialogue.test.mjs", name: "R-01 / CI-04፦ ችግር የሌለው ግቤት (empty) አልሰማሁኝ ማስተዋወቅ ይሰጣል"}
+  - {file: "tests/server.test.mjs", name: "VE-01 / R-01፦ ሁኔታው ደህንነት-ተኮር መረጃውን ሳይደብቅ ይሰጣል፣ G1 ወሰኑም ግልጽ ነው"}
+doc_acceptance: "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

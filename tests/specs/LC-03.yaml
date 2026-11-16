@@ -1,0 +1,17 @@
+# የLC-03 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: LC-03
+requirement: "የአየር ሁኔታና አደጋ"
+owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/fm.test.mjs", name: "F-20 / LC-03 / RU-02፦ ከ24 ሰዓት በላይ የሆነ ማስታወሻ \"ዛሬ\" ተብሎ አይቀርብም"}
+  - {file: "tests/knowledge.test.mjs", name: "F-17 / LC-03፦ ጊዜው ያለፈ መረጃ ምልክት ይደረጋል፣ አይደፋም"}
+doc_acceptance: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "am-bekele-sheep-neighbour",
+    "locale": "am",
+    "turns": [
+      "ስሜ በቀለ ነው። ስድስት በጎች አሉኝ።",
+      "ጎረቤቴ አራት ፍየሎች አሉት።",
+      "የእኔ በጎች ስድስት ሳይሆኑ ስምንት ናቸው።",
+      "ስሜ ማን ነው? እኔ ስንት በጎች አሉኝ?"
+    ]
+  },
+  {
+    "id": "om-lammii-sheep-neighbour",
+    "locale": "om",
+    "turns": [
+      "Maqaan koo Lammii dha. Hoolota ja’a qaba.",
+      "Ollaan koo re’oota afur qaba.",
+      "Hoolonni koo ja’a osoo hin taane saddeet dha.",
+      "Maqaan koo eenyu? Ani hoolota meeqa qaba?"
+    ]
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "update_id": "upd-d2301f88-ccb3-4d20-bb42-6def45b65bd6",
+  "issuer_id": "issuer-demo",
+  "key_id": "key-2026-11-04-1",
+  "version": "1.0.1",
+  "monotonic_counter": 1,
+  "payload": {
+    "kb_version": "1.0.1",
+    "kb_status": "SIGNED_DEMO_DELTA",
+    "mode": "delta",
+    "entries": [
+      {
+        "id": "entry-signed-0001",
+        "claim_id": "claim-signed-0001",
+        "topic_id": "topic-market-price",
+        "locale": "am",
+        "title": "የተፈረመ የገበያ ዝማኔ ናሙና",
+        "answer": "የጤና ማሳያ፦ የተፈረመ ዝማኔ ሲደርስ አዲሱ መረጃ በእውቀት መዝገብ ውስጥ ይገባል፤ የምንጭና የወቅት ማስረጃ ግን ግዴታ ነው።",
+        "keywords": [
+          "ዝማኔ",
+          "ፈቃድ",
+          "ገበያ",
+          "ናሙና"
+        ],
+        "source": {
+          "kind": "signed_demo_update",
+          "source_id": "issuer-demo",
+          "captured_at": "2026-11-04T14:47:39.471Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-11T14:47:39.472Z",
+        "confidence_basis": "demo_fixture",
+        "risk_level": "low",
+        "geography": "ET"
+      }
+    ]
+  },
+  "payload_hash": "sha256:ed1048f87681a83496690c32c72e2006f93068be2ace7fcdf813a2f113ed7728",
+  "expiry": "2026-12-04T14:47:39.476Z",
+  "signature": "pW2vF1aDsj9Ru+hylJogbestmeMRlJdb0LvJ2BkDYTY+2JCQM74xZPljD1MCMPCi5/xLctX8uMNuC1y/xixpDw=="
+}

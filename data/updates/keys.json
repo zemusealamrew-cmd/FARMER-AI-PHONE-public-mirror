@@ -1,0 +1,33 @@
+{
+  "registry_version": "1.0",
+  "note": "G1 ዴሞ የፊርማ ቁልፍ መዝገብ። እነዚህ ቁልፎች በምንም ምርት ወይም በእውነተኛ ስልክ ላይ ሥልጣን የላቸውም። (F-15 የቁልፍ አስተዳደር ማስረጃ)",
+  "issuers": {
+    "issuer-demo": {
+      "name": "issuer-demo",
+      "keys": [
+        {
+          "key_id": "key-2026-11-04-1",
+          "algorithm": "ed25519",
+          "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAeKtcwI0VYGd8+Db98KKZDMD7UV0aXLsNQnuoTBQwUb4=\n-----END PUBLIC KEY-----\n",
+          "status": "active",
+          "issued_at": "2026-11-04T14:46:22.399Z",
+          "not_before": "2026-11-04T14:46:22.399Z",
+          "not_after": "2027-11-04T14:46:22.399Z",
+          "revoked_at": null,
+          "revoked_reason": null
+        },
+        {
+          "key_id": "key-revoked-demo",
+          "algorithm": "ed25519",
+          "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAlLOmvl0suPSSIZwEySf0OUkID5C2j63sIpBdWmoTN7A=\n-----END PUBLIC KEY-----\n",
+          "status": "revoked",
+          "issued_at": "2026-11-04T14:52:05.477Z",
+          "not_before": "2026-11-04T14:52:05.477Z",
+          "not_after": "2027-11-04T14:52:05.477Z",
+          "revoked_at": "2026-11-04T14:52:05.556Z",
+          "revoked_reason": "G1 ማስመሰያ፦ የተሰረዘ ቁልፍ መንገድ መሠራቱን ለማረጋገጥ"
+        }
+      ]
+    }
+  }
+}

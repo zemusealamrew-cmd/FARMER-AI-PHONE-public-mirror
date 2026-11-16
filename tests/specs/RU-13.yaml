@@ -1,0 +1,20 @@
+# የRU-13 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-13
+requirement: "ጥሪ ቅድሚያ፣ የAI ውድቀት ነጻነት"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/call.test.mjs", name: "R-04 / RU-13 / CI-13፦ ጥሪ ሲመጣ AI ወዲያውኑ ይቋረጣል"}
+  - {file: "tests/call.test.mjs", name: "R-04 / RU-13፦ የAI ደረጃ ሽግግር መረጃውን አያጣም፣ የማያውቀው ስም ይደፋል"}
+  - {file: "tests/call.test.mjs", name: "R-04 / RU-13፦ ወደ ውጭ የሚደረግ ጥሪም AIን በመላው መረጃ ይቋረጣል (parity with incoming)"}
+  - {file: "tests/server.test.mjs", name: "R-04 / RU-13 / RG-34-01፦ AI ሳሠራ ጥሪ ሲመጣ ይቀበላል፤ ጥሪ ሳለ AI ይከለከላል፤ ሲደምቀስ AI ይቀጥላል"}
+  - {file: "tests/server.test.mjs", name: "R-04 / RU-13 / F-18፦ AI በንግግር ላይ ሳለ ጥሪ ከመጣ ይቋረጣል፤ መታወቂያው ይጠበቃል፤ በፈቃድ ብቻ ይቀጥላል"}
+doc_acceptance: "በእውነተኛ ስልክ AI ሲበላሽ የጥሪ ቅድሚያ ማረጋገጫ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

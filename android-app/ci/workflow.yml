@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# builder3 — CI workflow definition (v2.12-wip, G1 repair round 2026-11-13).
+# SOURCE COPY of .github/workflows/build-apk.yml — kept byte-identical in body so the
+# owner can reinstall it (the connector write path cannot create .github/ paths).
+# Install: mkdir -p .github/workflows && cp android-app/ci/workflow.yml .github/workflows/build-apk.yml
+#
+# REPAIR ROUND 2026-11-13 (owner-authorized G1 repair, branch g1/repair-20261113).
+# CI ONLY — no product code, no model pin, no 85-requirement, no architecture and no
+# BUILD_TAG/version change.
+#   (1) push trigger covers BOTH ci-build-apk-20261112 and g1/repair-20261113
+#       (before: only ci-build-apk-20261112, so repair-branch pushes ran nothing);
+#       workflow_dispatch is kept.
+#   (2) job timeout-minutes: 60 and Build APK step timeout-minutes: 30 — a hung
+#       emulator/adb call can no longer leave a run in_progress for hours (the
+#       2026-11-13 run 43471689561 hung >2h inside Build APK).
+#   (3) runtime evidence (rt-out/results.txt + per-case logcat/meminfo/UI XML) is
+#       uploaded with if: always(), so a FAILED run keeps its evidence; the APK upload
+#       stays success-only. Evidence retention: 14 days. The evidence summary is also
+#       printed to the job summary.
+#   (4) runtime-test.sh bounds every adb/sdkmanager/avdmanager/javac call with a
+#       portable background+wait+kill timeout (GNU timeout is not assumed).
+name: builder3 APK build
+
+on:
+  push:
+    branches: [ci-build-apk-20261112, g1/repair-20261113]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+      - name: Install SDK packages
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platforms;android-35" "build-tools;36.1.0" > /dev/null
+      - name: Build APK
+        timeout-minutes: 30
+        run: bash android-app/ci/build-apk.sh
+      - name: Compute SHA-256
+        working-directory: android-app
+        run: sha256sum g1-amharic-ai-debug.apk | tee g1-amharic-ai-debug.apk.sha256
+      - name: Upload APK artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g1-amharic-ai-debug-apk
+          path: |
+            android-app/g1-amharic-ai-debug.apk
+            android-app/g1-amharic-ai-debug.apk.sha256
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload runtime evidence (always, even on failure)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g1-runtime-evidence
+          path: |
+            rt-out/
+            android-app/rt-out/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Publish runtime evidence summary
+        if: always()
+        run: |
+          if [ -f rt-out/results.txt ]; then
+            {
+              echo '### G1 runtime evidence'
+              echo '```'
+              cat rt-out/results.txt
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY" || true
+          else
+            echo 'G1 runtime evidence: rt-out/results.txt was not produced (the run failed before the runtime stage).' >> "$GITHUB_STEP_SUMMARY" || true
+          fi

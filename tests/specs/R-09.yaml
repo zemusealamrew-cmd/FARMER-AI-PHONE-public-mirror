@@ -1,0 +1,19 @@
+# የR-09 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-09
+requirement: "የተረጋገጠ የግብርና እውቀት፣ የምንጭ/አካባቢ/ቀን አያያዝ"
+owner_role: "የግብርና እውቀት ኃላፊ"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/dialogue.test.mjs", name: "R-09 / CI-04፦ ማጣሪያ በኬሚካል ጥበቃ ፊት አይቀድምም"}
+  - {file: "tests/knowledge.test.mjs", name: "F-10 / R-09፦ ተቃራኒ የዕውቀት ጥናቶች ይገለጣሉ (conflict detection)"}
+  - {file: "tests/safety.test.mjs", name: "F-17 / R-09 / LC-02፦ የኬሚካል መጠን ጥያቄ ይከለከላልና ወደ ባለሙያ ይመራል"}
+  - {file: "tests/safety.test.mjs", name: "R-09 / LC-04፦ ደህንነቱ የተጠበቀ ጥያቄ አይከለከልም (no false refusal)"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)", "OP-24 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

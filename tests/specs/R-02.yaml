@@ -1,0 +1,28 @@
+# የR-02 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-02
+requirement: "የአካል ቁልፎችና የተለየ AI ቁልፍ"
+owner_role: "የመሣሪያ መቆጣጠሪያ ኃላፊ"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/audio-input.test.mjs", name: "F-08 / R-02፦ ሙሉ ጸጥታ SILENT_CAPTURE ይመልሳል — «አልተረዳሁም» ሳይሆን «ድምፅ አልደረሰም»"}
+  - {file: "tests/server.test.mjs", name: "R-02 / F-08፦ ASR ሳይኖር የHTTP መንገዱ ወደ ጽሑፍ አማራጭ ይመራል (no fake transcript)"}
+  - {file: "tests/server.test.mjs", name: "R-02 / F-08 / CI-03፦ ኢንጂኑ ተጭኖ ሲገኝ የHTTP ድምፅ መንገዱ አልፎ አልፎ አይሆንም (500 የለም)"}
+  - {file: "tests/speech.test.mjs", name: "R-02 / CI-03፦ ASR ሁኔታው የተሰነዘ መሆኑንና ኢንተርኔት እንደማያስፈልግ በግልጽ ይናገራል"}
+  - {file: "tests/speech.test.mjs", name: "F-08 / R-02፦ ኢንጂኑ ሳይጫን transcribe \"ተሳካ\" አይልም (ASR_NOT_INSTALLED / ASR_MODEL_MISSING)"}
+  - {file: "tests/speech.test.mjs", name: "R-02፦ ያልተገኘ ድምጅ ፋይል AUDIO_NOT_FOUND ይመልሳል"}
+  - {file: "tests/speech.test.mjs", name: "F-08 / R-02፦ አንጻራዊ የድምጅ መንገድ ወደ ፈላጭ መንገድ ይቀየራል — ፋይሉ ሳይታይ አይከሽፍም"}
+  - {file: "tests/speech.test.mjs", name: "F-08 / R-02፦ ማንኛውም ያልተጠየቀ ውጤት \"ውህደት ያልሆነ\" ሆኖ ይመዘገባል (no fabricated transcript)"}
+  - {file: "tests/speech.test.mjs", name: "F-08 / R-02 / CI-03፦ ኢንጂኑ ተጭኖ ሲገኝ መንገዱ ሳይቋረጥ ውጤት ወይም ግልጽ ኮድ ይመልሳል"}
+  - {file: "tests/speech.test.mjs", name: "F-08 / R-02 / CI-03፦ ዝግ ግብይት ለኢንጂን ሳይደርስ በግልጽ ኮድ ይቆማል (no 6-8s wasted run)"}
+  - {file: "tests/voice-check.test.mjs", name: "F-08 / R-02፦ ወደ 16 kHz mono ያልተቀየረው የASR መንገድ ይከሻል (የተረጋገጠ እውነተኛ ጉድለት)"}
+  - {file: "tests/voice-check.test.mjs", name: "R-02 / R-03፦ የWER/CER ሂሳብ ማንበብ ተገናዞ ይሰላል"}
+  - {file: "tests/voice-check.test.mjs", name: "F-08 / R-02፦ ዝግ ድምጅ ለASR ሲላክ ዳመናው GAP ሆኖ የተፈጠረ ጽሑፍ አይደበቅም"}
+doc_acceptance: "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

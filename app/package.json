@@ -1,0 +1,12 @@
+{
+  "name": "farmer-ai-phone-g1-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "G1 offline Amharic/Afaan Oromo voice assistant demo (laptop only; not phone verification)",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test ../tests/",
+    "evidence": "node ../tools/evidence-run.mjs"
+  }
+}

@@ -1,0 +1,26 @@
+# የCI-12 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: CI-12
+requirement: "ሙሉ የድምፅ መስመር ኦፍላይን"
+owner_role: "የኦፍላይን ውይይት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ መዝገቡ ፋይል በቅርብ ስም ቢጠቅስም ሃሹ ይጣራል (§7 ረድፍ የተሳሳተ ሃሽ ደብቆ የነበረ)"}
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የድር ገጽ (.html) ፋይል ሃሽ ጥያኔም ይጣራል — ያለፈው የመሣሪያ ዓይን ጉድለት"}
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ CLI ቅጹ JSON ሪፖርት ይነብና ስህተት ሲያገኝ ወደ ትልቅ exit code ይሄዳል"}
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ መዝገቡ ስለበሩ የራሱ ውጤት ብዛት የሚጽፈው ጥያኔ ከእውነተኛው ጋር ይዛመዳል"}
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የበር ብዛት ጥያኔ ቢቀር (ቁጥሩ ወደ ኋላ ከቀረ) MISMATCH ይይዛል"}
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ መዝገቡ የበሩን ብዛት በጭራሽ ካልገለጸ CLAIM_NOT_FOUND ተመዝግቦ ይቆያል"}
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የባለቤት መመሪያው የፍተሻ/የናሙና/የእውቀት/የበር ቁጥሮች ከእውነተኛው ጋር ይዛመዳሉ"}
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የመመሪያው የፍተሻና የናሙና ቁጥር ቢቀየር MISMATCH ይይዛል"}
+  - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የመመሪያው የበር ቁጥር ትክክል ሲሆን OK፣ ቢቀየር ግን MISMATCH (ራሱን አያጽድቅም)"}
+  - {file: "tests/manifest.test.mjs", name: "F-06 / CI-12፦ ማኒፌስቱ ዛሬ ተሞክሮ ያልፋል — ሁሉም docs/*.md ተካተዋል፣ ምንም አልተቀየረም"}
+  - {file: "tests/safety.test.mjs", name: "F-08 / CI-12፦ ደህንነት ወሳኝ ቃላት ለሁለቱም ቋንቋዎች ይሠራሉ"}
+doc_acceptance: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

@@ -1,0 +1,14 @@
+# የRU-05 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-05
+requirement: "የSMS የተፈቀደ የመረጃ መዳረሻ፣ የግል መልዕክት ገደብ"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G1, G2]
+status: BLOCKED-ON-UNDEFINED-TEST
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests: []
+doc_acceptance: "የፈቃድ ስጦታ/እምቢታ/ስረዛ ሙከራ፣ የግል ውሂብ አለመፍሰስ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-26 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: "የፈቃድ ስጦታ/እምቢታ/ስረዛ ሙከራ፣ የግል ውሂብ አለመፍሰስ"

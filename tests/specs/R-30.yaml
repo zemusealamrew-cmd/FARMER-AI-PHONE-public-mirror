@@ -1,0 +1,14 @@
+# የR-30 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-30
+requirement: "የባለቤት በር G0–G4 እና የማስረጃ መዝገብ"
+owner_role: "የፕሮጀክት ኃላፊ"
+owner_named: null
+gates: [G0]
+status: NOT_COVERED
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests: []
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"

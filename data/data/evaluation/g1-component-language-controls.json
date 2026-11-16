@@ -1,0 +1,53 @@
+[
+  {
+    "id": "english-facts-english-answer",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful assistant. Use the earlier user facts to answer the latest question. Reply briefly in English."
+      },
+      {
+        "role": "user",
+        "content": "My name is Hana. I have two oxen."
+      },
+      {
+        "role": "user",
+        "content": "What is my name, and how many oxen do I have?"
+      }
+    ]
+  },
+  {
+    "id": "amharic-facts-english-answer",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful assistant. Use the earlier user facts to answer the latest question. Reply briefly in English."
+      },
+      {
+        "role": "user",
+        "content": "ስሜ ሀና ነው። ሁለት በሬዎች አሉኝ።"
+      },
+      {
+        "role": "user",
+        "content": "ስሜ ማን ነው፣ ስንት በሬዎች አሉኝ?"
+      }
+    ]
+  },
+  {
+    "id": "oromo-facts-english-answer",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful assistant. Use the earlier user facts to answer the latest question. Reply briefly in English."
+      },
+      {
+        "role": "user",
+        "content": "Maqaan koo Caalaa dha. Sangoota lama qaba."
+      },
+      {
+        "role": "user",
+        "content": "Maqaan koo eenyu? Sangoota meeqa qaba?"
+      }
+    ]
+  }
+]

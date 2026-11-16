@@ -1,0 +1,44 @@
+{
+  "update_id": "upd-fixture-1.0.6-revoked",
+  "issuer_id": "issuer-demo",
+  "key_id": "key-revoked-demo",
+  "version": "1.0.6-revoked",
+  "monotonic_counter": 6,
+  "payload": {
+    "kb_version": "1.0.6-revoked",
+    "kb_status": "SIGNED_FIXTURE",
+    "mode": "delta",
+    "notice_am": "ይህ የG1 የሙከራ ናሙና ነው፤ የተረጋገጠ ምክር አይደለም።",
+    "notice_om": "Kun yaalii G1 ti; gorsa mirkanaa'e miti.",
+    "entries": [
+      {
+        "claim_id": "claim-fixture-revoked",
+        "topic_id": "market_price",
+        "locale": "am",
+        "title": "ናሙና",
+        "answer": "በተሰረዘ ቁልፍ የተፈረመ ናሙና።",
+        "answer_short": "በተሰረዘ ቁልፍ የተፈረመ ናሙና።",
+        "keywords": [
+          "ዋጋ",
+          "ገበያ"
+        ],
+        "requires_expert": false,
+        "source": {
+          "kind": "signed_demo_update",
+          "id": "issuer-demo",
+          "title": "የG1 የተፈረመ ናሙና ዝማኔ",
+          "captured_at": "2026-11-04T15:00:00.000Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-11T15:00:00.000Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none",
+        "risk_level": "low",
+        "geography": "ET"
+      }
+    ]
+  },
+  "payload_hash": "sha256:a8848d87e2b0318a640094513bc300c0c5a2add052132027c02ce11167e7af4a",
+  "expiry": "2026-12-04T15:00:00.000Z",
+  "signature": "/+xfzALEkr0AF/eIYxEmuRKZqPAZq4cUOJET5fCCqNHlMSZz4/OHAQbXwfQYtj1/tU71FKMgeJNP4Ugl5YGPBw=="
+}

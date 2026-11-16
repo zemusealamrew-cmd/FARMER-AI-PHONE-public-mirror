@@ -1,0 +1,18 @@
+# የR-40 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-40
+requirement: "የሬዲዮ ቅጂ፣ የSMS አያያዝና የመረጃ መብቶች ሕጋዊ ግምገማ"
+owner_role: "የፈቃድ/ግላዊነት ቁጥጥር"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/evidence.test.mjs", name: "R-40 / F-07 / F-11፦ የሀብት ናሙና ሊለካ የሚችል ቁጥሮችን ይሰጣል"}
+  - {file: "tests/evidence.test.mjs", name: "R-40 / F-11፦ measure ጊዜንና የድርጊት ውጤትን አንድ ላይ ይመልሳል"}
+  - {file: "tests/evidence.test.mjs", name: "R-40 / CI-14፦ percentile ትክክለኛ ደረጃዎችን ይመልሳል፣ ለባዝ ዜሮ አይደለም"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-26 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

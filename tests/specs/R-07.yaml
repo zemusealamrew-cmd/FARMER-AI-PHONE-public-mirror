@@ -1,0 +1,21 @@
+# የR-07 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-07
+requirement: "አማርኛና ኦሮምኛ የድምፅ ግቤትና ውጤት"
+owner_role: "የድምፅ AI ኃላፊ"
+owner_named: null
+gates: [G1, G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G1+G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/dialogue.test.mjs", name: "R-07 / CI-03፦ የቋንቋ መለያ ጽሑፍን አይደቀቅም (Amharic vs Afaan Oromo)"}
+  - {file: "tests/dialogue.test.mjs", name: "F-08 / R-07፦ የኢንጂን ቋንቋ ምልከት (localeHint=am) ከላቲን ጽሑፍ አይደምሰስም"}
+  - {file: "tests/dialogue.test.mjs", name: "F-08 / R-07፦ የአማርኛ ፊደል ሲታየ ምልከቱ ሁልጊዜ ይቀድማል (om ምልከት ቢኖርም)"}
+  - {file: "tests/dialogue.test.mjs", name: "F-08 / R-07፦ ያልተደገፈ ቋንቋ ምልከት (en) የምርት ቋንቋ አይመደበኛም — ጽሑፉ ብቻ ይወስናል"}
+  - {file: "tests/fm.test.mjs", name: "R-07 / LC-06፦ የአፋን ኦሮሞ ጣቢያ መረጃ በተናጠል ይቀረጻል"}
+  - {file: "tests/knowledge.test.mjs", name: "F-08 / R-07፦ የአፋን ኦሮሞ ጥያቄ ወደ አማርኛ መልስ አይቀየርም (locale isolation)"}
+doc_acceptance: "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

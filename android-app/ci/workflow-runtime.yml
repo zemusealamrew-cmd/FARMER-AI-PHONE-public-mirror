@@ -1,0 +1,145 @@
+name: builder3 runtime verification
+
+# NOT INSTALLED — dormant template. The authoritative CI path is
+# .github/workflows/build-apk.yml, whose Build APK step already runs
+# android-app/ci/runtime-test.sh all (always, no skip) and uploads rt-out evidence with
+# if: always(). Repair round 2026-11-13: this template was left functionally untouched
+# on purpose (it is not installed, so changing its trigger would have no effect).
+
+# builder3 — G1 runtime verification on GitHub Actions Android emulators.
+# Each case is a separate job; the job conclusion IS the case verdict.
+# Cases NOT runnable without the approved models are NOT listed here and stay BLOCKED:
+#   D-QA-19 (>3s TTS playback), ASR on-device, full offline voice->AI->voice — all blocked
+#   on the missing approved models (tts/vits.onnx asset; gemma.gguf; ASR sidecars).
+
+on:
+  workflow_dispatch:
+    inputs:
+      cases:
+        description: 'Cases to run (comma-separated: launch,keyoff,ramguard,callgate)'
+        required: false
+        default: 'launch,keyoff,ramguard,callgate'
+  push:
+    branches: [g1/builder3-integration-20261112]
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+      - run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platforms;android-35" "build-tools;36.1.0" > /dev/null
+      - run: bash android-app/ci/build-apk.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: runtime-apk
+          path: android-app/g1-amharic-ai-debug.apk
+          if-no-files-found: error
+
+  launch:
+    needs: build-apk
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: runtime-apk
+          path: android-app/
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+      - run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sudo apt-get update -qq && sudo apt-get install -y -qq cpu-checker > /dev/null
+          kvm-ok || true
+          bash android-app/ci/runtime-test.sh launch
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runtime-launch-evidence
+          path: launch-out/
+          if-no-files-found: ignore
+
+  keyoff:
+    needs: build-apk
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: runtime-apk
+          path: android-app/
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+      - run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sudo apt-get update -qq && sudo apt-get install -y -qq cpu-checker > /dev/null
+          kvm-ok || true
+          bash android-app/ci/runtime-test.sh keyoff
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runtime-keyoff-evidence
+          path: keyoff-out/
+          if-no-files-found: ignore
+
+  ramguard:
+    needs: build-apk
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: runtime-apk
+          path: android-app/
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+      - run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sudo apt-get update -qq && sudo apt-get install -y -qq cpu-checker > /dev/null
+          kvm-ok || true
+          bash android-app/ci/runtime-test.sh ramguard
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runtime-ramguard-evidence
+          path: ramguard-out/
+          if-no-files-found: ignore
+
+  callgate:
+    needs: build-apk
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: runtime-apk
+          path: android-app/
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+      - run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sudo apt-get update -qq && sudo apt-get install -y -qq cpu-checker > /dev/null
+          kvm-ok || true
+          bash android-app/ci/runtime-test.sh callgate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runtime-callgate-evidence
+          path: callgate-out/
+          if-no-files-found: ignore

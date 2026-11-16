@@ -1,0 +1,1338 @@
+{
+  "note": "Issue #3 / F-19፦ የ85ቱ መስፈርቶች የsemantic ሽፋን ካርታ። coverage_test_existence (የፍተሻ-ስም መኖር) ከ behavior_verification (የተግባር ማረጋገጫ) ተለይቷል። በG1 ምንም መስፈርት VERIFIED አይደለም፤ acceptance_signoff ሁሉ null ነው። የG2/G3/G4 መስፈርቶች (ለምሳሌ R-01/R-02/R-03) NOT_AUTHORIZED_AT_G1 ናቸው — የተገናኙት ፍተሻዎች የላፕቶፕ ፕሮክሲ ብቻ ናቸው። የregex የፍተሻ-ስም ቁጥር የመቀበያ ማስረጃ አይሆንም።",
+  "requirement_count": 85,
+  "behavior_verified": 0,
+  "behavior_not_authorized": 32,
+  "behavior_requires_evidence": 11,
+  "behavior_blocked": 42,
+  "exceptions": [
+    {
+      "id": "R-01",
+      "requirement": "አንድ ስልክ፣ ሁለተኛ ስልክ አያስፈልግም",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/dialogue.test.mjs",
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሃርድዌር ኃላፊ"
+    },
+    {
+      "id": "R-02",
+      "requirement": "የአካል ቁልፎችና የተለየ AI ቁልፍ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/audio-input.test.mjs",
+        "tests/server.test.mjs",
+        "tests/speech.test.mjs",
+        "tests/voice-check.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የመሣሪያ መቆጣጠሪያ ኃላፊ"
+    },
+    {
+      "id": "R-03",
+      "requirement": "SIM እና መደበኛ ጥሪ/SMS",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/server.test.mjs",
+        "tests/speech.test.mjs",
+        "tests/voice-check.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የቴሌኮም ኃላፊ"
+    },
+    {
+      "id": "R-04",
+      "requirement": "ጥሪ ከAI በላይ ቅድሚያ፤ AI ሲበላሽ ጥሪ አይቋረጥ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/call.test.mjs",
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የቴሌኮም ኃላፊ"
+    },
+    {
+      "id": "R-05",
+      "requirement": "ኢንተርኔት የማይፈልግ የድምፅ ውይይት",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/dialogue.test.mjs",
+        "tests/knowledge.test.mjs",
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የAI ውህደት ኃላፊ"
+    },
+    {
+      "id": "R-06",
+      "requirement": "እውነተኛ ጥያቄ መረዳት፣ የተዘጋጀ መልስ ብቻ አይደለም",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የAI ሞዴል ኃላፊ"
+    },
+    {
+      "id": "R-07",
+      "requirement": "አማርኛና ኦሮምኛ የድምፅ ግቤትና ውጤት",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/dialogue.test.mjs",
+        "tests/fm.test.mjs",
+        "tests/knowledge.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የድምፅ AI ኃላፊ"
+    },
+    {
+      "id": "R-08",
+      "requirement": "ትግርኛ/ሌሎች ቋንቋዎች ከተጨመሩ በተለየ ማረጋገጫ",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የድምፅ AI ኃላፊ"
+    },
+    {
+      "id": "R-09",
+      "requirement": "የተረጋገጠ የግብርና እውቀት፣ የምንጭ/አካባቢ/ቀን አያያዝ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/dialogue.test.mjs",
+        "tests/knowledge.test.mjs",
+        "tests/safety.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የግብርና እውቀት ኃላፊ"
+    },
+    {
+      "id": "R-10",
+      "requirement": "አደገኛ ምክር መከላከል፣ እርግጠኝነት ሲጎድል መግለጽ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/dialogue.test.mjs",
+        "tests/knowledge.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የግብርና እውቀት ኃላፊ"
+    },
+    {
+      "id": "R-11",
+      "requirement": "የግል ማስታወሻ በፈቃድ፣ ማረምና መሰረዝ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የግላዊነት ኃላፊ"
+    },
+    {
+      "id": "R-12",
+      "requirement": "SMS የሚነበበው AI ቁልፍ + የተጠቃሚ ምርጫ ብቻ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የመሣሪያ መቆጣጠሪያ ኃላፊ"
+    },
+    {
+      "id": "R-13",
+      "requirement": "SMS ለAI እውቀት ግቤት የተለየ ፈቃድ ይፈልጋል",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የግላዊነት ኃላፊ"
+    },
+    {
+      "id": "R-14",
+      "requirement": "SMS የማይታመን ግቤት ነው፤ የሐሰት መላኪያና ትእዛዝ መከላከል",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/offline.test.mjs",
+        "tests/server.test.mjs",
+        "tests/update.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የደህንነት ኃላፊ"
+    },
+    {
+      "id": "R-15",
+      "requirement": "የSMS ዋና ማከማቻ ባለቤት የስልክ ሥርዓት ብቻ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የቴሌኮም ኃላፊ"
+    },
+    {
+      "id": "R-16",
+      "requirement": "FM ሬዲዮ ለመደበኛ አጠቃቀም",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሃርድዌር ኃላፊ"
+    },
+    {
+      "id": "R-17",
+      "requirement": "microSD የማከማቻ ድጋፍ፣ RAM አይተካም",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሃርድዌር ኃላፊ"
+    },
+    {
+      "id": "R-18",
+      "requirement": "የተፈረመ ዝማኔ፣ የቁልፍ ስረዛ፣ የድግግሞሽ መከላከል",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/update.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የደህንነት ኃላፊ"
+    },
+    {
+      "id": "R-19",
+      "requirement": "GSM/SMS አነስተኛ ዝማኔ በተረጋገጠ አቅም",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/server.test.mjs",
+        "tests/update.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የዝማኔ ኃላፊ"
+    },
+    {
+      "id": "R-20",
+      "requirement": "የFM ዲጂታል ዝማኔ ተስማሚ መቀበያና ስርጭት ካለ ብቻ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የዝማኔ ኃላፊ"
+    },
+    {
+      "id": "R-21",
+      "requirement": "የኢንተርኔት ምንጭ/ፈቃድ/የመረጃ ጥራት መዝገብ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሞዴል መረጃ ኃላፊ"
+    },
+    {
+      "id": "R-22",
+      "requirement": "ስልጠና/ማስማማት፣ የተለየ የመጨረሻ ሙከራ መረጃ",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የAI ሞዴል ኃላፊ"
+    },
+    {
+      "id": "R-23",
+      "requirement": "ሙሉ የላፕቶፕ ኦፍላይን ሙከራ ከመጨረሻ ሞዴል ማሸግ በፊት",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/fm.test.mjs",
+        "tests/knowledge.test.mjs",
+        "tests/offline.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የAI ውህደት ኃላፊ"
+    },
+    {
+      "id": "R-24",
+      "requirement": "የላፕቶፕ ውጤት የስልክ አቅም ማረጋገጫ አይደለም",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/fm.test.mjs",
+        "tests/safety.test.mjs",
+        "tests/sms.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የማረጋገጫ ኃላፊ"
+    },
+    {
+      "id": "R-25",
+      "requirement": "የባትሪ፣ የሙቀት፣ የመሙያ ደህንነት",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/fm.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሃርድዌር ኃላፊ"
+    },
+    {
+      "id": "R-26",
+      "requirement": "የኢትዮጵያ የኔትወርክ ተስማሚነትና ሕጋዊ ፈቃዶች",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/sms.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የቴሌኮም/ተስማሚነት ኃላፊ"
+    },
+    {
+      "id": "R-27",
+      "requirement": "ተመጣጣኝ የስልክ ዋጋ፣ ጥገናና የመለዋወጫ እቃ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የምርት/ወጪ ኃላፊ"
+    },
+    {
+      "id": "R-28",
+      "requirement": "የገበሬ የመስክ ሙከራ፣ ዘዬ፣ ጫጫታ፣ ተደራሽነት",
+      "gates": [
+        "G3"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ሙከራ ኃላፊ"
+    },
+    {
+      "id": "R-29",
+      "requirement": "አንድ ኃላፊነት አንድ ባለቤት፣ በውል የሚገናኙ ክፍሎች",
+      "gates": [
+        "G0"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/ownership.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሥርዓት ንድፍ ኃላፊ"
+    },
+    {
+      "id": "R-30",
+      "requirement": "የባለቤት በር G0–G4 እና የማስረጃ መዝገብ",
+      "gates": [
+        "G0"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የፕሮጀክት ኃላፊ"
+    },
+    {
+      "id": "R-31",
+      "requirement": "የራዲዮ መቀበያ ሁኔታ፣ ጣቢያ፣ ሞገድ፣ ቦታ ሽፋንና የመቀበያ ጥራት በተለየ መዝገብ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/ሃርድዌር ክፍል"
+    },
+    {
+      "id": "R-32",
+      "requirement": "ቀጣይ ወይም በመርሐግብር የFM ማዳመጥ የኃይል በጀት ይኑረው፤ ጥሪ ቅድሚያ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/ሃርድዌር ክፍል"
+    },
+    {
+      "id": "R-33",
+      "requirement": "ከድምፅ የወጣ ነጥብ ከዋና ድምፅ ክፍል፣ ጊዜና የመለየት እርግጠኝነት ጋር ይገናኝ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ቋንቋ ክፍል"
+    },
+    {
+      "id": "R-34",
+      "requirement": "አዲስ መረጃ ከሞዴል ክብደቶች ውጭ በሚቀየር የአካባቢ እውቀት መዝገብ ይቀመጥ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የአካባቢ እውቀት መዝገብ"
+    },
+    {
+      "id": "R-35",
+      "requirement": "የመረጃ ዓይነት፦ ይፋዊ ማሳወቂያ/ዜና/ማስታወቂያ/አስተያየት/ያልተረጋገጠ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የአካባቢ እውቀት መዝገብ"
+    },
+    {
+      "id": "R-36",
+      "requirement": "የወቅታዊነት፣ የግጭት፣ የተሳሳተ መረጃ መመለስ/መሰረዝ ሂደት",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/sms.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የአካባቢ እውቀት መዝገብ"
+    },
+    {
+      "id": "R-37",
+      "requirement": "ለSMS ድምፅ ንባብ፣ ለእውቀት ማውጣትና ለረጅም ጊዜ ማከማቸት የተለያዩ ፈቃዶች",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/call.test.mjs",
+        "tests/safety.test.mjs",
+        "tests/server.test.mjs",
+        "tests/sms.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የፈቃድ/ግላዊነት ቁጥጥር"
+    },
+    {
+      "id": "R-38",
+      "requirement": "የተጋራ ስልክ ግላዊነትና በድምፅ የግል መረጃ አለመግለጥ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/evidence.test.mjs",
+        "tests/manifest.test.mjs",
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የፈቃድ/ግላዊነት ቁጥጥር"
+    },
+    {
+      "id": "R-39",
+      "requirement": "ማከማቻ ሲሞላ የመረጃ ቅድሚያ፣ ማጥፋትና ከብልሽት መመለስ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የመሣሪያ ሀብት አስተዳዳሪ"
+    },
+    {
+      "id": "R-40",
+      "requirement": "የሬዲዮ ቅጂ፣ የSMS አያያዝና የመረጃ መብቶች ሕጋዊ ግምገማ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/evidence.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የፈቃድ/ግላዊነት ቁጥጥር"
+    },
+    {
+      "id": "R-41",
+      "requirement": "ለእያንዳንዱ የምርት መስፈርት አንድ ዋና መዝገብና የለውጥ ታሪክ",
+      "gates": [
+        "G0"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/etime.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የምርት መስፈርት አስተዳዳሪ"
+    },
+    {
+      "id": "R-42",
+      "requirement": "በሙሉ የሥራ ሂደት የኢንተርኔት ጥገኝነት የለም፤ የስህተት ሁኔታ በደህንነት ይታገድ",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/offline.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-01",
+      "requirement": "ያልተዘጋጁ አዳዲስ ጥያቄዎችን በትርጉም መረዳት",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/dialogue.test.mjs",
+        "tests/offline.test.mjs",
+        "tests/server.test.mjs",
+        "tests/speech.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-02",
+      "requirement": "የተለያዩ ቃላት፣ ሰዋሰው፣ አነጋገር ቅጦች",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-03",
+      "requirement": "ዘዬ፣ አካባቢያዊ ቃላት፣ የቋንቋ መቀላቀል",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/audio-input.test.mjs",
+        "tests/dialogue.test.mjs",
+        "tests/server.test.mjs",
+        "tests/speech-benchmark.test.mjs",
+        "tests/speech.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-04",
+      "requirement": "ያልተሟላ/አሻሚ ጥያቄን ማስተናገድ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/dialogue.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-05",
+      "requirement": "የተዘዋዋሪ ዓላማና የተግባር ፍላጎት መለየት",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-06",
+      "requirement": "ብዙ ተከታታይ ዙሮች አውድ መያዝ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/offline.test.mjs",
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-07",
+      "requirement": "የራሱን የቀድሞ መልስ ማረም",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/safety.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-08",
+      "requirement": "ትርጉም ያለው፣ በቂ፣ በደረጃ የተደራጀ መልስ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/update.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-09",
+      "requirement": "የማስረጃ እና የወቅታዊነት ግንዛቤ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-10",
+      "requirement": "አደጋ ያለበትን ምክር በጥንቃቄ ማስተናገድ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/safety.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-11",
+      "requirement": "የግል አውድ በፈቃድ ብቻ መጠቀም",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-12",
+      "requirement": "ሙሉ የድምፅ መስመር ኦፍላይን",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/ledger-evidence.test.mjs",
+        "tests/manifest.test.mjs",
+        "tests/safety.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-13",
+      "requirement": "ጥሪና SMS ከAI የተለየ ተግባር",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/call.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "CI-14",
+      "requirement": "በዝቅተኛ ሃርድዌር አቅም የሚሰራ አፈጻጸም",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/dialogue.test.mjs",
+        "tests/evidence.test.mjs",
+        "tests/server.test.mjs",
+        "tests/speech.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የኦፍላይን ውይይት ክፍል"
+    },
+    {
+      "id": "LC-01",
+      "requirement": "የሰብል እርሻ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-02",
+      "requirement": "የእንስሳት እርባታ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/safety.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-03",
+      "requirement": "የአየር ሁኔታና አደጋ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/fm.test.mjs",
+        "tests/knowledge.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-04",
+      "requirement": "ገበያና ሽያጭ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/safety.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-05",
+      "requirement": "ገንዘብና ቁጠባ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-06",
+      "requirement": "ቤተሰብና የቤት ኑሮ",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/fm.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-07",
+      "requirement": "መሠረታዊ ጤናና ንጽህና",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-08",
+      "requirement": "የልጆች ትምህርት",
+      "gates": [],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/safety.test.mjs",
+        "tests/sms.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-09",
+      "requirement": "የአዋቂዎች ትምህርት",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-10",
+      "requirement": "የመንግሥት አገልግሎት መረጃ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-11",
+      "requirement": "ንግድና የሥራ እድል",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-12",
+      "requirement": "የማጭበርበር መከላከል",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-13",
+      "requirement": "ማኅበርና ማኅበረሰብ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-14",
+      "requirement": "የግል ድምፅ ረዳት",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "LC-15",
+      "requirement": "የስልክ እገዛ",
+      "gates": [],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    },
+    {
+      "id": "RU-01",
+      "requirement": "በቦታ የሚደርሱ ጣቢያዎችን መለየት፣ የሞገድ/ቋንቋ መዝገብ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-02",
+      "requirement": "የFM ድምፅ ወደ AI በሕጋዊ መዳረሻ ማስተላለፍ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/fm.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-03",
+      "requirement": "የብዙ ቋንቋ ሬዲዮ ASR፣ የድምፅ ጥራትና የተሳሳተ ጽሑፍ ማወቅ",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-04",
+      "requirement": "የመረጃ አቤቱታ ማውጣት፣ አስተያየት/ማስታወቂያ መለየት",
+      "gates": [
+        "G1"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-05",
+      "requirement": "የSMS የተፈቀደ የመረጃ መዳረሻ፣ የግል መልዕክት ገደብ",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የፈቃድ ስጦታ/እምቢታ/ስረዛ ሙከራ፣ የግል ውሂብ አለመፍሰስ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-06",
+      "requirement": "የምንጭ ማስረጃ፣ ጊዜ፣ ቦታ፣ ግጭት፣ የእርግጠኝነት ማጣሪያ",
+      "gates": [
+        "G1"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-07",
+      "requirement": "የጊዜ ማብቂያና የወቅታዊነት አስተዳደር",
+      "gates": [
+        "G1"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/etime.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-08",
+      "requirement": "ከነባሩ እውቀት ጋር በፍለጋ ደረጃ ማገናኘት፤ ሞዴል ክብደት አለመቀየር",
+      "gates": [
+        "G1"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "BLOCKED_ON_UNDEFINED_TEST",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-09",
+      "requirement": "በክፍት ውይይት ለተጠቃሚ ተገቢ የሆነ ምላሽ መስጠት",
+      "gates": [
+        "G1"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "REQUIRES_EVIDENCE",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-10",
+      "requirement": "በባትሪ/ማከማቻ/RAM የተገደበ የመከታተያ ሥራ",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-11",
+      "requirement": "የቅጂ መብት፣ ፈቃድ፣ ማጥፋት፣ የግል መረጃ ጥበቃ",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "BLOCKED_ON_UNDEFINED_TEST",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "የፈቃድ ስጦታ/እምቢታ/ስረዛ ሙከራ፣ የግል ውሂብ አለመፍሰስ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-12",
+      "requirement": "የተፈረመ የሞዴል/የውሂብ ዝማኔ ከተራ መረጃ መለየት",
+      "gates": [
+        "G1",
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ትክክለኛ/የተሰረዘ/የተደገመ ፊርማ ሙከራ፣ የቁልፍ ለውጥ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/update.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-13",
+      "requirement": "ጥሪ ቅድሚያ፣ የAI ውድቀት ነጻነት",
+      "gates": [
+        "G2"
+      ],
+      "coverage_test_existence": "G1_TEST_EXISTS",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "በእውነተኛ ስልክ AI ሲበላሽ የጥሪ ቅድሚያ ማረጋገጫ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [
+        "tests/call.test.mjs",
+        "tests/server.test.mjs"
+      ],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    },
+    {
+      "id": "RU-14",
+      "requirement": "የምንጭ ጣቢያ/ሞገድ የክልል ሽፋንና የጎደለ መዳረስ መዝገብ",
+      "gates": [
+        "G2",
+        "G3"
+      ],
+      "coverage_test_existence": "NOT_COVERED",
+      "behavior_verification": "NOT_AUTHORIZED_AT_G1",
+      "acceptance_signoff": null,
+      "doc_acceptance": "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ",
+      "doc_status": "PARTIAL — የማለፊያ ውል PENDING",
+      "linked_test_files": [],
+      "linked_tests_verify_scope": "የG1 ላፕቶፕ ፕሮክሲ/የፍተሻ-ስም መኖር ብቻ — የመሣሪያ/የመስክ ተግባር ማረጋገጫ አይደለም",
+      "proposed_owner_role": "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    }
+  ]
+}

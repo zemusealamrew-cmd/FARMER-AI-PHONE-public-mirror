@@ -1,0 +1,28 @@
+# F-06 ሥር ከስሩ ማስተካከል፦ የመስመር ማብቂያ (line ending) አንድ ዓይነት ሆኖ ይቀመጣል።
+# ያለ ሕግ፣ core.autocrlf=true ሲሆን የሰራሪ (checkout) ፋይሎች CRLF ሆነው ይወጣሉ፤
+# ስለዚህ FILE_MANIFEST_SHA256.txt ሃሽ ከWindows ላይ 14/14 ይሳሳታል።
+* text=auto eol=lf
+
+*.md text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.html text eol=lf
+*.txt text eol=lf
+
+*.exe binary
+*.dll binary
+*.bin binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.wav binary
+
+# Source archive (git archive) excludes large prebuilt native/runtime binaries.
+# They are build inputs shipped separately; source/ledger verification needs code + docs only.
+android-app/jni/** export-ignore
+android-app/ort/** export-ignore
+app/models/** export-ignore
+android-app/build/** export-ignore
+android-app/*.apk export-ignore
+android-app/*.idsig export-ignore

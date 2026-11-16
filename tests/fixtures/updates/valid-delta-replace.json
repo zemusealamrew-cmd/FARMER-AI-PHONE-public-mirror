@@ -1,0 +1,44 @@
+{
+  "update_id": "upd-fixture-replace",
+  "issuer_id": "issuer-demo",
+  "key_id": "key-2026-11-04-1",
+  "version": "1.0.12-delta-replace",
+  "monotonic_counter": 12,
+  "payload": {
+    "kb_version": "1.0.12-delta-replace",
+    "kb_status": "SIGNED_FIXTURE",
+    "mode": "delta",
+    "notice_am": "ይህ የG1 የሙከራ ናሙና ነው፤ የተረጋገጠ ምክር አይደለም።",
+    "notice_om": "Kun yaalii G1 ti; gorsa mirkanaa'e miti.",
+    "entries": [
+      {
+        "claim_id": "KB-AM-005",
+        "topic_id": "market_price",
+        "locale": "am",
+        "title": "የገበያ ዋጋ (የተሻሻለ ናሙና)",
+        "answer": "የተሻሻለ የG1 ማሳያ ዋጋ፦ ዛሬውን ዋጋ ከገበያ ያረጋግጡ። ይህ ናሙና የKB-AM-005ን ቦታ ብቻ ይተካል።",
+        "answer_short": "የተሻሻለ የG1 ማሳያ ዋጋ፦ ዛሬውን ዋጋ ከገበያ ያረጋግጡ። ይህ ናሙና የKB-AM-005ን ቦታ ",
+        "keywords": [
+          "ዋጋ",
+          "ገበያ"
+        ],
+        "requires_expert": false,
+        "source": {
+          "kind": "signed_demo_update",
+          "id": "issuer-demo",
+          "title": "የG1 የተፈረመ ናሙና ዝማኔ",
+          "captured_at": "2026-11-04T15:00:00.000Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-11T15:00:00.000Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none",
+        "risk_level": "medium",
+        "geography": "ET"
+      }
+    ]
+  },
+  "payload_hash": "sha256:e12c5a1dae750d985e97ae1c8d2581115f6ab154b7891b68227adb25bcb3cca8",
+  "expiry": "2026-12-04T15:00:00.000Z",
+  "signature": "o4Ym1kN5t419ZOdAVj2QPSzFFw3HSZMIIaRdcVuZPYJc7rGYKE06Qd19Ss7s0XINfWDj62P4+D3Vh/+0/GurCA=="
+}

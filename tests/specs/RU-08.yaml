@@ -1,0 +1,16 @@
+# የRU-08 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-08
+requirement: "ከነባሩ እውቀት ጋር በፍለጋ ደረጃ ማገናኘት፤ ሞዴል ክብደት አለመቀየር"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G1]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G1 ላይ ይሰጣል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/server.test.mjs", name: "R-12 / RU-08 / CI-01፦ የምንጭ መስኮች በAPIና በገጹ መካከ ይዛመዳሉ"}
+doc_acceptance: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-24 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

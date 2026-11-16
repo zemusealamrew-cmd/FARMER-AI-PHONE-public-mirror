@@ -1,0 +1,14 @@
+# የRU-09 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-09
+requirement: "በክፍት ውይይት ለተጠቃሚ ተገቢ የሆነ ምላሽ መስጠት"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G1]
+status: NOT_COVERED
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests: []
+doc_acceptance: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"

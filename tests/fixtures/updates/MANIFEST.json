@@ -1,0 +1,107 @@
+{
+  "fixture_set": "g1-signed-update-fixtures",
+  "fixture_version": "1.0.0",
+  "generated_at": "2026-11-04T15:19:07.689Z",
+  "pinned_clock": "2026-11-04T15:00:00.000Z",
+  "note": "እነዚህ የG1 የሙከራ ናሙናዎች ናቸው። ቁልፎቻቸው ምንም የምርት ሥልጣን የላቸውም። ሙከራው CLOCKን በመጠቀም ጊዜውን ይቆጣጣል።",
+  "requirement_ids": [
+    "R-14",
+    "R-18",
+    "R-19",
+    "RU-12",
+    "F-15",
+    "F-19",
+    "F-20",
+    "NR-05"
+  ],
+  "key_id": "key-2026-11-04-1",
+  "issuer_id": "issuer-demo",
+  "algorithm": "ed25519",
+  "canonical_hash_algorithm": "sha256 over canonical JSON of payload",
+  "cases": [
+    {
+      "file": "valid-delta.json",
+      "expect_ok": true,
+      "expect_code": "VERIFIED",
+      "sha256_file": "dc84ac511d74ea1814026521a2c3c19e91ce8fe41a7f5530d738157e3d3f6b65",
+      "note": "ተገቢ ዝማኔ፤ delta ስለሆነ ቀድሞ ያለውን መዝገብ አያጠፋም።"
+    },
+    {
+      "file": "valid-full-bundle.json",
+      "expect_ok": true,
+      "expect_code": "VERIFIED",
+      "sha256_file": "206dba3dbc836b3fe90f6e4eaa36e2087d990dcd7aeb6a097ba7c386f055d513",
+      "note": "ሙሉ ጥቅል፤ በSMS ሊላክ አይችልም (F-13)።"
+    },
+    {
+      "file": "tamper-payload.json",
+      "expect_ok": false,
+      "expect_code": "PAYLOAD_HASH_MISMATCH",
+      "sha256_file": "16ef87987d173757c3868b99aec9ae7f8fe6f607920a10a29c92ea10db7fce18",
+      "note": "ፊርማው ከሚገናኙ መስኮች ብቻ ስለሆነ የpayload ለውጥ በhash ይታወቃል።"
+    },
+    {
+      "file": "tamper-payload-hash.json",
+      "expect_ok": false,
+      "expect_code": "PAYLOAD_HASH_MISMATCH",
+      "sha256_file": "df20389d1935ab766c50726cac237500b05180ad872d7648b6122fe2429fc0b6",
+      "note": "የጠቃሚ ጥያቄ፦ ሃሽ ቢቀየር ፊርማው አያልፍም።"
+    },
+    {
+      "file": "tamper-signature.json",
+      "expect_ok": false,
+      "expect_code": "SIGNATURE_INVALID",
+      "sha256_file": "e5e162f590ce92cef2e6a4c76d59630be5bf76c68c440d2c9cef5564d317d609",
+      "note": "ያልሆነ ፊርማ ግዴታ ውድቀት።"
+    },
+    {
+      "file": "tamper-revoked-key.json",
+      "expect_ok": false,
+      "expect_code": "KEY_REVOKED",
+      "sha256_file": "2bad52f5361528247ba35856764118d6d6240d3cc9165ab1f497e8d3c707e187",
+      "note": "ስረዛ በመዝገብ ስባረው ብቻ ይታወቃል፤ የፊርማ ማረጋገጫ ብቻውን አይበቃም (F-15)።"
+    },
+    {
+      "file": "tamper-expiry.json",
+      "expect_ok": false,
+      "expect_code": "ENVELOPE_EXPIRED",
+      "sha256_file": "bbe0d9c7e053cc298013b7baa3f2bdf9d6b51c75328a3e2ae5f2a0446ee873ae",
+      "note": "የG1 ውሎች፦ ጊዜው ያለፈ ዝማኔ አይተገበርም።"
+    },
+    {
+      "file": "tamper-counter-backwards.json",
+      "expect_ok": false,
+      "expect_code": "MALFORMED_ENVELOPE",
+      "sha256_file": "8f6fe409bc7933b09ed3f4d4df8d6041250e3ed13c89ed97dcf135b6d7e7785a",
+      "note": "monotonic_counter ≥1 መሆን አለበት፤ replay በተጠቃሚ በላይ ከተመዘገበ counter ይከሰተላል።"
+    },
+    {
+      "file": "tamper-unknown-issuer.json",
+      "expect_ok": false,
+      "expect_code": "UNKNOWN_ISSUER",
+      "sha256_file": "b76014031f1a6dff2697790e162a8fc7417461e21a5df5d571ef7db1dfca5cb0",
+      "note": "ሥርዓቱ የሚቀበለው በመዝገብ ውስጥ ባሉ አዘዝ ተቋማት ብቻ ነው።"
+    },
+    {
+      "file": "unknown-mode.json",
+      "expect_ok": false,
+      "expect_code": "PAYLOAD_MODE_UNKNOWN",
+      "sha256_file": "52e9ef4791413f54b28881b2412715e7d80effaaf081d99c75df3041a8d08892",
+      "note": "አዲስ የዝማኔ ዓይነት በG0 ያለ ፈቃድ አይፈቀድም።"
+    },
+    {
+      "file": "risk-high-content.json",
+      "expect_ok": true,
+      "expect_code": "VERIFIED",
+      "sha256_file": "216b585a0d16e0df4836c21119b7426a65e6577475261f956986a4015a2c40ac",
+      "note": "የፊርማ ማረጋገጫ ያልፋል፣ ነገር ግን የይዘት ደህንነት በሌላ ንብረት (safety gate) ይከለከላል፤ F-17 ለዚህ ነው።"
+    },
+    {
+      "file": "valid-delta-replace.json",
+      "expect_ok": true,
+      "expect_code": "VERIFIED",
+      "sha256_file": "a66761c6debd3fbc37c37a0235fe48e5359ff78cc16a70f4282addcbd23e70a7",
+      "note": "delta በሌለ አዲስ መዝገብ አይፈጥርም፤ ያለውን claim_id በቦታው ይተካል (F-15/R-19)።"
+    }
+  ]
+}

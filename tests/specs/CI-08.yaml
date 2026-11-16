@@ -1,0 +1,16 @@
+# የCI-08 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: CI-08
+requirement: "ትርጉም ያለው፣ በቂ፣ በደረጃ የተደራጀ መልስ"
+owner_role: "የኦፍላይን ውይይት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/update.test.mjs", name: "F-15 / CI-08፦ ፊርማ የሚገናኘው ተጨማሪ መስኮችን አይደለም (signed field set)"}
+doc_acceptance: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

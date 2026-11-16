@@ -1,0 +1,16 @@
+# የR-29 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-29
+requirement: "አንድ ኃላፊነት አንድ ባለቤት፣ በውል የሚገናኙ ክፍሎች"
+owner_role: "የሥርዓት ንድፍ ኃላፊ"
+owner_named: null
+gates: [G0]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G0 ላይ ይሰጣል"
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/ownership.test.mjs", name: "F-05፦ 123ቱ መለያዎች በትክክል በአንድ A ክፍል ውስጥ ብቻ ተመዝግበዋል (R-29 — አንድ ተጠያቂ)"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

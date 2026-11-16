@@ -1,0 +1,16 @@
+# የCI-13 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: CI-13
+requirement: "ጥሪና SMS ከAI የተለየ ተግባር"
+owner_role: "የኦፍላይን ውይይት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/call.test.mjs", name: "R-04 / RU-13 / CI-13፦ ጥሪ ሲመጣ AI ወዲያውኑ ይቋረጣል"}
+doc_acceptance: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

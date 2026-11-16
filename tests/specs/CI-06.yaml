@@ -1,0 +1,17 @@
+# የCI-06 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: CI-06
+requirement: "ብዙ ተከታታይ ዙሮች አውድ መያዝ"
+owner_role: "የኦፍላይን ውይይት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/offline.test.mjs", name: "R-42 / CI-06፦ ማስረጃው የተፈቀዱ ወገቦችንና የተከለከሉ ውጤቶችን ለይቶ ይይዛል"}
+  - {file: "tests/server.test.mjs", name: "R-37 / CI-06 / VE-01፦ ፈቃድ በአንድ ክፍለ-ጊዜ ላይ ሲሰጣት በGET መልሶ ሲነበብ ይዛመዳል"}
+doc_acceptance: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

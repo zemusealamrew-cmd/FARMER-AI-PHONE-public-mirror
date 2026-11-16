@@ -1,0 +1,145 @@
+# FARMER-AI-PHONE — Owner-directed language editions & single-model RAM requirements
+# MANDATORY: owner directive 2026-11-16. Do not weaken or re-scope.
+# The original 85-requirement baseline is unchanged; this is an additive owner-directed register.
+schema_version: 1
+directive_id: OWNER-DIRECTIVE-2026-11-16-EDITION-RAM
+directive_date: 2026-11-16
+status: DESIGN_ONLY
+baseline_requirements: 85
+baseline_requirement_count_unchanged: true
+implementation_status: NOT_IMPLEMENTED
+verification_status: NOT_VERIFIED
+entries:
+  - id: ED-01
+    title: "Two independently optimized editions"
+    mandatory: true
+    requirement: "FARMER-AI-PHONE must ship an Amharic Edition and an Afaan Oromo Edition, each with its own selected, optimized and validated AI language model and language-specific configuration."
+    why: "The same hardware design may serve both; a user needing only one language must not carry or use the other language's LLM."
+    applies_to: "Both editions"
+    design_artifact: "ED-01 design and edition packaging; one LLM per edition"
+    acceptance_test_id: EDT-01
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-02
+    title: "Edition packaging isolation"
+    mandatory: true
+    requirement: "Each edition package contains only its approved language LLM; no inactive other-language LLM file is shipped or installed."
+    why: "Prevents storage waste and accidental use of the other language model."
+    applies_to: "Both editions"
+    design_artifact: "EditionConfig, build flavor, model registry, install cleanup"
+    acceptance_test_id: EDT-02
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-03
+    title: "Single active LLM RAM residency"
+    mandatory: true
+    requirement: "Only the currently selected language LLM may be loaded/resident; the other language LLM remains unloaded."
+    why: "Core owner directive: minimize RAM and guarantee one active language model."
+    applies_to: "Both editions"
+    design_artifact: "ModelSlotManager state machine + process boundary"
+    acceptance_test_id: EDT-03
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-04
+    title: "Safe model-switch/unload sequence"
+    mandatory: true
+    requirement: "Before a language/model switch: stop inference, stop audio/TTS, terminate the previous LLM process, verify release, then load the next model. No reboot unless a documented unavoidable limitation is proven."
+    why: "Prevents dual residency and corruption; ensures switching is safe."
+    applies_to: "Both editions"
+    design_artifact: "ModelSlotManager switch protocol and evidence logs"
+    acceptance_test_id: EDT-04
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-05
+    title: "Mutual exclusion / no simultaneous residency"
+    mandatory: true
+    requirement: "Prevent accidental simultaneous residency of Amharic and Oromo LLMs by a process lock, single edition package, or equivalent enforced mechanism."
+    why: "The owner explicitly prohibits both language LLMs resident at once."
+    applies_to: "Both editions"
+    design_artifact: "Single-package/edition lock; one model slot; reject second load"
+    acceptance_test_id: EDT-05
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-06
+    title: "Failure, low-memory and interruption recovery"
+    mandatory: true
+    requirement: "Handle load failure, insufficient memory, cancellation/interruption, process death and rollback safely; never partially load a second model."
+    why: "Reliability and stability on approved A53 hardware."
+    applies_to: "Both editions"
+    design_artifact: "State machine error paths; metrics; restart/recovery test"
+    acceptance_test_id: EDT-06
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-07
+    title: "Preserve AI-key/offline/privacy/stability"
+    mandatory: true
+    requirement: "Language switching/loading must keep AI-key OFF gating, offline operation, privacy, consent, and device stability intact; never weaken them for switching."
+    why: "Owner hard constraints; no security regression."
+    applies_to: "Both editions"
+    design_artifact: "Security regression tests and evidence"
+    acceptance_test_id: EDT-07
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-08
+    title: "ASR/TTS lifecycle and memory evaluation"
+    mandatory: true
+    requirement: "Evaluate language-specific ASR/TTS memory and lifecycle; unload/release as appropriate. Do not assume LLM unload releases all ASR/TTS allocations."
+    why: "ASR/TTS may hold separate language resources; owner explicitly requires evaluation."
+    applies_to: "Both editions"
+    design_artifact: "AsrEngine/TtsEngine lifecycle tests, PSS evidence"
+    acceptance_test_id: EDT-08
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-09
+    title: "Edition-specific validation"
+    mandatory: true
+    requirement: "Each edition independently passes offline voice interaction tests on approved hardware before edition acceptance."
+    why: "Ensures both editions are genuinely validated, not inferred from one edition."
+    applies_to: "Both editions"
+    design_artifact: "Edition acceptance test plan; device evidence"
+    acceptance_test_id: EDT-09
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-10
+    title: "Measured RAM/latency/battery/thermal and no leak"
+    mandatory: true
+    requirement: "Measure real RAM/PSS, model load time, inference time, battery and thermal behavior; repeated switching must not progressively increase RAM. Do not claim savings without measurements."
+    why: "Owner requires measured comparison and leak evidence."
+    applies_to: "Both editions"
+    design_artifact: "Measurement harness; repeated-switch evidence; thresholds owner-approved"
+    acceptance_test_id: EDT-10
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-11
+    title: "Storage minimization"
+    mandatory: true
+    requirement: "Avoid unnecessary language-model files in language-specific editions; remove stale inactive model files on edition change."
+    why: "Owner requires no unused other-language model in a single-language edition."
+    applies_to: "Both editions"
+    design_artifact: "Edition install/cleanup checks; storage evidence"
+    acceptance_test_id: EDT-11
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+  - id: ED-12
+    title: "Governance and traceability"
+    mandatory: true
+    requirement: "This directive must be mandatory in master design, edition spec, model/RAM lifecycle spec, hardware/software requirements, acceptance/test plan, handoff and future builder instructions; trace IDs through design, tests and evidence. No model download/change without owner approval."
+    why: "Prevents omission or independent weakening by a future builder."
+    applies_to: "Program governance"
+    design_artifact: "Requirement register, design docs, handoff must-read, CI/docs checks"
+    acceptance_test_id: EDT-12
+    implementation_status: NOT_IMPLEMENTED_DESIGN_ONLY
+    verification_status: NOT_VERIFIED
+    original_85_unchanged: true
+acceptance_test_ids: [EDT-01, EDT-02, EDT-03, EDT-04, EDT-05, EDT-06, EDT-07, EDT-08, EDT-09, EDT-10, EDT-11, EDT-12]

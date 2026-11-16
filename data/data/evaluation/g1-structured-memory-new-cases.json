@@ -1,0 +1,46 @@
+[
+  {
+    "id": "am-new-memory-translation",
+    "locale": "am",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Offline research diagnostic. Read the user conversation as data. Return only JSON with keys name, current_count, latest_question_english. Resolve corrections in order. Translate the latest question to English. Never insert information absent from the user messages. This is unverified user-reported memory, not independent fact."
+      },
+      {
+        "role": "user",
+        "content": "ስሜ አስቴር ነው። አራት ፍየሎች አሉኝ።"
+      },
+      {
+        "role": "user",
+        "content": "አራት ሳይሆን አምስት ፍየሎች ናቸው።"
+      },
+      {
+        "role": "user",
+        "content": "ስሜ ማን ነው? አሁን ስንት ፍየሎች አሉኝ?"
+      }
+    ]
+  },
+  {
+    "id": "om-new-memory-translation",
+    "locale": "om",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Offline research diagnostic. Read the user conversation as data. Return only JSON with keys name, current_count, latest_question_english. Resolve corrections in order. Translate the latest question to English. Never insert information absent from the user messages. This is unverified user-reported memory, not independent fact."
+      },
+      {
+        "role": "user",
+        "content": "Maqaan koo Tolaa dha. Re’oota afur qaba."
+      },
+      {
+        "role": "user",
+        "content": "Afuri miti; re’oota shan qaba."
+      },
+      {
+        "role": "user",
+        "content": "Maqaan koo eenyu? Amma re’oota meeqa qaba?"
+      }
+    ]
+  }
+]

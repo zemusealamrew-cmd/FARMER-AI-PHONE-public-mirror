@@ -1,0 +1,19 @@
+# የR-24 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-24
+requirement: "የላፕቶፕ ውጤት የስልክ አቅም ማረጋገጫ አይደለም"
+owner_role: "የማረጋገጫ ኃላፊ"
+owner_named: null
+gates: [G1, G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G1+G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/fm.test.mjs", name: "F-13 / R-24፦ በሬዲዮ ማስታወሻ ውስጥ የተገጠመ ትእዛዝ አይፈጸምም"}
+  - {file: "tests/safety.test.mjs", name: "F-13 / OP-10 / R-24፦ በSMS ውስጥ ያለ ተሰወረ ትእዛዝ የማይታመን ሆኖ ይለያል"}
+  - {file: "tests/safety.test.mjs", name: "R-24 / CI-07፦ ግንኙነት ያለው መረጃ እንደ ማይታመን አይመደብም"}
+  - {file: "tests/sms.test.mjs", name: "F-13 / R-24፦ ማይታመን መልዕክት ቢነበብም ትእዛዙ አይፈጸምም (action_taken = NONE)"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

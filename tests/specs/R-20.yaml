@@ -1,0 +1,14 @@
+# የR-20 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-20
+requirement: "የFM ዲጂታል ዝማኔ ተስማሚ መቀበያና ስርጭት ካለ ብቻ"
+owner_role: "የዝማኔ ኃላፊ"
+owner_named: null
+gates: [G2]
+status: BLOCKED-ON-UNDEFINED-TEST
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests: []
+doc_acceptance: "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-21 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ"

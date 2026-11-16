@@ -1,0 +1,27 @@
+
+import { readFileSync, existsSync, writeFileSync } from 'node:fs';
+const root = new URL('..', import.meta.url);
+const r = (p) => readFileSync(new URL(p, root), 'utf8');
+const j = (p) => JSON.parse(r(p));
+const out = { schema: 'edition-model-ram-validation/1', date: '2026-11-16', ok: true, checks: [] };
+const check = (name, ok, detail) => { out.checks.push({ name, ok: !!ok, detail }); if (!ok) out.ok = false; };
+const reqText = r('requirements/edition-model-ram.yaml');
+const ids = [...reqText.matchAll(/^  - id: (ED-\d+)$/gm)].map(m => m[1]);
+check('12 owner-directed IDs', ids.length === 12, ids.join(','));
+const baseline = j('requirements/coverage-summary.json');
+check('original baseline remains 85', baseline.requirement_count === 85, String(baseline.requirement_count));
+const docs = ['docs/FARMER_AI_PHONE_LANGUAGE_EDITIONS_SPEC_v1_0_AM.md','docs/FARMER_AI_PHONE_MODEL_LIFECYCLE_RAM_SPEC_v1_0_AM.md','docs/FARMER_AI_PHONE_EDITION_MODEL_RAM_ACCEPTANCE_PLAN_v1_0_AM.md'];
+for (const d of docs) check('design doc exists: ' + d, existsSync(new URL(d, root)), d);
+const master = r('docs/BUILDER_MASTER_DESIGN_v5_0_AM.md');
+check('master design contains mandatory addendum', /ED-01/.test(master) && /ED-12/.test(master) && /MANDATORY OWNER-DIRECTED ADDENDUM/.test(master), 'addendum');
+for (const t of ['EDT-01','EDT-02','EDT-03','EDT-04','EDT-05','EDT-06','EDT-07','EDT-08','EDT-09','EDT-10','EDT-11','EDT-12']) check('acceptance test present: ' + t, r('evidence/EDITION_MODEL_RAM_ACCEPTANCE_PLAN_20261116.json').includes(t), t);
+const trace = j('evidence/EDITION_MODEL_RAM_TRACEABILITY_20261116.json');
+check('traceability has 12 requirement rows', trace.requirements.length === 12, String(trace.requirements.length));
+check('no implementation claim', trace.status === 'DESIGN_ONLY' && trace.no_implementation_claim === true, trace.status);
+const handoff = r('handoff/OWNER_DIRECTIVE_EDITION_MODEL_RAM_20261116_AM.md');
+check('handoff directive exists and mandatory', /MANDATORY DESIGN/.test(handoff) && /ED-01\.\.ED-12|ED-01..ED-12/.test(handoff), 'directive');
+out.counts = { ids: ids.length, baseline: baseline.requirement_count, trace_rows: trace.requirements.length };
+out.status = out.ok ? 'DESIGN_CONSISTENT' : 'FAILED';
+writeFileSync(new URL('evidence/EDITION_MODEL_RAM_VALIDATION_20261116.json', root), JSON.stringify(out, null, 2) + '\n');
+console.log(JSON.stringify(out, null, 2));
+process.exit(out.ok ? 0 : 1);

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>የገበሬ AI ስልክ — G1 የላፕቶፕ ማሳያ</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNicgaGVpZ2h0PScxNic+PHJlY3Qgd2lkdGg9JzE2JyBoZWlnaHQ9JzE2JyByeD0nNCcgZmlsbD0nIzBmMTUxMScvPjxyZWN0IHg9JzInIHk9JzExJyB3aWR0aD0nMycgaGVpZ2h0PSczJyByeD0nMScgZmlsbD0nIzdmZDA4YScvPjxyZWN0IHg9JzUnIHk9JzgnIHdpZHRoPSczJyBoZWlnaHQ9JzYnIHJ4PScxJyBmaWxsPScjOGZkM2MyJy8+PHJlY3QgeD0nOCcgeT0nNScgd2lkdGg9JzMnIGhlaWdodD0nOScgcng9JzEnIGZpbGw9JyNmMGM2NzQnLz48cmVjdCB4PScxMScgeT0nMicgd2lkdGg9JzMnIGhlaWdodD0nMTInIHJ4PScxJyBmaWxsPScjZWY4YThhJy8+PC9zdmc+">
+<style>
+  :root { --bg:#0f1511; --card:#18211c; --ink:#f2f5f1; --mut:#a9b7ad; --line:#2a3831; --ok:#7fd08a; --warn:#f0c674; --bad:#ef8a8a; --acc:#8fd3c2; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family: "Noto Sans Ethiopic", "Nyala", "Ebrima", system-ui, sans-serif; }
+  header { padding:14px 18px; border-bottom:1px solid var(--line); background:#131c17; }
+  header h1 { margin:0 0 4px; font-size:19px; }
+  .gate { font-size:13px; color:var(--warn); }
+  main { display:grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap:14px; padding:14px; max-width:1500px; margin:0 auto; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; }
+  h2 { margin:0 0 10px; font-size:15px; color:var(--acc); }
+  button, input[type=text], textarea, select { font:inherit; padding:8px 10px; border-radius:8px; border:1px solid var(--line); background:#111a15; color:var(--ink); }
+  button { cursor:pointer; }
+  button:hover { border-color:var(--acc); }
+  button.on { background:#204b3c; border-color:var(--ok); }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  pre { background:#0d1410; border:1px solid var(--line); border-radius:8px; padding:10px; overflow:auto; max-height:280px; font-size:12px; white-space:pre-wrap; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px; }
+  .mut { color:var(--mut); font-size:12px; }
+  .ans { background:#111a15; border-left:3px solid var(--acc); padding:10px; border-radius:6px; margin-top:8px; white-space:pre-wrap; }
+  .tag { display:inline-block; font-size:11px; padding:2px 7px; border-radius:999px; border:1px solid var(--line); color:var(--mut); margin-right:4px; }
+  .ok { color:var(--ok); } .warn { color:var(--warn); } .bad { color:var(--bad); }
+  label.perm { display:flex; gap:6px; align-items:center; font-size:13px; margin-right:10px; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th, td { text-align:left; padding:6px; border-bottom:1px solid var(--line); vertical-align:top; }
+  dialog { border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:12px; max-width:720px; width:92%; padding:16px; }
+  dialog::backdrop { background:#000a; }
+  main { display:block; max-width:1000px; padding:24px 18px; }
+  .recorder { padding:28px; }
+  .recorder h2 { font-size:26px; color:var(--ink); }
+  .recorder p { line-height:1.8; }
+  .consent { margin:22px 0; font-size:14px; color:var(--mut); }
+  .consent button { margin-right:10px; }
+  .record-actions { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .record-actions button { min-height:96px; font-size:20px; font-weight:700; background:#204b3c; border:2px solid var(--acc); }
+  .record-actions button:disabled { background:#18211c; }
+  .record-status { min-height:64px; padding:14px; background:#111a15; border-radius:8px; font-size:18px; }
+  .record-level meter { width:160px; vertical-align:middle; }
+  .privacy-note { color:var(--mut); font-size:14px; }
+  #advanced { margin-top:22px; border:1px solid var(--line); border-radius:12px; padding:18px; }
+  summary { cursor:pointer; font-size:18px; padding:6px; }
+  .advanced-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); gap:14px; margin-top:14px; }
+  button:focus-visible, summary:focus-visible { outline:3px solid var(--warn); outline-offset:4px; }
+  @media(max-width:650px) { .record-actions { grid-template-columns:1fr; } .record-actions button { min-height:72px; } .recorder { padding:18px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>የገበሬ AI ስልክ — የድምፅ ሙከራ</h1>
+  <div class="gate" id="gateBanner">G1 HOLD — የላፕቶፕ ሙከራ፤ ማረጋገጥዎን ይጠብቃል።</div>
+</header>
+
+<main>
+  <section id="simpleRecorder" class="recorder">
+    <h2>ድምፅዎን በቀላሉ ይሞክሩ</h2>
+    <p>መጀመሪያ ፈቃድ ይስጡ። ከዚያ ይቅዱ፣ ያቁሙና የራስዎን ድምፅ ያዳምጡ።</p>
+    <div class="consent"><button id="aiKey" aria-pressed="false">AI ቁልፍ፦ ፍቀድ</button> <span>ማይክን ለመጠቀም ፈቃድዎ ያስፈልጋል።</span></div>
+    <div class="record-actions">
+      <button id="simpleStart" disabled>1. መቅዳት ጀምር</button>
+      <button id="simpleStop" disabled>2. መቅዳት አቁም</button>
+      <button id="simplePlay" disabled>3. ድምፄን አድምጥ</button>
+    </div>
+    <p id="micState" class="record-status" role="status" aria-live="polite">ለመጀመር «AI ቁልፍ፦ ፍቀድ» ይጫኑ።</p>
+    <p class="record-level">የድምፅ ደረጃ፦ <meter id="recLevel" min="0" max="1" value="0"></meter> <span id="recSec">0</span> ሰከንድ</p>
+    <div id="captureReview" hidden><p>ቅጂዎ ዝግጁ ነው። «ድምፄን አድምጥ» ይጫኑ።</p><button id="captureDiscard">ቅጂውን ሰርዝ</button></div>
+    <p class="privacy-note">ድምፅዎ እዚህ ብቻ ይቆያል። እነዚህ ሦስት ቁልፎች ድምፅ አይልኩም።</p>
+  </section>
+  <details id="advanced">
+    <summary>የላቀ ምርመራ</summary>
+    <p>የAI፣ SMS፣ FM፣ የጥሪ፣ የዝማኔና የቴክኒክ ምርመራዎች እዚህ አሉ።</p>
+    <div class="mut" id="clock">…</div>
+    <div class="advanced-grid">
+  <section id="ask">
+    <h2>1. ጥያቄ (AI ቁልፍ → ድምፅ/ጽሑፍ → መልስ)</h2>
+    <div class="row">
+      <button id="micBtn" disabled>🎤 ራዳዴ/አነጋግር</button>
+    </div>
+    <div class="row">
+      <input type="text" id="q" size="34" placeholder="ለምሳሌ፦ ለስን ምን እርሻ እንዳክትል">
+      <select id="locale"><option value="am">አማርኛ</option><option value="om">አፋን ኦሮሞ</option></select>
+      <button id="askBtn">ጠይቅ</button>
+      <button id="speakBtn" disabled>🔊 አንብብ</button>
+    </div>
+    <div id="requestState" class="mut" role="status" aria-live="polite"></div>
+    <div id="answer" class="ans">ጥያቄዎን ይጻፉ ወይም AI ቁልፍ ተጠቅመው ይናገሩ።</div>
+    <div class="mut">ማሳያው መልሱን ከአካባቢው የእውቀት መዝገብ ምንጭ፣ ቀንና የእርግጠኝነት ማስረጃ ጋር ያቀርባል፤ ምንጭ ከሌለ «አላውቅም» ይላል።</div>
+    <pre id="askRaw" hidden></pre>
+  </section>
+
+  <section id="statusCard">
+    <h2>2. የመሣሪያ/አቅም ሁኔታ (ከማስረጃ መዝገብ)</h2>
+    <div class="row"><button id="refresh">ደራሽ አድስ</button><span class="mut" id="kbLine"></span></div>
+    <pre id="statusOut">…</pre>
+  </section>
+
+  <section id="smsCard">
+    <h2>3. SMS — ፈቃድ፣ በድምፅ ንባብ፣ OTP፣ የማይታመን መልዕክት</h2>
+    <div class="row">
+      <label class="perm"><input type="checkbox" data-scope="read_aloud"> ማንበብ ፈቃድ</label>
+      <label class="perm"><input type="checkbox" data-scope="knowledge_use"> እውቀት ማውጣት</label>
+      <label class="perm"><input type="checkbox" data-scope="storage"> ማከማቸት</label>
+      <label class="perm"><input type="checkbox" data-scope="personal"> የግል መልዕክት</label>
+    </div>
+    <div class="row"><button id="smsList">ዝርዝር አድስ</button><span class="mut">ይዘቱ የሚነበበው AI ቁልፍ + ፈቃድ ሲኖር ብቻ</span></div>
+    <table id="smsTable"><thead><tr><th>መለያ</th><th>ከ</th><th>አይነት</th><th>ድርጊት</th></tr></thead><tbody></tbody></table>
+    <pre id="smsOut">…</pre>
+  </section>
+
+  <section id="fmCard">
+    <h2>4. FM ሬዲዮ — ማስመሰያ ግቤት (G1) እና ማጣራት</h2>
+    <div class="row">
+      <select id="fmStation"></select>
+      <select id="fmBroadcast"></select>
+      <button id="fmLoad">ጣቢያዎችን ጫን</button>
+      <button id="fmIngest">ፕሮግራም ተቀብል</button>
+    </div>
+    <pre id="fmOut">…</pre>
+  </section>
+
+  <section id="callCard">
+    <h2>5. የጥሪ ቅድሚያ ሙከራ (R-04፣ RU-13፣ RG-34-01)</h2>
+    <div class="row">
+      <button id="callIn">ጥሪ ገባ</button>
+      <button id="callAccept">ተልቻ</button>
+      <button id="callEnd">ጨርስ</button>
+      <span class="mut">AI ሲሠራ ጥሪ ሲመጣ ማቋረጩን ይመልከቱ</span>
+    </div>
+    <p id="callNote" class="mut">ማዳመጥ ወይም ንግግር ሲጀምር AI በዚህ ካርድ ላይ ደረጃውን ይይዛል፤ ከዚያ ጥሪ ገባ ብለው ቢመቱ ማቋረጡን ይመልከቱ።</p>
+    <pre id="callOut">…</pre>
+  </section>
+
+  <section id="updCard">
+    <h2>6. የተፈረመ ዝማኔ — ማረጋገጥ/መጫን/መመለስ</h2>
+    <div class="row">
+      <select id="updSample" title="ከዘጋጁ ናሙና ይምረጥ"></select>
+      <input type="file" id="updFile" accept="application/json">
+      <button id="updVerify">ፊርማ አረጋግጥ</button>
+      <button id="updApply">ጫን</button>
+      <button id="updRollback">ወደ ኋላ መልስ</button>
+    </div>
+    <div class="mut">ናሙናው በዝርዝሩ ውስጥ አለ (ተቀባይነትና ውድቀት ጨምሮ)። አዲስ ለመፍጠር፦ <code>node tools/make-keys.mjs generate</code> ከዚያ <code>node tools/make-update.mjs --key-id …</code></div>
+    <pre id="updOut">…</pre>
+  </section>
+
+  <section id="evCard">
+    <h2>7. ማስረጃ ሰንሰለትና የአፈጻጸም ልኬት</h2>
+    <div class="row"><button id="evLoad">ማስረጃ አረጋግጥ</button><button id="metLoad">ልኬት አንብብ</button></div>
+    <pre id="evOut">…</pre>
+  </section>
+</div>
+
+
+<dialog id="recDialog">
+  <h2>🎤 ድምፅ መቅረጽ</h2>
+  <p>ተናገሩ፤ ከጨረሱ በኋላ ያቁሙ።</p>
+
+  <p class="mut" id="recHint">ሲናገሩ የአሁኑ ደረጃ ይነሳል፣ ዝም ሲሉ ይቀንሳል። የድምፅ መኖር ብቻ ንግግር መቀዳቱን አያረጋግጥም።</p>
+
+  <div class="row"><button id="recStop">ቁምና ላክ</button><button id="recPreview">ቁምና ቅጂውን አድምጥ</button><button id="recCancel">ሰርዝ</button></div>
+</dialog>
+
+<section style="margin:16px" aria-label="የማይክ ምርመራ">
+  <details><summary>የማይክ መቅረጽ ምርመራ</summary>
+    <p>ቅጂውን ለመፈተሽ AI ቁልፍ → ማይክ → ተናገር፣ ዝም በል → «ቁምና ቅጂውን አድምጥ»። ድምፁ በዚህ ብሮውዘር ብቻ ይቆያል፤ ለማጫወት የplay ቁልፍን ይጫኑ።</p>
+    <button id="micDevices">የግቤት መሣሪያዎችን አሳይ</button>
+    <select id="micInput" aria-label="የማይክ ግቤት"><option value="">የሥርዓቱ ነባር ማይክ</option></select>
+    <p>Windows፦ Settings → Privacy &amp; security → Microphone፣ ከዚያ System → Sound → Input ላይ ትክክለኛውን ማይክ፣ volume እና mute ይፈትሹ። Chrome/Edge የጣቢያ Microphone ፈቃድና የተመረጠው ግቤትም ይፈተሹ። የWindows ቅንብሮች ከድረ ገጹ በቀጥታ አይነበቡም።</p>
+    <pre id="micDiagnostics"></pre>
+  </details>
+  <p>የተመረጠው ማይክ፦</p><pre id="recDevice"></pre>
+  <p>የቅጂው ከፍተኛ ደረጃ፦ <span id="recPeak">0</span></p>
+  <audio id="captureAudio" controls preload="none"></audio>
+  <p>ወደ አካባቢ ASR ለመላክ ከፈለጉ ብቻ ይህን ቁልፍ ይጫኑ።</p>
+  <button id="captureSend">ይህን ቅጂ ወደ አካባቢ ASR ላክ</button>
+  <h3>የቅጂ መንገድ ንጽጽር — በአካባቢ ብቻ</h3>
+  <p>ከቅየራ በፊት ያለው PCM፦</p><audio id="rawCaptureAudio" controls preload="none"></audio>
+  <p>የብሮውዘሩ ቀጥተኛ ቅጂ (MediaRecorder)፦</p><audio id="nativeCaptureAudio" controls preload="none"></audio>
+  <p>ከላይ ያሉት ሦስቱ ቅጂዎች ከአንድ ማይክ ናቸው። ማጫወት በራስዎ ፈቃድ ብቻ ነው። የቅጂ ቆይታና መለኪያዎች ብቻ ከታች ይታያሉ፤ ንግግር መቀዳቱን የሰው ማዳመጥ ይወስናል።</p>
+  <pre id="captureAudit"></pre>
+  <button id="auditExport">የምርመራ መለኪያ ብቻ አስቀምጥ (ድምፅ የለውም)</button>
+</section>
+
+  </details>
+</main>
+
+<script src="/capture-audit.js"></script>
+<script>
+const S = { session_id: null, aiKey: false, lastAnswer: null, envelope: null, recording: null };
+const $ = (id) => document.getElementById(id);
+function updateInteractionControls() {
+  const blocked = Boolean(S.requestPending || S.callActive || S.recording || S.micRequest);
+  $('askBtn').disabled = blocked;
+  $('micBtn').disabled = blocked || !S.aiKey;
+  $('speakBtn').disabled = blocked || !S.lastAnswer?.text;
+  $('simpleStart').disabled = blocked || !S.aiKey;
+  $('simpleStop').disabled = !S.recording || Boolean(S.requestPending || S.callActive);
+  $('simplePlay').disabled = blocked || !S.aiKey || !S.capturePreview;
+  $('captureSend').disabled = blocked || !S.aiKey || !S.capturePreview;
+}
+async function runInteraction(label, operation, captureStop = false) {
+  if (S.requestPending || S.callActive || (!captureStop && (S.recording || S.micRequest))) return;
+  S.requestPending = true;
+  $('requestState').textContent = label;
+  updateInteractionControls();
+  try { return await operation(); }
+  catch (error) {
+    $('requestState').textContent = 'ጥያቄው አልተጠናቀቀም፤ ግንኙነቱን ይፈትሹና እንደገና ይሞክሩ።';
+    throw error;
+  } finally {
+    S.requestPending = false;
+    if ($('requestState').textContent === label) $('requestState').textContent = '';
+    updateInteractionControls();
+  }
+}
+const startSession = async () => {
+  const r = await fetch('/api/session', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' });
+  const j = await r.json();
+  S.session_id = j.session_id ?? null;
+  return j;
+};
+// ክፍለ-ጊዜው በሀብት ገደብ ሲዘጋ (F-07) ደንበኛው አዲስ ይከፍትና ጥያቄውን አንድ ጊዜ ይደግሟል
+const post = async (path, body = {}, retry = true) => {
+  const r = await fetch(path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ session_id: S.session_id, ...body }) });
+  const j = await r.json();
+  if (j.code === 'SESSION_UNKNOWN' && retry) { await startSession(); return post(path, body, false); }
+  if (j.session_id) S.session_id = j.session_id;
+  return j;
+};
+// GET መንገዶች session_id ከquerystring ያነባሉ — ካልተላከ ፈቃድና ውጤት በአዲስ ክፍለ-ጊዜ ስለሚጀምሩ አይዛመዱም
+const get = async (path, params = {}, retry = true) => {
+  const qs = new URLSearchParams(params);
+  if (S.session_id) qs.set('session_id', S.session_id);
+  const tail = qs.toString();
+  const url = tail ? `${path}${path.includes('?') ? '&' : '?'}${tail}` : path;
+  const j = await (await fetch(url)).json();
+  if (j.code === 'SESSION_UNKNOWN' && retry) { await startSession(); return get(path, params, false); }
+  return j;
+};
+const show = (id, obj) => { const el = $(id); el.hidden = false; el.textContent = typeof obj === 'string' ? obj : JSON.stringify(obj, null, 2); };
+
+function ethDate(d) {
+  const anchor = new Date(Date.UTC(2000, 8, 12));
+  return d.toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+}
+
+async function refreshStatus() {
+  const st = await get('/api/status');
+  $('clock').textContent = `${st.now.ethiopian.month_name} ${st.now.ethiopian.day}፣ ${st.now.ethiopian.year} ዓ.ም (${st.now.ethiopian_time.label} ${st.now.ethiopian_time.period_amharic}) — ወቅት፦ ${st.now.season?.name ?? '—'}`;
+  $('kbLine').textContent = `እውቀት ${st.knowledge.kb_version} · ${st.knowledge.kb_status} · ${st.knowledge.entries} ጣብያ`;
+  const asr = st.asr.ready ? 'ዝግጁ' : (st.asr.code ?? 'አልተጫነም');
+  const tts = Object.entries(st.tts.locale_support).map(([k, v]) => `${k}:${v.available ? 'ድምፅ አለ' : 'ድምፅ የለም'}`).join(' · ');
+  show('statusOut', {
+    gate: st.gate,
+    offline: st.offline_by_design,
+    ASR: st.asr.engine + ' → ' + asr,
+    'ASR ቋንቋ': st.asr.supported_locales,
+    'ASR የማይደገፍ': st.asr.unsupported_locales,
+    TTS: tts,
+    'የተጫነ ዝማኔ': st.updates.installed_version ?? 'የመነሻ ነባር',
+    limits: st.limits,
+  });
+}
+
+$('aiKey').onclick = () => {
+  S.aiKey = !S.aiKey;
+  $('aiKey').setAttribute('aria-pressed', String(S.aiKey));
+  $('aiKey').textContent = `AI ቁልፍ፦ ${S.aiKey ? 'ተፈቅዷል' : 'ፍቀድ'}`;
+  $('micState').textContent = S.aiKey ? 'ዝግጁ ነው። «መቅዳት ጀምር» ይጫኑ።' : 'መቅዳት ቆሟል። እንደገና ለመጀመር ፈቃድ ይስጡ።';
+  $('aiKey').classList.toggle('on', S.aiKey);
+  updateInteractionControls();
+  if (!S.aiKey) void cancelRecording().finally(updateInteractionControls);
+};
+
+// S-4 / OP-10 / F-15፦ የSMSና የFM ጽሑፍ የማይታመን ግቤት ነው — የድር ትዕዛዝ አይደለም።
+// ስለዚህ ገጹ ላይ ሲቀርጸው ጽሑፍ ብቻ ሆኖ ይዘፈናል፤ ምልክቶች ወደ ኮድ አይቀየሩም።
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// R-04 / RU-13 / F-18፦ የAI ደረጃ ለጥሪ ቅድሚያ ማሽከርከር — ማዳመጥና መናገር ሲጀምር ይተላለፋል
+const aiPhase = (phase) => post('/api/ai/phase', { phase });
+
+// የጽሑፍና የድምፅ መንገድ አንድ አይነት መልስ ይሰጣሉ — ሁለቱም ወደ ደንበኛው ገጽ አንድ ቦታ ብቻ ይቀርጻሉ
+function renderAnswer(r) {
+  S.lastAnswer = r;
+  // የምንጭ ማረጋገጫ በclaim ላይ በተመዘገበው ቅርጸት ይታያል (source.kind/source.id/captured_at/valid_until/verification)
+  const claims = (r.claims ?? []).map((c) => {
+    const src = c.source ?? {};
+    const bits = [`· ${esc(c.claim_id ?? src.title ?? '—')} [${esc(src.kind ?? '—')}/${esc(src.id ?? '—')}]`, `· ${esc(c.captured_at ?? '—')}`];
+    if (c.valid_until) bits.push(`→ ድረስ ${esc(c.valid_until)}`);
+    if (c.expired) bits.push('· ⚠ ጊዜው አልፎበታል');
+    if (src.license_scope) bits.push(`· ፈቃድ፦${esc(src.license_scope)}`);
+    if (c.verification) bits.push(`· ማረጋገጫ፦${esc(c.verification)}`);
+    return bits.join(' ');
+  }).join('\n');
+  const flags = [];
+  if (r.conflict) flags.push('⚠ የተቃራኒ መረጃ አለ');
+  if (r.risk?.level && r.risk.level !== 'low') flags.push(`⚠ አደጋ ደረጃ፦${esc(r.risk.level)}`);
+  if (r.safety?.blocked) flags.push('⛔ ደህንነት ማጣሪያ ቀድሞአል');
+  if (r.escalation) flags.push('↩ ወደ ባለሙያ ማስተላለፍ');
+  $('answer').innerHTML = `<b>${esc(r.text ?? r.code)}</b>` +
+    (flags.length ? `<div class="warn" style="margin-top:6px">${flags.join(' ')}</div>` : '') +
+    (claims ? `<div class="mut" style="margin-top:6px">ምንጭ፦\n${claims}</div>` : '') +
+    (r.kb_notice ? `<div class="mut" style="margin-top:6px">${esc(r.kb_notice)}</div>` : '') +
+    (r.transcript ? `<div class="mut" style="margin-top:6px">የተረዳው፦ ${esc(r.transcript)}</div>` : '');
+  updateInteractionControls();
+  show('askRaw', { metrics: r.metrics, latency_ms: r.latency_ms, turn: r.turn, topic: r.topicIds, follow_up: r.followUp, type: r.type, kb_hash: r.kb_hash, code: r.code });
+}
+
+$('askBtn').onclick = async () => {
+  const text = $('q').value.trim();
+  if (!text) return;
+  await runInteraction('መልስ እየተዘጋጀ ነው፤ እባክዎ ይጠብቁ…', async () => {
+    const r = await post('/api/text', { text, locale: $('locale').value });
+    renderAnswer(r);
+    if ($('q').value.trim() === text) $('q').value = '';
+  });
+};
+
+$('speakBtn').onclick = async () => {
+  if (!S.lastAnswer?.text) return;
+  await runInteraction('ድምፅ እየተዘጋጀ ነው፤ እባክዎ ይጠብቁ…', async () => {
+  const r = await post('/api/tts', { text: S.lastAnswer.text, locale: S.lastAnswer.locale ?? $('locale').value });
+  if (r.ok && r.wav_base64) {
+    const audio = new Audio('data:audio/wav;base64,' + r.wav_base64);
+    // ድምፁ በሚነበብበት ጊዜ AI በንግግር ላይ ነው — ጥሪ ከመጣ በዚህ ዙር ላይ ይቋረጣል (R-04 / RU-13)
+    await aiPhase('SPEAKING');
+    audio.onended = async () => {
+      await aiPhase('IDLE');
+      show('callOut', { note: 'የAI ንግግር ተጠናቀቀ (IDLE)። ጥሪ ቢከሰት የተቋረጠው ዙር በዚህ መዝገብ ላይ ይታያል።' });
+    };
+    await audio.play();
+    show('askRaw', { tts: { voice: r.voice, ms: r.ms ?? null, bytes: r.bytes } });
+  } else {
+    show('askRaw', { tts: r, note: r.code === 'OFFLINE_MODEL_BUSY'
+      ? 'ሌላ የAI ሥራ እየተካሄደ ነው፤ እስኪጨርስ ይጠብቁና እንደገና ይሞክሩ።'
+      : 'ድምፅ አልተዘጋጀም፤ ይህ GAP ነው፣ MET አይደለም።' });
+  }
+  });
+};
+
+async function startRecording() {
+  if (!S.aiKey || S.recording || S.micRequest || S.callActive || S.requestPending) return; // AI key and one active microphone capture only
+  discardCapturePreview();
+  S.captureAudit = { version: 1, last_stage: 'permission/device', last_code: 'OPEN_REQUESTED', speech_verified: false };
+  show('captureAudit', S.captureAudit);
+  $('micState').textContent = 'ማዳመጥ እየተጀመረ…';
+  const request = {};
+  S.micRequest = request;
+  const current = () => !request.cancelled && S.micRequest === request && S.aiKey && !S.callActive;
+  let stream;
+  try {
+    const deviceId = $('micInput').value;
+    stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: false,
+      ...(deviceId ? { deviceId: { exact: deviceId } } : {}) } });
+  } catch (e) {
+    if (S.micRequest === request) S.micRequest = null;
+    $('micState').textContent = 'ማይክሮፎን ፈቃድ አልተሰጠም ወይም የለም';
+    micDiagnostic('permission/device', ({NotAllowedError:'MIC_PERMISSION_DENIED',NotFoundError:'MIC_DEVICE_NOT_FOUND',NotReadableError:'MIC_DEVICE_UNREADABLE',OverconstrainedError:'MIC_CONSTRAINT_UNSATISFIED'})[e.name] ?? 'MIC_OPEN_FAILED', { browser_error: e.name });
+    return;
+  }
+  if (!current()) {
+    stream.getTracks().forEach((track) => track.stop());
+    if (S.micRequest === request) S.micRequest = null;
+    return;
+  }
+  let ctx, source, node, mutedOutput, timer, audit, stage = 'audio-context';
+  try {
+    ctx = new AudioContext();
+    if (ctx.state === 'suspended') await ctx.resume();
+    if (!current()) throw new Error('capture cancelled');
+    // Local display only: never persist device IDs or infer applied settings from requested constraints.
+    const track = stream.getAudioTracks()[0];
+    const settings = track?.getSettings?.() ?? {};
+    $('recDevice').textContent = JSON.stringify({
+      label: track?.label || null,
+      track_sample_rate: settings.sampleRate ?? null,
+      channels: settings.channelCount ?? null,
+      echo_cancellation: settings.echoCancellation ?? null,
+      noise_suppression: settings.noiseSuppression ?? null,
+      auto_gain_control: settings.autoGainControl ?? null,
+      context_sample_rate: ctx.sampleRate,
+      output_sample_rate: 16000,
+      enabled: track?.enabled ?? null,
+      muted: track?.muted ?? null,
+      ready_state: track?.readyState ?? null,
+    }, null, 2);
+    if (!track || track.enabled === false || track.readyState === 'ended') throw Object.assign(new Error('unavailable track'), { code: 'MIC_TRACK_UNAVAILABLE' });
+    stage = 'audio-processor';
+    audit = CaptureAudit.begin(stream, ctx, Boolean($('micInput').value));
+    node = ctx.createScriptProcessor(4096, 1, 1);
+    const chunks = [];
+    // F-08: preserve the microphone level display; non-silent samples still require ASR verification.
+    let peak = 0;
+    node.onaudioprocess = (e) => {
+      const buf = e.inputBuffer.getChannelData(0);
+      CaptureAudit.frame(audit, e, buf.length);
+      chunks.push(new Float32Array(buf));
+      let currentPeak = 0;
+      for (let i = 0; i < buf.length; i += 1) {
+        const v = Math.abs(buf[i]);
+        if (v > currentPeak) currentPeak = v;
+      }
+      peak = Math.max(peak, currentPeak);
+      $('recLevel').value = String(Math.min(1, currentPeak * 4));
+      $('recPeak').textContent = peak.toFixed(4);
+    };
+    // MediaStreamTrack has no connect(). A MediaStreamAudioSourceNode bridges the browser mic.
+    source = ctx.createMediaStreamSource(stream);
+    source.connect(node);
+    mutedOutput = ctx.createGain();
+    mutedOutput.gain.value = 0; // keep the processor scheduled without feeding mic audio to speakers
+    node.connect(mutedOutput);
+    mutedOutput.connect(ctx.destination);
+    stage = 'call-phase';
+    // R-04/RU-13: calls retain priority over AI listening.
+    const phase = await aiPhase('LISTENING');
+    if (!current() || phase?.ok === false) throw new Error('capture interrupted');
+    $('recSec').textContent = '0';
+    $('recLevel').value = '0';
+    $('recPeak').textContent = '0';
+    const started = Date.now();
+    timer = setInterval(() => { $('recSec').textContent = String(Math.floor((Date.now() - started) / 1000)); }, 500);
+    S.recording = { ctx, source, node, mutedOutput, stream, chunks, timer, audit };
+    micDiagnostic('audio-processor', 'CAPTURE_STARTED', { context_rate: ctx.sampleRate, speech_verified: false });
+    if (!S.inlineCapture) $('recDialog').showModal();
+  } catch (error) {
+    const auditStopped = audit ? CaptureAudit.finish(audit, false) : Promise.resolve();
+    // Release microphone resources on initialization/phase/dialog failures, not only Cancel.
+    if (timer) clearInterval(timer);
+    if (node) node.onaudioprocess = null;
+    for (const part of [source, node, mutedOutput]) {
+      try { part?.disconnect(); } catch {}
+    }
+    stream.getTracks().forEach((track) => track.stop());
+    if (ctx && ctx.state !== 'closed') {
+      try { await ctx.close(); } catch {}
+    }
+    await auditStopped;
+    S.recording = null;
+    if (!S.callActive) { try { await aiPhase('IDLE'); } catch {} }
+    $('micState').textContent = 'የማይክሮፎን መቅረጽ አልተጀመረም፤ የድምፅ መሣሪያን ይፈትሹ።';
+    micDiagnostic(stage, error.code ?? 'MIC_INITIALIZATION_FAILED', { browser_error: error.name });
+  } finally {
+    if (S.micRequest === request) S.micRequest = null;
+    updateInteractionControls();
+  }
+}
+
+function micDiagnostic(stage, code, details = {}) {
+  // Display only. No audio, device identifiers, transcript or diagnostics are sent or persisted.
+  show('micDiagnostics', { stage, code, ...details });
+  if (S.captureAudit) {
+    S.captureAudit.last_stage = stage; S.captureAudit.last_code = code;
+    S.captureAudit.last_stage_details = details;
+    show('captureAudit', S.captureAudit);
+  }
+  const messages = {
+    CAPTURE_STARTED: 'እየቀዳ ነው። ይናገሩ፤ ሲጨርሱ «መቅዳት አቁም» ይጫኑ።',
+    MIC_PERMISSION_DENIED: 'የማይክ ፈቃድ አልተሰጠም። በብሮውዘሩ የማይክ ፈቃድን ይፍቀዱና እንደገና ይሞክሩ።',
+    MIC_DEVICE_NOT_FOUND: 'ማይክ አልተገኘም። ማይኩን ያገናኙ፤ ከዚያ እንደገና ይሞክሩ።',
+    MIC_DEVICE_UNREADABLE: 'ማይኩን መክፈት አልተቻለም። ሌላ ፕሮግራም እየተጠቀመበት ከሆነ ይዝጉት፤ የWindows ማይክ ፈቃድንም ይፈትሹ።',
+    MIC_CONSTRAINT_UNSATISFIED: 'የተመረጠው ማይክ አይገኝም። በ«የላቀ ምርመራ» ሌላ ማይክ ይምረጡ።',
+    MIC_TRACK_UNAVAILABLE: 'ማይኩ ጠፍቷል ወይም ተቋርጧል። ያገናኙትና እንደገና ይሞክሩ።',
+    NO_AUDIO_FRAMES: 'ማይኩ ድምፅ አላመጣም። የማይኩን ግንኙነትና mute ይፈትሹ።',
+    SILENT_CAPTURE: 'ቅጂው ጸጥታ ነው። ወደ ማይኩ ቀርበው ይናገሩ፤ mute መጥፋቱንም ይፈትሹ።',
+    AUDIO_TOO_SHORT: 'ቅጂው በጣም አጭር ነው። እንደገና ጀምረው ጥቂት ሰከንዶች ይናገሩ።',
+    WAV_READY: 'ቅጂዎ ዝግጁ ነው። «ድምፄን አድምጥ» ይጫኑ።',
+    CAPTURE_DISCARDED: 'ቅጂዎ ተሰርዟል። አዲስ ቅጂ መጀመር ይችላሉ።',
+    MIC_DEVICES_LISTED: 'የማይክ ዝርዝሩ ዝግጁ ነው። የሚጠቀሙበትን ማይክ ይምረጡ።',
+    AUDIO_UPLOAD_STARTED: 'ድምፁ ወደ አካባቢው ፕሮግራም እየተላከ ነው። ይጠብቁ።',
+    LOCAL_PLAYBACK_FAILED: 'ድምፁን ማጫወት አልተቻለም። የላፕቶፑን ድምፅና የድምፅ ማውጫ ይፈትሹ፤ ከዚያ እንደገና ይጫኑ።',
+    AUDIO_UPLOAD_FAILED: 'ድምፁ አልተላከም። የአካባቢው ፕሮግራም ክፍት መሆኑን ይፈትሹ።',
+    LOCAL_ASR_ORIGIN_REQUIRED: 'ድምፅ ለመላክ ገጹን በራስዎ ላፕቶፕ ይክፈቱ።',
+  };
+  $('micState').textContent = messages[code] ?? (stage === 'server-audio-response'
+    ? 'የድምፅ መላኪያው ምላሽ ደርሷል። ዝርዝሩ በ«የላቀ ምርመራ» ውስጥ ነው።'
+    : 'ይህን ሙከራ ማጠናቀቅ አልተቻለም። እንደገና ይሞክሩ፤ ዝርዝሩ በ«የላቀ ምርመራ» ውስጥ ነው።');
+}
+
+function discardCapturePreview() {
+  if (!S.capturePreview) return;
+  for (const id of ['captureAudio', 'rawCaptureAudio', 'nativeCaptureAudio']) {
+    const audio = $(id); audio.pause(); audio.removeAttribute('src'); audio.load();
+  }
+  for (const url of [S.capturePreview.url, S.capturePreview.rawUrl, S.capturePreview.nativeUrl]) if (url) URL.revokeObjectURL(url);
+  S.capturePreview = null;
+  $('captureReview').hidden = true;
+}
+
+async function sendCapturedWav(wav) {
+  if (!S.aiKey || S.callActive) { discardCapturePreview(); return; }
+  if (!['localhost', '127.0.0.1', '::1', '[::1]'].includes(location.hostname)) {
+    micDiagnostic('http', 'LOCAL_ASR_ORIGIN_REQUIRED');
+    return;
+  }
+  try {
+    micDiagnostic('http', 'AUDIO_UPLOAD_STARTED', { bytes: wav.byteLength });
+    const r = await post('/api/audio', { wav_base64: abToB64(wav), locale: $('locale').value });
+    renderAnswer(r);
+    micDiagnostic('server-audio-response', r.code ?? r.type ?? 'AUDIO_RESPONSE', { type: r.type, capture_transport_completed: true, speech_verified: false });
+    $('micState').textContent = r.type === 'asr_unavailable' ? 'ድምፅን ወደ ጽሑፍ መቀየር አልተቻለም። ዝርዝሩ በ«የላቀ ምርመራ» ውስጥ ነው።' : r.type === 'no_speech' ? 'ቅጂው ደርሷል፤ ንግግር አልታወቀም' : 'የቅጂው ምላሽ ደርሷል';
+  } catch (error) {
+    micDiagnostic('http', 'AUDIO_UPLOAD_FAILED', { browser_error: error.name });
+    $('micState').textContent = 'የቅጂ ማስተላለፍ ወድቋል፤ ይህ የVAD ውሳኔ አይደለም።';
+  }
+}
+
+async function cancelRecording() {
+  discardCapturePreview();
+  // Invalidate pending permission/resume requests before releasing an active graph.
+  if (S.micRequest) S.micRequest.cancelled = true;
+  await stopRecording(false);
+}
+
+async function stopRecording(send) {
+  const rec = S.recording;
+  if (!rec) return;
+  clearInterval(rec.timer);
+  $('recDialog').close();
+  const rate = rec.ctx.sampleRate;
+  const contextStateBeforeStop = rec.ctx.state;
+  const track = rec.stream.getAudioTracks()[0];
+  const trackState = { enabled: track?.enabled ?? null, muted: track?.muted ?? null, ready_state: track?.readyState ?? null };
+  // Stop the independent recorder before ending its source tracks. Cancellation drops its data.
+  const nativeFinished = CaptureAudit.finish(rec.audit, send === 'preview');
+  // Always disconnect the full Web Audio graph and stop the original MediaStream tracks.
+  S.recording = null;
+  rec.node.onaudioprocess = null;
+  for (const part of [rec.source, rec.node, rec.mutedOutput]) {
+    try { part.disconnect(); } catch {}
+  }
+  rec.stream.getTracks().forEach((t) => t.stop());
+  if (rec.ctx.state !== 'closed') {
+    try { await rec.ctx.close(); } catch {}
+  }
+  const native = await nativeFinished;
+  S.captureAudit = { version: 1, capture: native.report, track_at_stop: trackState, context_state_at_stop: contextStateBeforeStop, speech_verified: false };
+  show('captureAudit', S.captureAudit);
+  if (!S.callActive) {
+    try { await aiPhase('IDLE'); }
+    catch { micDiagnostic('call-phase', 'MIC_PHASE_RESET_FAILED'); return; }
+  }
+  if (!send) {
+    $('micState').textContent = 'ድምፅ መቅረጽ ተሰርዟል';
+    return;
+  }
+  if (!S.aiKey || S.callActive) return;
+  if (!rec.chunks.length) { micDiagnostic('audio-processor', 'NO_AUDIO_FRAMES'); return; }
+  // Mic capture has stopped. Only verified nonempty, long-enough WAV is sent downstream.
+  let stage = 'pcm';
+  try {
+  const flat = [];
+  for (const c of rec.chunks) for (const v of c) flat.push(v);
+  stage = 'resampling';
+  const pcm = resample(Float32Array.from(flat), rate, 16000);
+  S.captureAudit.raw_pcm = CaptureAudit.signal(flat, rate);
+  S.captureAudit.converted_pcm = CaptureAudit.signal(pcm, 16000);
+  show('captureAudit', S.captureAudit);
+  let peak = 0;
+  for (let i = 0; i < pcm.length; i += 1) {
+    const v = Math.abs(pcm[i]);
+    if (v > peak) peak = v;
+  }
+  const seconds = pcm.length / 16000;
+  // ከእዚህ በታች የሆነ ግብይት ለኢንጂን መላክ ጉዳት ነው — ተመሳሳይ ወሰን በሰርቨሩም ላይ ተጽድኗል (F-08)
+  if (peak === 0) {
+    micDiagnostic('pcm', 'SILENT_CAPTURE', { seconds, peak });
+    show('askRaw', { input_guard: { code: 'SILENT_CAPTURE', seconds: +seconds.toFixed(3), peak: 0 }, note: 'የተመዘገበው ሙሉ ጸጥታ ነው — ASR ማምረት አልጀመረም' });
+    return;
+  }
+  if (seconds < 0.3) {
+    micDiagnostic('pcm', 'AUDIO_TOO_SHORT', { seconds, peak });
+    show('askRaw', { input_guard: { code: 'AUDIO_TOO_SHORT', seconds: +seconds.toFixed(3), peak: +peak.toFixed(4) }, note: 'ናሙናው ከ0.3 ሰከንድ በታች ነው' });
+    return;
+  }
+  stage = 'wav';
+  const wav = encodeWav(pcm, 16000);
+  const header = new DataView(wav);
+  S.captureAudit.wav = { bytes: wav.byteLength, rate: header.getUint32(24, true), channels: header.getUint16(22, true), bits: header.getUint16(34, true), data_bytes: header.getUint32(40, true), expected_data_bytes: pcm.length * 2 };
+  micDiagnostic('wav', 'WAV_READY', { seconds, peak, bytes: wav.byteLength, rate: 16000, track: trackState, speech_verified: false });
+  if (send === 'preview') {
+    stage = 'local-preview';
+    const url = URL.createObjectURL(new Blob([wav], { type: 'audio/wav' }));
+    S.capturePreview = { wav, url };
+    S.capturePreview.rawUrl = URL.createObjectURL(new Blob([encodeWav(flat, rate)], { type: 'audio/wav' }));
+    if (native.blob) S.capturePreview.nativeUrl = URL.createObjectURL(native.blob);
+    $('captureAudio').src = url;
+    $('rawCaptureAudio').src = S.capturePreview.rawUrl;
+    if (S.capturePreview.nativeUrl) $('nativeCaptureAudio').src = S.capturePreview.nativeUrl;
+    $('captureReview').hidden = false;
+    updateInteractionControls();
+    // Decode the exact preview bytes locally and report duration/signal, without playback or upload.
+    const preview = S.capturePreview;
+    const [decodedWav, decodedNative] = await Promise.all([
+      CaptureAudit.decoded(new Blob([wav], { type: 'audio/wav' }), 16000),
+      native.blob ? CaptureAudit.decoded(native.blob, 16000) : Promise.resolve({ code: native.report.native?.code ?? 'UNAVAILABLE' }),
+    ]);
+    if (S.capturePreview === preview) {
+      S.captureAudit.preview_decoded = decodedWav;
+      S.captureAudit.native_decoded = decodedNative;
+      show('captureAudit', S.captureAudit);
+    }
+    return;
+  }
+  await sendCapturedWav(wav);
+  } catch (error) { discardCapturePreview(); micDiagnostic(stage, 'CAPTURE_ENCODING_FAILED', { browser_error: error.name }); }
+}
+
+$('micBtn').onclick = startRecording;
+$('simpleStart').onclick = async () => {
+  if (!S.aiKey || S.recording || S.micRequest || S.callActive || S.requestPending) return;
+  S.inlineCapture = true;
+  try { const pending = startRecording(); updateInteractionControls(); await pending; }
+  finally { S.inlineCapture = false; updateInteractionControls(); }
+};
+$('simpleStop').onclick = () => runInteraction('ቅጂዎ እየተዘጋጀ ነው…', () => stopRecording('preview'), true);
+$('simplePlay').onclick = async () => {
+  if (!S.capturePreview || !S.aiKey || S.callActive || S.recording || S.micRequest || S.requestPending) return;
+  try {
+    $('captureAudio').currentTime = 0;
+    await $('captureAudio').play();
+    if (!S.capturePreview || !S.aiKey || S.callActive) { $('captureAudio').pause(); return; }
+    $('micState').textContent = 'ድምፅዎ እየተጫወተ ነው።';
+  } catch { micDiagnostic('local-preview', 'LOCAL_PLAYBACK_FAILED'); }
+};
+$('captureAudio').onended = () => { if (S.capturePreview) $('micState').textContent = 'ማዳመጡ ተጠናቋል። እንደገና ማዳመጥ ወይም አዲስ መቅዳት ይችላሉ።'; };
+$('recStop').onclick = () => runInteraction('ድምፁ እየተተነተነና መልስ እየተዘጋጀ ነው፤ ይጠብቁ…', () => stopRecording(true), true);
+$('recPreview').onclick = () => runInteraction('ቅጂው እየተዘጋጀ ነው…', () => stopRecording('preview'), true);
+$('captureDiscard').onclick = () => { discardCapturePreview(); micDiagnostic('local-preview', 'CAPTURE_DISCARDED'); updateInteractionControls(); };
+$('captureSend').onclick = () => runInteraction('ድምፁ እየተላከ ነው…', async () => {
+  if (!S.capturePreview) return;
+  const wav = S.capturePreview.wav;
+  discardCapturePreview();
+  await sendCapturedWav(wav);
+});
+$('captureAudio').onerror = () => micDiagnostic('local-preview', 'LOCAL_PLAYBACK_FAILED');
+for (const [id, stage] of [['captureAudio','converted'], ['rawCaptureAudio','raw'], ['nativeCaptureAudio','native']]) {
+  const audio = $(id);
+  audio.addEventListener('playing', () => {
+    if (!S.aiKey || S.callActive) { audio.pause(); return; }
+    for (const other of ['captureAudio', 'rawCaptureAudio', 'nativeCaptureAudio']) if (other !== id) $(other).pause();
+    if (S.captureAudit) { S.captureAudit.playback = { path: stage, event: 'playing', duration: audio.duration, current_time: audio.currentTime, muted: audio.muted, volume: audio.volume, speech_verified: false }; show('captureAudit', S.captureAudit); }
+  });
+  audio.addEventListener('error', () => { if (S.captureAudit) { S.captureAudit.playback = { path: stage, event: 'error', media_error_code: audio.error?.code ?? null }; show('captureAudit', S.captureAudit); } });
+}
+$('auditExport').onclick = () => {
+  if (!S.captureAudit) return;
+  const url = URL.createObjectURL(new Blob([JSON.stringify(S.captureAudit, null, 2)], { type: 'application/json' }));
+  const link = document.createElement('a'); link.href = url; link.download = 'capture-diagnostics-no-audio.json'; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+};
+$('micDevices').onclick = async () => {
+  try {
+    const devices = await navigator.mediaDevices.enumerateDevices();
+    const select = $('micInput');
+    select.replaceChildren(new Option('የሥርዓቱ ነባር ማይክ', ''));
+    for (const d of devices.filter(d => d.kind === 'audioinput')) select.add(new Option(d.label || 'ማይክ (ፈቃድ ከሰጡ በኋላ ስሙ ይታያል)', d.deviceId));
+    micDiagnostic('device-list', 'MIC_DEVICES_LISTED', { count: select.options.length - 1 });
+  } catch (error) { micDiagnostic('device-list', 'MIC_DEVICE_LIST_FAILED', { browser_error: error.name }); }
+};
+$('recCancel').onclick = cancelRecording;
+$('recDialog').addEventListener('cancel', (event) => {
+  event.preventDefault();
+  void cancelRecording();
+});
+
+function resample(input, from, to) {
+  return CaptureAudit.resample(input, from, to);
+}
+
+function encodeWav(float32, sampleRate) {
+  const bytes = 44 + float32.length * 2;
+  const buf = new ArrayBuffer(bytes);
+  const view = new DataView(buf);
+  const str = (o, s) => { for (let i = 0; i < s.length; i += 1) view.setUint8(o + i, s.charCodeAt(i)); };
+  str(0, 'RIFF'); view.setUint32(4, bytes - 8, true); str(8, 'WAVE'); str(12, 'fmt ');
+  view.setUint32(16, 16, true); view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true); view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+  str(36, 'data'); view.setUint32(40, float32.length * 2, true);
+  let o = 44;
+  for (const v of float32) {
+    const s = Math.max(-1, Math.min(1, v));
+    view.setInt16(o, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+    o += 2;
+  }
+  return buf;
+}
+
+function abToB64(ab) {
+  const bytes = new Uint8Array(ab);
+  let bin = '';
+  for (let i = 0; i < bytes.length; i += 4096) bin += String.fromCharCode(...bytes.subarray(i, i + 4096));
+  return btoa(bin);
+}
+
+async function refreshSmsPerms(perms) {
+  document.querySelectorAll('input[data-scope]').forEach((cb) => { cb.checked = Boolean(perms?.[cb.dataset.scope]); });
+}
+
+$('smsList').onclick = async () => {
+  const r = await get('/api/sms');
+  await refreshSmsPerms(r.permissions);
+  const tbody = $('smsTable').querySelector('tbody');
+  tbody.innerHTML = '';
+  const tdCell = (txt = '', tags = []) => {
+    const el = document.createElement('td');
+    el.textContent = txt;
+    for (const [label, cls] of tags) {
+      const span = document.createElement('span');
+      span.className = cls ? `tag ${cls}` : 'tag';
+      span.textContent = label;
+      el.append(' ', span);
+    }
+    return el;
+  };
+  for (const m of r.messages) {
+    const tr = document.createElement('tr');
+    // S-4 / OP-10 / F-15፦ የSMS ጽሑፍ በtextContent ብቻ ይገባል — ያልታመነ ግቤት በDOM ውስጥ ኮድ ሊቀየር አይችልም
+    tr.append(
+      tdCell(m.id),
+      tdCell(m.sender_label ?? '—'),
+      tdCell(m.category ?? '—', [
+        m.otp ? ['OTP', ''] : null,
+        m.trusted_source === false ? ['ያልታመነ ምንጭ', 'bad'] : null,
+      ].filter(Boolean)),
+    );
+    const btn = document.createElement('button');
+    btn.textContent = 'በድምፅ ንበብ';
+    btn.onclick = async () => {
+      const res = await post('/api/sms/read', { id: m.id, ai_key: S.aiKey, locale: $('locale').value });
+      show('smsOut', res);
+      // read() የሚመልሰው spoken ነው፤ OTP ከሆነ content=null ስለሆነ ድምፅ አይፈጠርም
+      if (res.ok && res.spoken) await post('/api/tts', { text: res.spoken, locale: $('locale').value }).catch(() => {});
+    };
+    const td = document.createElement('td');
+    td.appendChild(btn);
+    const ex = document.createElement('button');
+    ex.textContent = 'እውቀት አውጣ';
+    ex.onclick = async () => show('smsOut', await post('/api/sms/extract', { id: m.id }));
+    td.appendChild(ex);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+  }
+  show('smsOut', { permissions: r.permissions, note: r.note });
+};
+
+document.querySelectorAll('input[data-scope]').forEach((cb) => {
+  cb.onchange = async () => {
+    const r = await post('/api/sms/permission', { scope: cb.dataset.scope, value: cb.checked });
+    await refreshSmsPerms(r.permissions);
+    show('smsOut', { set: cb.dataset.scope, permissions: r.permissions, wiped: r.wiped ?? null, note: 'ፈቃድ መሻር የወጣ ውጤት እንዲሰረዝ ያደርጋል (R-37፣ RG-34-08)' });
+  };
+});
+
+$('fmLoad').onclick = async () => {
+  const r = await get('/api/fm');
+  const sel = $('fmStation');
+  sel.innerHTML = '';
+  for (const st of r.stations) {
+    const o = document.createElement('option');
+    o.value = st.id;
+    o.textContent = `${st.name} · ${st.frequency_mhz}MHz · ${st.language}`;
+    sel.appendChild(o);
+  }
+  const bsel = $('fmBroadcast');
+  bsel.innerHTML = '';
+  for (const b of r.broadcasts) {
+    const o = document.createElement('option');
+    o.value = b.id;
+    o.textContent = `${b.id} · ${b.captured_at.slice(0, 16)} · ${String(b.text).slice(0, 24)}…`;
+    bsel.appendChild(o);
+  }
+  show('fmOut', r);
+};
+
+$('fmIngest').onclick = async () => {
+  const r = await post('/api/fm/ingest', { station_id: $('fmStation').value, broadcast_id: $('fmBroadcast').value });
+  show('fmOut', r);
+};
+
+$('callIn').onclick = async () => {
+  S.callActive = true;
+  updateInteractionControls();
+  await cancelRecording();
+  const r = await post('/api/call', { action: 'incoming', kind: 'normal', from: 'Ethio-Telecom' });
+  show('callOut', r);
+  // ማሳያው እንጂ እውነተኛ ስልክ አይደለም — በG1 ላይ የቀኝ ጥሪ ቅድሚያ REQUIRES EVIDENCE ነው
+  $('callNote').className = r.preempted ? 'bad' : 'warn';
+  $('callNote').textContent = r.preempted
+    ? `⚠ ጥሪ ስለመጣ AI ዙሩ ተቋረጠ (${r.snapshot?.phase} · ዙር ${r.snapshot?.turn ?? '—'}) — ጥሪ ቅድሚያ አለው`
+    : `የጥሪ ደረጃ፦ ${r.phase} · AI ሥራ ስላልነበር የተቋረጠ ነገር የለም`;
+};
+$('callAccept').onclick = async () => show('callOut', await post('/api/call', { action: 'accept' }));
+$('callEnd').onclick = async () => {
+  const ended = await post('/api/call', { action: 'end' });
+  if (ended.ok !== false) S.callActive = false;
+  updateInteractionControls();
+  show('callOut', ended);
+  // end() የሚመልሰው resume_requires_consent + snapshot ነው (preempted በincoming ላይ ብቻ ይመጣል)
+  const wasCut = Boolean(ended.resume_requires_consent);
+  $('callNote').className = wasCut ? 'warn' : 'mut';
+  $('callNote').textContent = wasCut
+    ? `ጥሪ ተዘጋ፤ AI ለመቀጠል ፈቃድ ይፈልጋል — የተቋረጠው ዙር ${ended.snapshot?.turn ?? '—'} (R-37)`
+    : `ጥሪ ተዘጋ · ደረጃ ${ended.phase} · የAI ዙር አልተቋረጠም`;
+};
+
+const loadEnvelope = async (name) => {
+  const r = await get('/api/update/sample', { name });
+  if (!r.ok) return show('updOut', r);
+  S.envelope = r.envelope;
+  show('updOut', { loaded: S.envelope.update_id, version: S.envelope.version, key_id: S.envelope.key_id, origin: r.origin, next: 'አሁን "ፊርማ አረጋግጥ" ይጫኑ' });
+};
+$('updSample').onchange = (e) => loadEnvelope(e.target.value);
+// የተዘጋጁ ናሙናዎች ዝርዝር — ባለቤቱ ያለ ፋይል ምርጫ ተቀባይነትና ውድቀት ሁኔታዎችን ሊሞክር (F-22 / R-14)
+(async () => {
+  const r = await get('/api/update/samples');
+  const sel = $('updSample');
+  sel.innerHTML = '';
+  for (const s of r.samples) {
+    const o = document.createElement('option');
+    o.value = s.name;
+    o.textContent = `${s.name} · ${s.readable === false ? 'አንብቦ አልተሳካም' : s.expected === 'ACCEPTED' ? 'ተቀባይነት ይጠበቃል' : s.expected === 'REJECTED' ? 'መደፈን ይጠበቃል' : 'ውጤት በማኒፌስት የለም'} · ${s.origin === 'test-fixture' ? 'የፍተሻ ናሙና' : 'የማሳያ ናሙና'}`;
+    o.title = s.note ?? '';
+    sel.appendChild(o);
+  }
+  if (!r.samples.length) { show('updOut', { code: 'NO_SAMPLES', note: 'ናሙናዎች በማንኛውም ደብተር አልተገኙም' }); return; }
+  // የመጀመሪያው ናሙና ዝግጁ ይሆናል — "ፊርማ አረጋግጥ" ተንኪያ ብቻ በቂ ነው
+  loadEnvelope(sel.options[0].value);
+})();
+
+$('updFile').onchange = async (e) => {
+  const f = e.target.files[0];
+  if (!f) return;
+  S.envelope = JSON.parse(await f.text());
+  show('updOut', { loaded: S.envelope.update_id, version: S.envelope.version, key_id: S.envelope.key_id, tampered_preview: 'ፊርማ ይምረጡ' });
+};
+$('updVerify').onclick = async () => {
+  if (!S.envelope) return show('updOut', 'ናሙና አልተመረጠም — ከዝርዝሩ ይምረጡ ወይም ፋይል ይምረጡ');
+  show('updOut', await post('/api/update', { action: 'verify', envelope: S.envelope }));
+};
+$('updApply').onclick = async () => {
+  if (!S.envelope) return show('updOut', 'ናሙና አልተመረጠም — ከዝርዝሩ ይምረጡ ወይም ፋይል ይምረጡ');
+  show('updOut', await post('/api/update', { action: 'apply', envelope: S.envelope }));
+};
+$('updRollback').onclick = async () => show('updOut', await post('/api/update', { action: 'rollback', update_id: S.envelope?.update_id ?? null }));
+$('evLoad').onclick = async () => show('evOut', await get('/api/evidence'));
+$('metLoad').onclick = async () => show('evOut', await get('/api/metrics'));
+$('refresh').onclick = refreshStatus;
+
+(async () => {
+  await startSession();
+  await refreshStatus();
+})();
+</script>
+</body>
+</html>

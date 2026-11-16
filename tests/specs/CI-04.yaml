@@ -1,0 +1,25 @@
+# የCI-04 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: CI-04
+requirement: "ያልተሟላ/አሻሚ ጥያቄን ማስተናገድ"
+owner_role: "የኦፍላይን ውይይት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/dialogue.test.mjs", name: "R-01 / CI-04፦ ችግር የሌለው ግቤት (empty) አልሰማሁኝ ማስተዋወቅ ይሰጣል"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-05፦ የቢጫ ቅጠል ጥያቄ በሁለቱም ቋንቋዎች ያጣራል፣ የታች መልስንም ያስታውሳል"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04፦ ላይኛውና ሁለቱም ቅጠሎች የተለየ አውድ ይይዛሉ"}
+  - {file: "tests/dialogue.test.mjs", name: "R-10 / CI-04፦ የቅጠል አውድ አዲስ ርዕስንና ሌላ ውይይትን አይወርስም"}
+  - {file: "tests/dialogue.test.mjs", name: "R-09 / CI-04፦ ማጣሪያ በኬሚካል ጥበቃ ፊት አይቀድምም"}
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-04፦ ባዶ ግቤት አውድን ያቆያል፤ ሰላምታ ግን ማጣሪያውን ይዘጋል"}
+  - {file: "tests/dialogue.test.mjs", name: "R-10 / CI-04፦ የቅጠል ጥያቄ የቀድሞ አዘራር አውድን አይጠቀምም"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ ረዘም ያለ የቅጠል መልስ ወደ አዘራር አይመለስም"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ ያልተለየ የቅጠል ተከታይ መልስ ይጣራል"}
+  - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ አሉታዊ ምልከታ በተቃራኒው አይመዘገብም"}
+doc_acceptance: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

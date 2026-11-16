@@ -1,0 +1,27 @@
+# የR-04 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-04
+requirement: "ጥሪ ከAI በላይ ቅድሚያ፤ AI ሲበላሽ ጥሪ አይቋረጥ"
+owner_role: "የቴሌኮም ኃላፊ"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/call.test.mjs", name: "R-04 / RU-13 / CI-13፦ ጥሪ ሲመጣ AI ወዲያውኑ ይቋረጣል"}
+  - {file: "tests/call.test.mjs", name: "R-04 / RG-34-01፦ ጥሪ በሚደረግበት ጊዜ AI ማስጀመር አይቻልም"}
+  - {file: "tests/call.test.mjs", name: "R-04 / F-18፦ ጥሪ ሲያልቅ AI በተጠቃሚ ፈቃድ ብቻ ይመለሳል (no auto-resume)"}
+  - {file: "tests/call.test.mjs", name: "R-04 / VE-05፦ የክስተት ቅደም ተከተል ማስረጃ ትክክል ነው"}
+  - {file: "tests/call.test.mjs", name: "R-04 / F-18፦ የአደጋ ጥሪ ምንም የAI ሥራ አይፈቅድም"}
+  - {file: "tests/call.test.mjs", name: "R-04፦ ጥሪ ሳለ ሁለተኛ ጥሪ AIን አያንጣልም (deterministic)"}
+  - {file: "tests/call.test.mjs", name: "R-04 / F-18፦ ጥሪ ሳይኖር AI ፈቃድ አያልቅም"}
+  - {file: "tests/call.test.mjs", name: "R-04 / R-37 / F-18፦ የማቋረጥ ናሙና የተቋረጠውን ዙር መታወቂያ ይዞ ይመዝገባል"}
+  - {file: "tests/call.test.mjs", name: "R-04 / RU-13፦ የAI ደረጃ ሽግግር መረጃውን አያጣም፣ የማያውቀው ስም ይደፋል"}
+  - {file: "tests/call.test.mjs", name: "R-04 / RU-13፦ ወደ ውጭ የሚደረግ ጥሪም AIን በመላው መረጃ ይቋረጣል (parity with incoming)"}
+  - {file: "tests/server.test.mjs", name: "R-04 / RU-13 / RG-34-01፦ AI ሳሠራ ጥሪ ሲመጣ ይቀበላል፤ ጥሪ ሳለ AI ይከለከላል፤ ሲደምቀስ AI ይቀጥላል"}
+  - {file: "tests/server.test.mjs", name: "R-04 / RU-13 / F-18፦ AI በንግግር ላይ ሳለ ጥሪ ከመጣ ይቋረጣል፤ መታወቂያው ይጠበቃል፤ በፈቃድ ብቻ ይቀጥላል"}
+doc_acceptance: "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

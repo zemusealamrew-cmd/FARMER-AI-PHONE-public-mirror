@@ -1,0 +1,23 @@
+# የCI-01 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: CI-01
+requirement: "ያልተዘጋጁ አዳዲስ ጥያቄዎችን በትርጉም መረዳት"
+owner_role: "የኦፍላይን ውይይት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-01፦ ክፍት ውይይት ከምንጭ ጋር ይመልሳል (grounded answer)"}
+  - {file: "tests/offline.test.mjs", name: "CI-01 / VE-01 / F-22፦ የተጠቃሚ ገጹ የሚጠራው እያንዳንዱ መንገድ በሰርቨሩ ላይ ተመዝግቧል"}
+  - {file: "tests/server.test.mjs", name: "R-05 / CI-01 / OP-02፦ ክፍት ውይይት፣ ተከታታይ ጥያቄና ያልታወቀ ጥያቄ በHTTP ትክክል ይመልሳሉ"}
+  - {file: "tests/server.test.mjs", name: "CI-01 / VE-01 / F-22፦ የደንበኛ ገጹ የሚጠራው እያንዳንዱ መንገድ በሰርቨሩ ላይ ተመዝግቧል"}
+  - {file: "tests/server.test.mjs", name: "VE-01 / CI-01፦ የደምቦ ገጹ ይሰጣል፣ ያልታወቀ መንገድ 404/NO_ROUTE ይመልሳል"}
+  - {file: "tests/server.test.mjs", name: "R-12 / RU-08 / CI-01፦ የምንጭ መስኮች በAPIና በገጹ መካከ ይዛመዳሉ"}
+  - {file: "tests/server.test.mjs", name: "R-14 / F-20 / F-22 / CI-01፦ የናሙና ዝርዝር በHTTP ላይ ነው፤ የተጠበቀ ውጤቱ ከማኒፌስት ይዛመዳል"}
+  - {file: "tests/speech.test.mjs", name: "R-03 / CI-01፦ synthesize ግብይት ከጎደለ ግልጽ ስህተት ይመልሳል (no silent write)"}
+doc_acceptance: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

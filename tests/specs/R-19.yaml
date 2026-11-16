@@ -1,0 +1,19 @@
+# የR-19 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-19
+requirement: "GSM/SMS አነስተኛ ዝማኔ በተረጋገጠ አቅም"
+owner_role: "የዝማኔ ኃላፊ"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/server.test.mjs", name: "F-15 / R-14 / R-19፦ የተፈረመ ዝማኔ በHTTP ማረጋገጥ ይችላል፤ ማረጋገጥ ብቻ መዝገብን አይቀይርም"}
+  - {file: "tests/update.test.mjs", name: "F-09 / R-19፦ delta ዝማኔ ቀድሞ የነበረውን እውቀት አያጥፋም (no data loss)"}
+  - {file: "tests/update.test.mjs", name: "F-15 / R-19፦ delta በተመሳሳይ claim_id ሲደርስ ቦታውን ይተካል (update in place)"}
+  - {file: "tests/update.test.mjs", name: "F-15 / R-19፦ ማረጋገጫውን ያልተከተለ payload ለውጥ ፊርማ ይከለክለዋል (unsigned edit rejected)"}
+doc_acceptance: "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-21 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

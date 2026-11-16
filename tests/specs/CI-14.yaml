@@ -1,0 +1,19 @@
+# የCI-14 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: CI-14
+requirement: "በዝቅተኛ ሃርድዌር አቅም የሚሰራ አፈጻጸም"
+owner_role: "የኦፍላይን ውይይት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: REQUIRES_EVIDENCE
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/dialogue.test.mjs", name: "F-11 / CI-14፦ የውይይት ሂደት ፍጥነት ማስረጃ (no network)"}
+  - {file: "tests/evidence.test.mjs", name: "R-40 / CI-14፦ percentile ትክክለኛ ደረጃዎችን ይመልሳል፣ ለባዝ ዜሮ አይደለም"}
+  - {file: "tests/server.test.mjs", name: "R-38 / F-11 / CI-14፦ የማስረጃ ሰለባና የሀብት ልኬት በHTTP ተገኝተው ያገለግላሉ"}
+  - {file: "tests/speech.test.mjs", name: "R-03 / F-11 / CI-14፦ ቢያንስ አንድ የሚሰራ ድምጽ ካለ ወደ WAV ይነበራል፤ የለም ከሆነ በኮድ ይገለጻል"}
+doc_acceptance: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

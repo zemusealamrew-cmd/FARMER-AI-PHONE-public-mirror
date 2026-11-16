@@ -1,0 +1,14 @@
+# የR-11 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-11
+requirement: "የግል ማስታወሻ በፈቃድ፣ ማረምና መሰረዝ"
+owner_role: "የግላዊነት ኃላፊ"
+owner_named: null
+gates: []
+status: BLOCKED-ON-UNDEFINED-TEST
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests: []
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-26 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"

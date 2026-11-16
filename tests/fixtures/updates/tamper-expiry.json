@@ -1,0 +1,44 @@
+{
+  "update_id": "upd-fixture-1.0.7-expired",
+  "issuer_id": "issuer-demo",
+  "key_id": "key-2026-11-04-1",
+  "version": "1.0.7-expired",
+  "monotonic_counter": 7,
+  "payload": {
+    "kb_version": "1.0.7-expired",
+    "kb_status": "SIGNED_FIXTURE",
+    "mode": "delta",
+    "notice_am": "ይህ የG1 የሙከራ ናሙና ነው፤ የተረጋገጠ ምክር አይደለም።",
+    "notice_om": "Kun yaalii G1 ti; gorsa mirkanaa'e miti.",
+    "entries": [
+      {
+        "claim_id": "claim-fixture-expired",
+        "topic_id": "market_price",
+        "locale": "am",
+        "title": "ናሙና",
+        "answer": "መልስ",
+        "answer_short": "መልስ",
+        "keywords": [
+          "ዋጋ",
+          "ገበያ"
+        ],
+        "requires_expert": false,
+        "source": {
+          "kind": "signed_demo_update",
+          "id": "issuer-demo",
+          "title": "የG1 የተፈረመ ናሙና ዝማኔ",
+          "captured_at": "2026-11-04T15:00:00.000Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-11T15:00:00.000Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none",
+        "risk_level": "low",
+        "geography": "ET"
+      }
+    ]
+  },
+  "payload_hash": "sha256:145464137859f42c6319f6c6e4486f390626e8996cd9ea112c1b2fbf02acb22a",
+  "expiry": "2026-10-01T15:00:00.000Z",
+  "signature": "zwhKwSQp6pLuhaGACjB/FBbDUiFQZM/X3ghoQ4kPvAxWJ7PKtKBHy/YLXbAP5UIMmu6riZKHAXBBg/2l3Q0qCg=="
+}

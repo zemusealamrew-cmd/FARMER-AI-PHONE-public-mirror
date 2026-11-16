@@ -1,0 +1,23 @@
+# የR-03 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-03
+requirement: "SIM እና መደበኛ ጥሪ/SMS"
+owner_role: "የቴሌኮም ኃላፊ"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/server.test.mjs", name: "R-03 / F-08፦ የTTS መንገድ ያልተጫነ ድም፽ \"ተሳካ\" አያልም፤ ያለ ከሆነ WAV ይመልሳል"}
+  - {file: "tests/speech.test.mjs", name: "R-03 / CI-03፦ የTTS ድጋፍ መለያ ከተጫኑ ድምጾች ዝርዝር ጋር ይዛመዳል (no self-claim)"}
+  - {file: "tests/speech.test.mjs", name: "R-03 / F-08፦ የአማርኛ/ኦሮሚያ ድምጽ ሳይኖር \"NO_LOCAL_VOICE\" ብቻ ነው፣ ድምጽ አይፈጠርም"}
+  - {file: "tests/speech.test.mjs", name: "R-03 / CI-01፦ synthesize ግብይት ከጎደለ ግልጽ ስህተት ይመልሳል (no silent write)"}
+  - {file: "tests/speech.test.mjs", name: "R-03 / F-11 / CI-14፦ ቢያንስ አንድ የሚሰራ ድምጽ ካለ ወደ WAV ይነበራል፤ የለም ከሆነ በኮድ ይገለጻል"}
+  - {file: "tests/voice-check.test.mjs", name: "R-02 / R-03፦ የWER/CER ሂሳብ ማንበብ ተገናዞ ይሰላል"}
+  - {file: "tests/voice-check.test.mjs", name: "F-11 / R-03፦ unsupported TTS locale is recorded as GAP, never as success"}
+  - {file: "tests/voice-check.test.mjs", name: "F-11 / R-03: missing audio input is GAP and the path is shown, not hidden"}
+doc_acceptance: "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

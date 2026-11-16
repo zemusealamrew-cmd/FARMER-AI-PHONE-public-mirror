@@ -1,0 +1,2295 @@
+# FARMER-AI-PHONE — አንድ ዋና የማሽን-ሚነበብ መስፈርት/ኃላፊነት/ማስረጃ መዝገብ (F-04)
+# በእጅ አትቀይር። ማከማቻው ዋና ቅጂ ነው፤ ማንኛውም ለውጥ በምንጭ ሰነድ ላይ ተደርጎ
+#   node tools/build-requirements.mjs   በኩል መመለስ አለበት።
+# ምንጮች፦ v2.8 §3 (ትርጉም + ባለቤት)፣ v3.9 §3 እና v4.4 §12 (የታቀደ ማረጋገጫ)፣
+#          v4.7 §3 (የመቀበያ ማስረጃ)፣ tests/*.test.mjs (እውነተኛ የፍተሻ ሽፋን)።
+# coverage ትርጉም፦ G1_TEST_EXISTS = በፍተሻ ስም የተገናኘ፤ NOT_COVERED = ፍተሻ የለም፤
+#          BLOCKED_ON_UNDEFINED_TEST = OP-21–26 ስለጸደቀ የለ (F-02)።
+# behavior_verification (Issue #3)፦ coverage የፍተሻ-ስም/ID መኖር ብቻ ነው፤ የተግባር መሟላት አይደለም።
+#          NOT_AUTHORIZED_AT_G1 = የG2/G3/G4 መስፈርት (በG1 ላፕቶፕ አይረጋገጥም)፤
+#          BLOCKED_ON_UNDEFINED_TEST = OP-21–26 ጥገኛ፤ REQUIRES_EVIDENCE = የባለቤት/ገለልተኛ ፊርማ የለም።
+#          VERIFIED የለም፤ acceptance_signoff ሁሉ null ነው። የፍተሻ-ብዛት ይህን ዘንግ አይቀይርም።
+generated_by: "tools/build-requirements.mjs"
+schema_version: 1
+requirement_count: 85
+family_counts: {R: 42, CI: 14, LC: 15, RU: 14, OP: 20, VE: 10, FD: 8}
+duplicate_table_id_set_mismatch: 0
+duplicate_table_text_drift_rows: 12
+entries:
+  - id: R-01
+    family: R
+    kind: requirement
+    text: "አንድ ስልክ፣ ሁለተኛ ስልክ አያስፈልግም"
+    owner_role: "የሃርድዌር ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-04, VE-06, VE-09, VE-10]
+    acceptance_evidence: "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 41}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "R-01 / CI-04፦ ችግር የሌለው ግቤት (empty) አልሰማሁኝ ማስተዋወቅ ይሰጣል"}
+      - {file: "tests/server.test.mjs", name: "VE-01 / R-01፦ ሁኔታው ደህንነት-ተኮር መረጃውን ሳይደብቅ ይሰጣል፣ G1 ወሰኑም ግልጽ ነው"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-02
+    family: R
+    kind: requirement
+    text: "የአካል ቁልፎችና የተለየ AI ቁልፍ"
+    owner_role: "የመሣሪያ መቆጣጠሪያ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-04, VE-06, VE-09, VE-10]
+    acceptance_evidence: "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 42}
+    tests:
+      - {file: "tests/audio-input.test.mjs", name: "F-08 / R-02፦ ሙሉ ጸጥታ SILENT_CAPTURE ይመልሳል — «አልተረዳሁም» ሳይሆን «ድምፅ አልደረሰም»"}
+      - {file: "tests/server.test.mjs", name: "R-02 / F-08፦ ASR ሳይኖር የHTTP መንገዱ ወደ ጽሑፍ አማራጭ ይመራል (no fake transcript)"}
+      - {file: "tests/server.test.mjs", name: "R-02 / F-08 / CI-03፦ ኢንጂኑ ተጭኖ ሲገኝ የHTTP ድምፅ መንገዱ አልፎ አልፎ አይሆንም (500 የለም)"}
+      - {file: "tests/speech.test.mjs", name: "R-02 / CI-03፦ ASR ሁኔታው የተሰነዘ መሆኑንና ኢንተርኔት እንደማያስፈልግ በግልጽ ይናገራል"}
+      - {file: "tests/speech.test.mjs", name: "F-08 / R-02፦ ኢንጂኑ ሳይጫን transcribe \"ተሳካ\" አይልም (ASR_NOT_INSTALLED / ASR_MODEL_MISSING)"}
+      - {file: "tests/speech.test.mjs", name: "R-02፦ ያልተገኘ ድምጅ ፋይል AUDIO_NOT_FOUND ይመልሳል"}
+      - {file: "tests/speech.test.mjs", name: "F-08 / R-02፦ አንጻራዊ የድምጅ መንገድ ወደ ፈላጭ መንገድ ይቀየራል — ፋይሉ ሳይታይ አይከሽፍም"}
+      - {file: "tests/speech.test.mjs", name: "F-08 / R-02፦ ማንኛውም ያልተጠየቀ ውጤት \"ውህደት ያልሆነ\" ሆኖ ይመዘገባል (no fabricated transcript)"}
+      - {file: "tests/speech.test.mjs", name: "F-08 / R-02 / CI-03፦ ኢንጂኑ ተጭኖ ሲገኝ መንገዱ ሳይቋረጥ ውጤት ወይም ግልጽ ኮድ ይመልሳል"}
+      - {file: "tests/speech.test.mjs", name: "F-08 / R-02 / CI-03፦ ዝግ ግብይት ለኢንጂን ሳይደርስ በግልጽ ኮድ ይቆማል (no 6-8s wasted run)"}
+      - {file: "tests/voice-check.test.mjs", name: "F-08 / R-02፦ ወደ 16 kHz mono ያልተቀየረው የASR መንገድ ይከሻል (የተረጋገጠ እውነተኛ ጉድለት)"}
+      - {file: "tests/voice-check.test.mjs", name: "R-02 / R-03፦ የWER/CER ሂሳብ ማንበብ ተገናዞ ይሰላል"}
+      - {file: "tests/voice-check.test.mjs", name: "F-08 / R-02፦ ዝግ ድምጅ ለASR ሲላክ ዳመናው GAP ሆኖ የተፈጠረ ጽሑፍ አይደበቅም"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-03
+    family: R
+    kind: requirement
+    text: "SIM እና መደበኛ ጥሪ/SMS"
+    owner_role: "የቴሌኮም ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-03, VE-05]
+    acceptance_evidence: "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 43}
+    tests:
+      - {file: "tests/server.test.mjs", name: "R-03 / F-08፦ የTTS መንገድ ያልተጫነ ድም፽ \"ተሳካ\" አያልም፤ ያለ ከሆነ WAV ይመልሳል"}
+      - {file: "tests/speech.test.mjs", name: "R-03 / CI-03፦ የTTS ድጋፍ መለያ ከተጫኑ ድምጾች ዝርዝር ጋር ይዛመዳል (no self-claim)"}
+      - {file: "tests/speech.test.mjs", name: "R-03 / F-08፦ የአማርኛ/ኦሮሚያ ድምጽ ሳይኖር \"NO_LOCAL_VOICE\" ብቻ ነው፣ ድምጽ አይፈጠርም"}
+      - {file: "tests/speech.test.mjs", name: "R-03 / CI-01፦ synthesize ግብይት ከጎደለ ግልጽ ስህተት ይመልሳል (no silent write)"}
+      - {file: "tests/speech.test.mjs", name: "R-03 / F-11 / CI-14፦ ቢያንስ አንድ የሚሰራ ድምጽ ካለ ወደ WAV ይነበራል፤ የለም ከሆነ በኮድ ይገለጻል"}
+      - {file: "tests/voice-check.test.mjs", name: "R-02 / R-03፦ የWER/CER ሂሳብ ማንበብ ተገናዞ ይሰላል"}
+      - {file: "tests/voice-check.test.mjs", name: "F-11 / R-03፦ unsupported TTS locale is recorded as GAP, never as success"}
+      - {file: "tests/voice-check.test.mjs", name: "F-11 / R-03: missing audio input is GAP and the path is shown, not hidden"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-04
+    family: R
+    kind: requirement
+    text: "ጥሪ ከAI በላይ ቅድሚያ፤ AI ሲበላሽ ጥሪ አይቋረጥ"
+    owner_role: "የቴሌኮም ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-03, VE-05]
+    acceptance_evidence: "የትክክለኛ ስልክ/OS እና ጥሪ ነጻነት ማስረጃ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 44}
+    tests:
+      - {file: "tests/call.test.mjs", name: "R-04 / RU-13 / CI-13፦ ጥሪ ሲመጣ AI ወዲያውኑ ይቋረጣል"}
+      - {file: "tests/call.test.mjs", name: "R-04 / RG-34-01፦ ጥሪ በሚደረግበት ጊዜ AI ማስጀመር አይቻልም"}
+      - {file: "tests/call.test.mjs", name: "R-04 / F-18፦ ጥሪ ሲያልቅ AI በተጠቃሚ ፈቃድ ብቻ ይመለሳል (no auto-resume)"}
+      - {file: "tests/call.test.mjs", name: "R-04 / VE-05፦ የክስተት ቅደም ተከተል ማስረጃ ትክክል ነው"}
+      - {file: "tests/call.test.mjs", name: "R-04 / F-18፦ የአደጋ ጥሪ ምንም የAI ሥራ አይፈቅድም"}
+      - {file: "tests/call.test.mjs", name: "R-04፦ ጥሪ ሳለ ሁለተኛ ጥሪ AIን አያንጣልም (deterministic)"}
+      - {file: "tests/call.test.mjs", name: "R-04 / F-18፦ ጥሪ ሳይኖር AI ፈቃድ አያልቅም"}
+      - {file: "tests/call.test.mjs", name: "R-04 / R-37 / F-18፦ የማቋረጥ ናሙና የተቋረጠውን ዙር መታወቂያ ይዞ ይመዝገባል"}
+      - {file: "tests/call.test.mjs", name: "R-04 / RU-13፦ የAI ደረጃ ሽግግር መረጃውን አያጣም፣ የማያውቀው ስም ይደፋል"}
+      - {file: "tests/call.test.mjs", name: "R-04 / RU-13፦ ወደ ውጭ የሚደረግ ጥሪም AIን በመላው መረጃ ይቋረጣል (parity with incoming)"}
+      - {file: "tests/server.test.mjs", name: "R-04 / RU-13 / RG-34-01፦ AI ሳሠራ ጥሪ ሲመጣ ይቀበላል፤ ጥሪ ሳለ AI ይከለከላል፤ ሲደምቀስ AI ይቀጥላል"}
+      - {file: "tests/server.test.mjs", name: "R-04 / RU-13 / F-18፦ AI በንግግር ላይ ሳለ ጥሪ ከመጣ ይቋረጣል፤ መታወቂያው ይጠበቃል፤ በፈቃድ ብቻ ይቀጥላል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-05
+    family: R
+    kind: requirement
+    text: "ኢንተርኔት የማይፈልግ የድምፅ ውይይት"
+    owner_role: "የAI ውህደት ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01–04, OP-12–13, OP-22]
+    acceptance_evidence: "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 45}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-01፦ ክፍት ውይይት ከምንጭ ጋር ይመልሳል (grounded answer)"}
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / OP-02፦ ተከታታይ ጥያቄ የቀድሞውን ርዕስ ይይዛል (multi-turn context)"}
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / G1-D03፦ ወደ ቀድሞው ርዕስ የሚመልስ ተከታታይ ጥያቄ (anaphora) ርዕሱን ይዞ መልስ ይሰጣል"}
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / R-10፦ ጠቋሚ የሌለውና ያልተያያዘ ጥያቄ ከርዕስ በኋላም አልፎ አይፈጥርም (no eager reuse)"}
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-03፦ በአፋን ኦሮሞ ተከታታይ ጥያቄ ርዕስ ይይዛል (Oromo anaphora)"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-05፦ የቢጫ ቅጠል ጥያቄ በሁለቱም ቋንቋዎች ያጣራል፣ የታች መልስንም ያስታውሳል"}
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-04፦ ባዶ ግቤት አውድን ያቆያል፤ ሰላምታ ግን ማጣሪያውን ይዘጋል"}
+      - {file: "tests/knowledge.test.mjs", name: "F-10 / R-05፦ አማርኛ ጥያቄ ከእውቀት መዝገብ ይመልሳል (retrieval-first)"}
+      - {file: "tests/server.test.mjs", name: "R-05 / CI-01 / OP-02፦ ክፍት ውይይት፣ ተከታታይ ጥያቄና ያልታወቀ ጥያቄ በHTTP ትክክል ይመልሳሉ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-06
+    family: R
+    kind: requirement
+    text: "እውነተኛ ጥያቄ መረዳት፣ የተዘጋጀ መልስ ብቻ አይደለም"
+    owner_role: "የAI ሞዴል ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01–04, OP-12–13, OP-22]
+    acceptance_evidence: "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 46}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-07
+    family: R
+    kind: requirement
+    text: "አማርኛና ኦሮምኛ የድምፅ ግቤትና ውጤት"
+    owner_role: "የድምፅ AI ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01–04, OP-12–13, OP-22]
+    acceptance_evidence: "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 47}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "R-07 / CI-03፦ የቋንቋ መለያ ጽሑፍን አይደቀቅም (Amharic vs Afaan Oromo)"}
+      - {file: "tests/dialogue.test.mjs", name: "F-08 / R-07፦ የኢንጂን ቋንቋ ምልከት (localeHint=am) ከላቲን ጽሑፍ አይደምሰስም"}
+      - {file: "tests/dialogue.test.mjs", name: "F-08 / R-07፦ የአማርኛ ፊደል ሲታየ ምልከቱ ሁልጊዜ ይቀድማል (om ምልከት ቢኖርም)"}
+      - {file: "tests/dialogue.test.mjs", name: "F-08 / R-07፦ ያልተደገፈ ቋንቋ ምልከት (en) የምርት ቋንቋ አይመደበኛም — ጽሑፉ ብቻ ይወስናል"}
+      - {file: "tests/fm.test.mjs", name: "R-07 / LC-06፦ የአፋን ኦሮሞ ጣቢያ መረጃ በተናጠል ይቀረጻል"}
+      - {file: "tests/knowledge.test.mjs", name: "F-08 / R-07፦ የአፋን ኦሮሞ ጥያቄ ወደ አማርኛ መልስ አይቀየርም (locale isolation)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-08
+    family: R
+    kind: requirement
+    text: "ትግርኛ/ሌሎች ቋንቋዎች ከተጨመሩ በተለየ ማረጋገጫ"
+    owner_role: "የድምፅ AI ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01–04, OP-12–13, OP-22]
+    acceptance_evidence: "ሙሉ ኦፍላይን በሁለቱም ቋንቋዎች የድምፅ ውይይት፣ የተጸደቀ የጥራት ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 48}
+    tests:
+      - {file: "tests/server.test.mjs", name: "F-12 / R-08 / NR-07፦ የFM ማስመሰያ ሲገባ ወቅታዊነትና ግጭት በማስረጃ ይታያል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-09
+    family: R
+    kind: requirement
+    text: "የተረጋገጠ የግብርና እውቀት፣ የምንጭ/አካባቢ/ቀን አያያዝ"
+    owner_role: "የግብርና እውቀት ኃላፊ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22", "OP-24"]
+    planned_evidence: [OP-04, OP-08–11, OP-22, OP-24]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 49}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "R-09 / CI-04፦ ማጣሪያ በኬሚካል ጥበቃ ፊት አይቀድምም"}
+      - {file: "tests/knowledge.test.mjs", name: "F-10 / R-09፦ ተቃራኒ የዕውቀት ጥናቶች ይገለጣሉ (conflict detection)"}
+      - {file: "tests/safety.test.mjs", name: "F-17 / R-09 / LC-02፦ የኬሚካል መጠን ጥያቄ ይከለከላልና ወደ ባለሙያ ይመራል"}
+      - {file: "tests/safety.test.mjs", name: "R-09 / LC-04፦ ደህንነቱ የተጠበቀ ጥያቄ አይከለከልም (no false refusal)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-10
+    family: R
+    kind: requirement
+    text: "አደገኛ ምክር መከላከል፣ እርግጠኝነት ሲጎድል መግለጽ"
+    owner_role: "የግብርና እውቀት ኃላፊ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22", "OP-24"]
+    planned_evidence: [OP-04, OP-08–11, OP-22, OP-24]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 50}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / R-10፦ ጠቋሚ የሌለውና ያልተያያዘ ጥያቄ ከርዕስ በኋላም አልፎ አይፈጥርም (no eager reuse)"}
+      - {file: "tests/dialogue.test.mjs", name: "R-10 / NR-12፦ ያልታወቀ ጥያቄ \"አላውቅም\" ብሎ ወደ ባለሙያ ይመራል፣ አልፎ አልፎ አይፈጥርም"}
+      - {file: "tests/dialogue.test.mjs", name: "R-10 / F-21፦ የተሳሳተ ርዕስ ላይ ያለ ቃል ብቻውን መልስ አይፈጥርም (no keyword-only hallucination)"}
+      - {file: "tests/dialogue.test.mjs", name: "R-10 / F-21፦ ያልተመዘገበ ርዕስ ላይ የተነሳ ጥያቄ በተሳሳተ ርዕስ መልስ አይሰጥም (no wrong-topic answer)"}
+      - {file: "tests/dialogue.test.mjs", name: "R-10 / CI-04፦ የቅጠል አውድ አዲስ ርዕስንና ሌላ ውይይትን አይወርስም"}
+      - {file: "tests/dialogue.test.mjs", name: "R-10 / CI-04፦ የቅጠል ጥያቄ የቀድሞ አዘራር አውድን አይጠቀምም"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ ረዘም ያለ የቅጠል መልስ ወደ አዘራር አይመለስም"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ ያልተለየ የቅጠል ተከታይ መልስ ይጣራል"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ አሉታዊ ምልከታ በተቃራኒው አይመዘገብም"}
+      - {file: "tests/knowledge.test.mjs", name: "R-10 / NR-12፦ ያልተገለጸ ጥያቄ ዜሮ ማረጋገጫ ይመልሳል (no silent guessing)"}
+      - {file: "tests/knowledge.test.mjs", name: "R-10 / F-10፦ አናገራዊ ቃላት የተሳሳተ ርዕስ መልስ አይምረጡም (particle noise regression)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-11
+    family: R
+    kind: requirement
+    text: "የግል ማስታወሻ በፈቃድ፣ ማረምና መሰረዝ"
+    owner_role: "የግላዊነት ኃላፊ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-06, OP-10, OP-14, OP-26]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 51}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-12
+    family: R
+    kind: requirement
+    text: "SMS የሚነበበው AI ቁልፍ + የተጠቃሚ ምርጫ ብቻ"
+    owner_role: "የመሣሪያ መቆጣጠሪያ ኃላፊ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-06, OP-10, OP-14, OP-26]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 52}
+    tests:
+      - {file: "tests/server.test.mjs", name: "R-37 / R-12 / F-15 / S-5፦ የSMS ንባብ በHTTP ላይም ሁለት ማረጋገጫ ይፈልጋል"}
+      - {file: "tests/server.test.mjs", name: "R-12 / RU-08 / CI-01፦ የምንጭ መስኮች በAPIና በገጹ መካከ ይዛመዳሉ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-13
+    family: R
+    kind: requirement
+    text: "SMS ለAI እውቀት ግቤት የተለየ ፈቃድ ይፈልጋል"
+    owner_role: "የግላዊነት ኃላፊ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-06, OP-10, OP-14, OP-26]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 53}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-14
+    family: R
+    kind: requirement
+    text: "SMS የማይታመን ግቤት ነው፤ የሐሰት መላኪያና ትእዛዝ መከላከል"
+    owner_role: "የደህንነት ኃላፊ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-06, OP-10, OP-14, OP-26]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 54}
+    tests:
+      - {file: "tests/offline.test.mjs", name: "F-22 / NR-05 / R-14፦ በእውነተኛ ሩጫ የሚፈጠሩ runtime ፍላይዎች scan hashና የፋይል ብዛት አይቀይሩም"}
+      - {file: "tests/server.test.mjs", name: "F-15 / R-14 / R-19፦ የተፈረመ ዝማኔ በHTTP ማረጋገጥ ይችላል፤ ማረጋገጥ ብቻ መዝገብን አይቀይርም"}
+      - {file: "tests/server.test.mjs", name: "F-22 / NR-05 / R-14፦ KB_PATH በኋላ ሳይገለጽ የተሠራ ዝማኔ የመሠዊያ መዝገቡን ፈጽሞ አይነካም"}
+      - {file: "tests/server.test.mjs", name: "R-14 / F-20 / F-22 / CI-01፦ የናሙና ዝርዝር በHTTP ላይ ነው፤ የተጠበቀ ውጤቱ ከማኒፌስት ይዛመዳል"}
+      - {file: "tests/update.test.mjs", name: "F-15 / R-14፦ ለውጥ የተደረገበት payload (silent tamper) በሃሽ ይከላከላል"}
+      - {file: "tests/update.test.mjs", name: "F-15 / R-14፦ ከጊዜ በኋላ የተላከ ዝማኔ አይተገበርም (expiry enforced)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-15
+    family: R
+    kind: requirement
+    text: "የSMS ዋና ማከማቻ ባለቤት የስልክ ሥርዓት ብቻ"
+    owner_role: "የቴሌኮም ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-03, VE-05]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 55}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-16
+    family: R
+    kind: requirement
+    text: "FM ሬዲዮ ለመደበኛ አጠቃቀም"
+    owner_role: "የሃርድዌር ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-04, VE-06, VE-09, VE-10]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 56}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-17
+    family: R
+    kind: requirement
+    text: "microSD የማከማቻ ድጋፍ፣ RAM አይተካም"
+    owner_role: "የሃርድዌር ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-04, VE-06, VE-09, VE-10]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 57}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-18
+    family: R
+    kind: requirement
+    text: "የተፈረመ ዝማኔ፣ የቁልፍ ስረዛ፣ የድግግሞሽ መከላከል"
+    owner_role: "የደህንነት ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-21"]
+    planned_evidence: [OP-21, VE-07]
+    acceptance_evidence: "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 58}
+    tests:
+      - {file: "tests/update.test.mjs", name: "F-15 / R-18፦ ድጋሚ መተግበር (idempotence) — አንድ update_id ሁለት ጊዜ አይተገበርም"}
+      - {file: "tests/update.test.mjs", name: "F-15 / R-18፦ ሙሉ ጥቅል መዝገቡን ሙሉ በሙሉ ይተካል"}
+      - {file: "tests/update.test.mjs", name: "F-15 / R-18፦ KnowledgeBase ሲንጠቀለል አዲሱ ይዘት ይታያል (reload contract)"}
+      - {file: "tests/update.test.mjs", name: "F-15 / R-18፦ ማረጋገጫው ያልፈጸመ መልክ አይጽፍም (verify does not mutate)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-19
+    family: R
+    kind: requirement
+    text: "GSM/SMS አነስተኛ ዝማኔ በተረጋገጠ አቅም"
+    owner_role: "የዝማኔ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-21"]
+    planned_evidence: [OP-21, VE-07]
+    acceptance_evidence: "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 59}
+    tests:
+      - {file: "tests/server.test.mjs", name: "F-15 / R-14 / R-19፦ የተፈረመ ዝማኔ በHTTP ማረጋገጥ ይችላል፤ ማረጋገጥ ብቻ መዝገብን አይቀይርም"}
+      - {file: "tests/update.test.mjs", name: "F-09 / R-19፦ delta ዝማኔ ቀድሞ የነበረውን እውቀት አያጥፋም (no data loss)"}
+      - {file: "tests/update.test.mjs", name: "F-15 / R-19፦ delta በተመሳሳይ claim_id ሲደርስ ቦታውን ይተካል (update in place)"}
+      - {file: "tests/update.test.mjs", name: "F-15 / R-19፦ ማረጋገጫውን ያልተከተለ payload ለውጥ ፊርማ ይከለክለዋል (unsigned edit rejected)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-20
+    family: R
+    kind: requirement
+    text: "የFM ዲጂታል ዝማኔ ተስማሚ መቀበያና ስርጭት ካለ ብቻ"
+    owner_role: "የዝማኔ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-21"]
+    planned_evidence: [OP-21, VE-07]
+    acceptance_evidence: "የተፈረመ ዝማኔ፣ የመሣሪያ/ስርጭት ተስማሚነት እና የመመለሻ ሙከራ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 60}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-21
+    family: R
+    kind: requirement
+    text: "የኢንተርኔት ምንጭ/ፈቃድ/የመረጃ ጥራት መዝገብ"
+    owner_role: "የሞዴል መረጃ ኃላፊ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22", "OP-24"]
+    planned_evidence: [OP-04, OP-08–11, OP-22, OP-24]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 61}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-22
+    family: R
+    kind: requirement
+    text: "ስልጠና/ማስማማት፣ የተለየ የመጨረሻ ሙከራ መረጃ"
+    owner_role: "የAI ሞዴል ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01–04, OP-12–13, OP-22]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 62}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-23
+    family: R
+    kind: requirement
+    text: "ሙሉ የላፕቶፕ ኦፍላይን ሙከራ ከመጨረሻ ሞዴል ማሸግ በፊት"
+    owner_role: "የAI ውህደት ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01–04, OP-12–13, OP-22]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 63}
+    tests:
+      - {file: "tests/fm.test.mjs", name: "R-23 / UNKNOWN፦ ያልተመዘገበ ጣቢያ ተቀባይነት የለውም"}
+      - {file: "tests/knowledge.test.mjs", name: "R-23፦ ፍለጋው የግል መረጃ አይጠይቅምና አያስቀምጥም"}
+      - {file: "tests/offline.test.mjs", name: "R-42 / R-23፦ ውስጣዊ አድራሻ ያለው ፋይል ፍተሻውን አያሳልፍም — በተግባር ተሞክሮ በማረጋገጥ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-24
+    family: R
+    kind: requirement
+    text: "የላፕቶፕ ውጤት የስልክ አቅም ማረጋገጫ አይደለም"
+    owner_role: "የማረጋገጫ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01–04, OP-12–13, OP-22]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 64}
+    tests:
+      - {file: "tests/fm.test.mjs", name: "F-13 / R-24፦ በሬዲዮ ማስታወሻ ውስጥ የተገጠመ ትእዛዝ አይፈጸምም"}
+      - {file: "tests/safety.test.mjs", name: "F-13 / OP-10 / R-24፦ በSMS ውስጥ ያለ ተሰወረ ትእዛዝ የማይታመን ሆኖ ይለያል"}
+      - {file: "tests/safety.test.mjs", name: "R-24 / CI-07፦ ግንኙነት ያለው መረጃ እንደ ማይታመን አይመደብም"}
+      - {file: "tests/sms.test.mjs", name: "F-13 / R-24፦ ማይታመን መልዕክት ቢነበብም ትእዛዙ አይፈጸምም (action_taken = NONE)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-25
+    family: R
+    kind: requirement
+    text: "የባትሪ፣ የሙቀት፣ የመሙያ ደህንነት"
+    owner_role: "የሃርድዌር ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-04, VE-06, VE-09, VE-10]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 65}
+    tests:
+      - {file: "tests/fm.test.mjs", name: "F-10 / R-25፦ የFM ማስታወሻ ከእውቀት መዝገቡ ጋር ሲጋጭ ሁለቱም ይታያሉ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-26
+    family: R
+    kind: requirement
+    text: "የኢትዮጵያ የኔትወርክ ተስማሚነትና ሕጋዊ ፈቃዶች"
+    owner_role: "የቴሌኮም/ተስማሚነት ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-03, VE-05]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 66}
+    tests:
+      - {file: "tests/sms.test.mjs", name: "R-26 / F-16፦ የግል መልዕክት ለነባሪ ዝርዝር ሳይሆን ለየብቻ ፈቃድ ይፈልጋል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-27
+    family: R
+    kind: requirement
+    text: "ተመጣጣኝ የስልክ ዋጋ፣ ጥገናና የመለዋወጫ እቃ"
+    owner_role: "የምርት/ወጪ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-01, VE-04, VE-06, VE-09, VE-10]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 67}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-28
+    family: R
+    kind: requirement
+    text: "የገበሬ የመስክ ሙከራ፣ ዘዬ፣ ጫጫታ፣ ተደራሽነት"
+    owner_role: "የተጠቃሚ ሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: [FD-01–08]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 68}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-29
+    family: R
+    kind: requirement
+    text: "አንድ ኃላፊነት አንድ ባለቤት፣ በውል የሚገናኙ ክፍሎች"
+    owner_role: "የሥርዓት ንድፍ ኃላፊ"
+    owner_named: null
+    gates: [G0]
+    blocked_on_undefined_test: false
+    planned_evidence: []
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 69}
+    tests:
+      - {file: "tests/ownership.test.mjs", name: "F-05፦ 123ቱ መለያዎች በትክክል በአንድ A ክፍል ውስጥ ብቻ ተመዝግበዋል (R-29 — አንድ ተጠያቂ)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-30
+    family: R
+    kind: requirement
+    text: "የባለቤት በር G0–G4 እና የማስረጃ መዝገብ"
+    owner_role: "የፕሮጀክት ኃላፊ"
+    owner_named: null
+    gates: [G0]
+    blocked_on_undefined_test: false
+    planned_evidence: []
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 70}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-31
+    family: R
+    kind: requirement
+    text: "የራዲዮ መቀበያ ሁኔታ፣ ጣቢያ፣ ሞገድ፣ ቦታ ሽፋንና የመቀበያ ጥራት በተለየ መዝገብ"
+    owner_role: "የሬዲዮ/ሃርድዌር ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-23", "OP-25"]
+    planned_evidence: [OP-05, OP-23, OP-25, VE-02, VE-08]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 71}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-32
+    family: R
+    kind: requirement
+    text: "ቀጣይ ወይም በመርሐግብር የFM ማዳመጥ የኃይል በጀት ይኑረው፤ ጥሪ ቅድሚያ"
+    owner_role: "የሬዲዮ/ሃርድዌር ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-23", "OP-25"]
+    planned_evidence: [OP-05, OP-23, OP-25, VE-02, VE-08]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 72}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-33
+    family: R
+    kind: requirement
+    text: "ከድምፅ የወጣ ነጥብ ከዋና ድምፅ ክፍል፣ ጊዜና የመለየት እርግጠኝነት ጋር ይገናኝ"
+    owner_role: "የኦፍላይን ቋንቋ ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-23", "OP-25"]
+    planned_evidence: [OP-05, OP-23, OP-25, VE-02, VE-08]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 73}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-34
+    family: R
+    kind: requirement
+    text: "አዲስ መረጃ ከሞዴል ክብደቶች ውጭ በሚቀየር የአካባቢ እውቀት መዝገብ ይቀመጥ"
+    owner_role: "የአካባቢ እውቀት መዝገብ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-24"]
+    planned_evidence: [OP-07–10, OP-24–25]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 74}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-35
+    family: R
+    kind: requirement
+    text: "የመረጃ ዓይነት፦ ይፋዊ ማሳወቂያ/ዜና/ማስታወቂያ/አስተያየት/ያልተረጋገጠ"
+    owner_role: "የአካባቢ እውቀት መዝገብ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-24"]
+    planned_evidence: [OP-07–10, OP-24–25]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 75}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-36
+    family: R
+    kind: requirement
+    text: "የወቅታዊነት፣ የግጭት፣ የተሳሳተ መረጃ መመለስ/መሰረዝ ሂደት"
+    owner_role: "የአካባቢ እውቀት መዝገብ"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-24"]
+    planned_evidence: [OP-07–10, OP-24–25]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 76}
+    tests:
+      - {file: "tests/sms.test.mjs", name: "F-20 / R-36፦ በናሙና ላይ ያሉ ልሙድ ቅሪቶች አይደገሙም (preview masking)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-37
+    family: R
+    kind: requirement
+    text: "ለSMS ድምፅ ንባብ፣ ለእውቀት ማውጣትና ለረጅም ጊዜ ማከማቸት የተለያዩ ፈቃዶች"
+    owner_role: "የፈቃድ/ግላዊነት ቁጥጥር"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-06, OP-10, OP-14, OP-26]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 77}
+    tests:
+      - {file: "tests/call.test.mjs", name: "R-04 / R-37 / F-18፦ የማቋረጥ ናሙና የተቋረጠውን ዙር መታወቂያ ይዞ ይመዝገባል"}
+      - {file: "tests/call.test.mjs", name: "R-37 / F-18፦ AI ሲያልቅ ናሙናው ይጠፋል፣ ያለጥሪ ማቋረጥ አይደለም"}
+      - {file: "tests/safety.test.mjs", name: "R-37 / LC-08፦ የማረጋገጫ ኮድ (OTP) በድምፅ አይነበብም"}
+      - {file: "tests/server.test.mjs", name: "R-37 / R-12 / F-15 / S-5፦ የSMS ንባብ በHTTP ላይም ሁለት ማረጋገጫ ይፈልጋል"}
+      - {file: "tests/server.test.mjs", name: "R-37 / CI-06 / VE-01፦ ፈቃድ በአንድ ክፍለ-ጊዜ ላይ ሲሰጣት በGET መልሶ ሲነበብ ይዛመዳል"}
+      - {file: "tests/sms.test.mjs", name: "R-37 / S-5፦ ንባብ ሁለት ማረጋገጫ ይፈልጋል — የAI ቁልፍና ፈቃድ"}
+      - {file: "tests/sms.test.mjs", name: "R-37 / F-15፦ የመረጃ አጠቃቀም ፈቃድ ከንባብ ፈቃድ ጭምብል አይደለም (separate scopes)"}
+      - {file: "tests/sms.test.mjs", name: "R-37 / LC-08፦ OTP ፈቃድ ቢኖርም በድምፅ አይነበብም"}
+      - {file: "tests/sms.test.mjs", name: "F-15 / R-37 / OP-08፦ ፈቃድ መሻር የተሠራ ውጤቶችን ማጥፋት አለበት (revocation wipe)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-38
+    family: R
+    kind: requirement
+    text: "የተጋራ ስልክ ግላዊነትና በድምፅ የግል መረጃ አለመግለጥ"
+    owner_role: "የፈቃድ/ግላዊነት ቁጥጥር"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-06, OP-10, OP-14, OP-26]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 78}
+    tests:
+      - {file: "tests/evidence.test.mjs", name: "R-38 / F-20፦ የተመዘገቡ entries ሰለባውን ያጸኑና seq ከ1 ይጀምራል"}
+      - {file: "tests/evidence.test.mjs", name: "R-38፦ መዝገቡ ዳግም ሲከፈት ሰለባው አይቆረጥም (reopen continues the chain)"}
+      - {file: "tests/evidence.test.mjs", name: "R-38 / NR-08፦ entry ይዘት ቢቀየር hash ስለማይገናኝ ፍተሻው ወዲያውኑ ይይዛል"}
+      - {file: "tests/evidence.test.mjs", name: "R-38፦ entry ቢደበቅ ወይም ቅደም ተከተል ቢቀየር CHAIN_BREAK ይመዘገባል"}
+      - {file: "tests/evidence.test.mjs", name: "R-38 / F-20፦ የማንበብ ያልቻለ መስመር UNPARSEABLE_LINE በማለት ይገለጻል (silent skip አይደለም)"}
+      - {file: "tests/evidence.test.mjs", name: "F-07 / R-38፦ seq በENV ብቻ ይቀጥላል — እያንዳንዱ መዝገብ ሙሉ ፋይሉን አያነብም (O(n²) ማራኪ የለም)"}
+      - {file: "tests/manifest.test.mjs", name: "F-06 / R-38፦ ማኒፌስቱ ለውጥን ይይዛል፣ የተቀየረ ሰነድ MISMATCH ይሆናል"}
+      - {file: "tests/server.test.mjs", name: "R-38 / F-11 / CI-14፦ የማስረጃ ሰለባና የሀብት ልኬት በHTTP ተገኝተው ያገለግላሉ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-39
+    family: R
+    kind: requirement
+    text: "ማከማቻ ሲሞላ የመረጃ ቅድሚያ፣ ማጥፋትና ከብልሽት መመለስ"
+    owner_role: "የመሣሪያ ሀብት አስተዳዳሪ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-13–14]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 79}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-40
+    family: R
+    kind: requirement
+    text: "የሬዲዮ ቅጂ፣ የSMS አያያዝና የመረጃ መብቶች ሕጋዊ ግምገማ"
+    owner_role: "የፈቃድ/ግላዊነት ቁጥጥር"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-06, OP-10, OP-14, OP-26]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 80}
+    tests:
+      - {file: "tests/evidence.test.mjs", name: "R-40 / F-07 / F-11፦ የሀብት ናሙና ሊለካ የሚችል ቁጥሮችን ይሰጣል"}
+      - {file: "tests/evidence.test.mjs", name: "R-40 / F-11፦ measure ጊዜንና የድርጊት ውጤትን አንድ ላይ ይመልሳል"}
+      - {file: "tests/evidence.test.mjs", name: "R-40 / CI-14፦ percentile ትክክለኛ ደረጃዎችን ይመልሳል፣ ለባዝ ዜሮ አይደለም"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-41
+    family: R
+    kind: requirement
+    text: "ለእያንዳንዱ የምርት መስፈርት አንድ ዋና መዝገብና የለውጥ ታሪክ"
+    owner_role: "የምርት መስፈርት አስተዳዳሪ"
+    owner_named: null
+    gates: [G0]
+    blocked_on_undefined_test: false
+    planned_evidence: []
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 81}
+    tests:
+      - {file: "tests/etime.test.mjs", name: "NR-02 / R-41፦ 120 ዓመታት ሙሉ ቀናት ተገላቢጦሽ ያልፋሉ (exhaustive sweep)"}
+      - {file: "tests/etime.test.mjs", name: "NR-02 / R-41፦ ዕርገት ዓመት — ጳጉሜን 6 በ(ዓ.ም+1)%4==0 ብቻ ይኖራል"}
+      - {file: "tests/etime.test.mjs", name: "NR-02 / R-41፦ ዛሬው እርግጠኛ ልወጣ ወደ አማርኛ ሪፖርት ይዞራል፤ G0 ውሳኔ ግን ይጠብቃል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: R-42
+    family: R
+    kind: requirement
+    text: "በሙሉ የሥራ ሂደት የኢንተርኔት ጥገኝነት የለም፤ የስህተት ሁኔታ በደህንነት ይታገድ"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01–04, OP-12–13, OP-22]
+    acceptance_evidence: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 82}
+    tests:
+      - {file: "tests/offline.test.mjs", name: "R-42 / F-22፦ የተሰነዘው ማሳያ ኮድ ወደ ውጭ አድራሻ የለውም፣ ፍተሻውም ዜሮ ይመዘግባል"}
+      - {file: "tests/offline.test.mjs", name: "R-42 / CI-06፦ ማስረጃው የተፈቀዱ ወገቦችንና የተከለከሉ ውጤቶችን ለይቶ ይይዛል"}
+      - {file: "tests/offline.test.mjs", name: "R-42 / R-23፦ ውስጣዊ አድራሻ ያለው ፋይል ፍተሻውን አያሳልፍም — በተግባር ተሞክሮ በማረጋገጥ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-01
+    family: CI
+    kind: requirement
+    text: "ያልተዘጋጁ አዳዲስ ጥያቄዎችን በትርጉም መረዳት"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01, OP-04, OP-22]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 87}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-01፦ ክፍት ውይይት ከምንጭ ጋር ይመልሳል (grounded answer)"}
+      - {file: "tests/offline.test.mjs", name: "CI-01 / VE-01 / F-22፦ የተጠቃሚ ገጹ የሚጠራው እያንዳንዱ መንገድ በሰርቨሩ ላይ ተመዝግቧል"}
+      - {file: "tests/server.test.mjs", name: "R-05 / CI-01 / OP-02፦ ክፍት ውይይት፣ ተከታታይ ጥያቄና ያልታወቀ ጥያቄ በHTTP ትክክል ይመልሳሉ"}
+      - {file: "tests/server.test.mjs", name: "CI-01 / VE-01 / F-22፦ የደንበኛ ገጹ የሚጠራው እያንዳንዱ መንገድ በሰርቨሩ ላይ ተመዝግቧል"}
+      - {file: "tests/server.test.mjs", name: "VE-01 / CI-01፦ የደምቦ ገጹ ይሰጣል፣ ያልታወቀ መንገድ 404/NO_ROUTE ይመልሳል"}
+      - {file: "tests/server.test.mjs", name: "R-12 / RU-08 / CI-01፦ የምንጭ መስኮች በAPIና በገጹ መካከ ይዛመዳሉ"}
+      - {file: "tests/server.test.mjs", name: "R-14 / F-20 / F-22 / CI-01፦ የናሙና ዝርዝር በHTTP ላይ ነው፤ የተጠበቀ ውጤቱ ከማኒፌስት ይዛመዳል"}
+      - {file: "tests/speech.test.mjs", name: "R-03 / CI-01፦ synthesize ግብይት ከጎደለ ግልጽ ስህተት ይመልሳል (no silent write)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-02
+    family: CI
+    kind: requirement
+    text: "የተለያዩ ቃላት፣ ሰዋሰው፣ አነጋገር ቅጦች"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-02, OP-22]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 88}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-03
+    family: CI
+    kind: requirement
+    text: "ዘዬ፣ አካባቢያዊ ቃላት፣ የቋንቋ መቀላቀል"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-02, OP-22]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 89}
+    tests:
+      - {file: "tests/audio-input.test.mjs", name: "F-08 / CI-03፦ ያልሆነ ወይም የቆራረጠ ድምፅ AUDIO_FORMAT_INVALID ይመልሳል"}
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-03፦ በአፋን ኦሮሞ ተከታታይ ጥያቄ ርዕስ ይይዛል (Oromo anaphora)"}
+      - {file: "tests/dialogue.test.mjs", name: "R-07 / CI-03፦ የቋንቋ መለያ ጽሑፍን አይደቀቅም (Amharic vs Afaan Oromo)"}
+      - {file: "tests/server.test.mjs", name: "R-02 / F-08 / CI-03፦ ኢንጂኑ ተጭኖ ሲገኝ የHTTP ድምፅ መንገዱ አልፎ አልፎ አይሆንም (500 የለም)"}
+      - {file: "tests/speech-benchmark.test.mjs", name: "F-08 / CI-03፦ የላቲን ውጤት ከአማርኛ ማጣቀሻ ጋር ያለው ስህተት አይደበቅም"}
+      - {file: "tests/speech.test.mjs", name: "R-02 / CI-03፦ ASR ሁኔታው የተሰነዘ መሆኑንና ኢንተርኔት እንደማያስፈልግ በግልጽ ይናገራል"}
+      - {file: "tests/speech.test.mjs", name: "NR-03 / CI-03፦ የቋንቋ ድጋፍ በኮድ ይለያል — አፋን ኦሮሞ ASR_LOCALE_UNSUPPORTED ይመልሳል"}
+      - {file: "tests/speech.test.mjs", name: "R-03 / CI-03፦ የTTS ድጋፍ መለያ ከተጫኑ ድምጾች ዝርዝር ጋር ይዛመዳል (no self-claim)"}
+      - {file: "tests/speech.test.mjs", name: "F-08 / R-02 / CI-03፦ ኢንጂኑ ተጭኖ ሲገኝ መንገዱ ሳይቋረጥ ውጤት ወይም ግልጽ ኮድ ይመልሳል"}
+      - {file: "tests/speech.test.mjs", name: "F-08 / R-02 / CI-03፦ ዝግ ግብይት ለኢንጂን ሳይደርስ በግልጽ ኮድ ይቆማል (no 6-8s wasted run)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-04
+    family: CI
+    kind: requirement
+    text: "ያልተሟላ/አሻሚ ጥያቄን ማስተናገድ"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-03]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 90}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "R-01 / CI-04፦ ችግር የሌለው ግቤት (empty) አልሰማሁኝ ማስተዋወቅ ይሰጣል"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-05፦ የቢጫ ቅጠል ጥያቄ በሁለቱም ቋንቋዎች ያጣራል፣ የታች መልስንም ያስታውሳል"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04፦ ላይኛውና ሁለቱም ቅጠሎች የተለየ አውድ ይይዛሉ"}
+      - {file: "tests/dialogue.test.mjs", name: "R-10 / CI-04፦ የቅጠል አውድ አዲስ ርዕስንና ሌላ ውይይትን አይወርስም"}
+      - {file: "tests/dialogue.test.mjs", name: "R-09 / CI-04፦ ማጣሪያ በኬሚካል ጥበቃ ፊት አይቀድምም"}
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-04፦ ባዶ ግቤት አውድን ያቆያል፤ ሰላምታ ግን ማጣሪያውን ይዘጋል"}
+      - {file: "tests/dialogue.test.mjs", name: "R-10 / CI-04፦ የቅጠል ጥያቄ የቀድሞ አዘራር አውድን አይጠቀምም"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ ረዘም ያለ የቅጠል መልስ ወደ አዘራር አይመለስም"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ ያልተለየ የቅጠል ተከታይ መልስ ይጣራል"}
+      - {file: "tests/dialogue.test.mjs", name: "CI-04 / R-10፦ አሉታዊ ምልከታ በተቃራኒው አይመዘገብም"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-05
+    family: CI
+    kind: requirement
+    text: "የተዘዋዋሪ ዓላማና የተግባር ፍላጎት መለየት"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01, OP-04, OP-22]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 91}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-06
+    family: CI
+    kind: requirement
+    text: "ብዙ ተከታታይ ዙሮች አውድ መያዝ"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-03]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 92}
+    tests:
+      - {file: "tests/offline.test.mjs", name: "R-42 / CI-06፦ ማስረጃው የተፈቀዱ ወገቦችንና የተከለከሉ ውጤቶችን ለይቶ ይይዛል"}
+      - {file: "tests/server.test.mjs", name: "R-37 / CI-06 / VE-01፦ ፈቃድ በአንድ ክፍለ-ጊዜ ላይ ሲሰጣት በGET መልሶ ሲነበብ ይዛመዳል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-07
+    family: CI
+    kind: requirement
+    text: "የራሱን የቀድሞ መልስ ማረም"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-03]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 93}
+    tests:
+      - {file: "tests/safety.test.mjs", name: "R-24 / CI-07፦ ግንኙነት ያለው መረጃ እንደ ማይታመን አይመደብም"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-08
+    family: CI
+    kind: requirement
+    text: "ትርጉም ያለው፣ በቂ፣ በደረጃ የተደራጀ መልስ"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-01, OP-04, OP-22]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 94}
+    tests:
+      - {file: "tests/update.test.mjs", name: "F-15 / CI-08፦ ፊርማ የሚገናኘው ተጨማሪ መስኮችን አይደለም (signed field set)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-09
+    family: CI
+    kind: requirement
+    text: "የማስረጃ እና የወቅታዊነት ግንዛቤ"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-24"]
+    planned_evidence: [OP-07–09, OP-24]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 95}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-10
+    family: CI
+    kind: requirement
+    text: "አደጋ ያለበትን ምክር በጥንቃቄ ማስተናገድ"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-11]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 96}
+    tests:
+      - {file: "tests/safety.test.mjs", name: "F-17 / CI-10፦ አደገኛ ጥያቄ በአፋን ኦሮሞም ተመሳሳይ ይከላከላል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-11
+    family: CI
+    kind: requirement
+    text: "የግል አውድ በፈቃድ ብቻ መጠቀም"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-14, OP-26]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 97}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-12
+    family: CI
+    kind: requirement
+    text: "ሙሉ የድምፅ መስመር ኦፍላይን"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-01, OP-12]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 98}
+    tests:
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ መዝገቡ ፋይል በቅርብ ስም ቢጠቅስም ሃሹ ይጣራል (§7 ረድፍ የተሳሳተ ሃሽ ደብቆ የነበረ)"}
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የድር ገጽ (.html) ፋይል ሃሽ ጥያኔም ይጣራል — ያለፈው የመሣሪያ ዓይን ጉድለት"}
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ CLI ቅጹ JSON ሪፖርት ይነብና ስህተት ሲያገኝ ወደ ትልቅ exit code ይሄዳል"}
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ መዝገቡ ስለበሩ የራሱ ውጤት ብዛት የሚጽፈው ጥያኔ ከእውነተኛው ጋር ይዛመዳል"}
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የበር ብዛት ጥያኔ ቢቀር (ቁጥሩ ወደ ኋላ ከቀረ) MISMATCH ይይዛል"}
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ መዝገቡ የበሩን ብዛት በጭራሽ ካልገለጸ CLAIM_NOT_FOUND ተመዝግቦ ይቆያል"}
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የባለቤት መመሪያው የፍተሻ/የናሙና/የእውቀት/የበር ቁጥሮች ከእውነተኛው ጋር ይዛመዳሉ"}
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የመመሪያው የፍተሻና የናሙና ቁጥር ቢቀየር MISMATCH ይይዛል"}
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / CI-12፦ የመመሪያው የበር ቁጥር ትክክል ሲሆን OK፣ ቢቀየር ግን MISMATCH (ራሱን አያጽድቅም)"}
+      - {file: "tests/manifest.test.mjs", name: "F-06 / CI-12፦ ማኒፌስቱ ዛሬ ተሞክሮ ያልፋል — ሁሉም docs/*.md ተካተዋል፣ ምንም አልተቀየረም"}
+      - {file: "tests/safety.test.mjs", name: "F-08 / CI-12፦ ደህንነት ወሳኝ ቃላት ለሁለቱም ቋንቋዎች ይሠራሉ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-13
+    family: CI
+    kind: requirement
+    text: "ጥሪና SMS ከAI የተለየ ተግባር"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-05, OP-13]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 99}
+    tests:
+      - {file: "tests/call.test.mjs", name: "R-04 / RU-13 / CI-13፦ ጥሪ ሲመጣ AI ወዲያውኑ ይቋረጣል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: CI-14
+    family: CI
+    kind: requirement
+    text: "በዝቅተኛ ሃርድዌር አቅም የሚሰራ አፈጻጸም"
+    owner_role: "የኦፍላይን ውይይት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-12]
+    acceptance_evidence: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 100}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "F-11 / CI-14፦ የውይይት ሂደት ፍጥነት ማስረጃ (no network)"}
+      - {file: "tests/evidence.test.mjs", name: "R-40 / CI-14፦ percentile ትክክለኛ ደረጃዎችን ይመልሳል፣ ለባዝ ዜሮ አይደለም"}
+      - {file: "tests/server.test.mjs", name: "R-38 / F-11 / CI-14፦ የማስረጃ ሰለባና የሀብት ልኬት በHTTP ተገኝተው ያገለግላሉ"}
+      - {file: "tests/speech.test.mjs", name: "R-03 / F-11 / CI-14፦ ቢያንስ አንድ የሚሰራ ድምጽ ካለ ወደ WAV ይነበራል፤ የለም ከሆነ በኮድ ይገለጻል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-01
+    family: LC
+    kind: requirement
+    text: "የሰብል እርሻ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-01]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 105}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-02
+    family: LC
+    kind: requirement
+    text: "የእንስሳት እርባታ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-02]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 106}
+    tests:
+      - {file: "tests/safety.test.mjs", name: "F-17 / R-09 / LC-02፦ የኬሚካል መጠን ጥያቄ ይከለከላልና ወደ ባለሙያ ይመራል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-03
+    family: LC
+    kind: requirement
+    text: "የአየር ሁኔታና አደጋ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-03]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 107}
+    tests:
+      - {file: "tests/fm.test.mjs", name: "F-20 / LC-03 / RU-02፦ ከ24 ሰዓት በላይ የሆነ ማስታወሻ \"ዛሬ\" ተብሎ አይቀርብም"}
+      - {file: "tests/knowledge.test.mjs", name: "F-17 / LC-03፦ ጊዜው ያለፈ መረጃ ምልክት ይደረጋል፣ አይደፋም"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-04
+    family: LC
+    kind: requirement
+    text: "ገበያና ሽያጭ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-04]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 108}
+    tests:
+      - {file: "tests/safety.test.mjs", name: "R-09 / LC-04፦ ደህንነቱ የተጠበቀ ጥያቄ አይከለከልም (no false refusal)"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-05
+    family: LC
+    kind: requirement
+    text: "ገንዘብና ቁጠባ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-05]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 109}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-06
+    family: LC
+    kind: requirement
+    text: "ቤተሰብና የቤት ኑሮ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-06]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 110}
+    tests:
+      - {file: "tests/fm.test.mjs", name: "R-07 / LC-06፦ የአፋን ኦሮሞ ጣቢያ መረጃ በተናጠል ይቀረጻል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-07
+    family: LC
+    kind: requirement
+    text: "መሠረታዊ ጤናና ንጽህና"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-07]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 111}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-08
+    family: LC
+    kind: requirement
+    text: "የልጆች ትምህርት"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-08]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 112}
+    tests:
+      - {file: "tests/safety.test.mjs", name: "R-37 / LC-08፦ የማረጋገጫ ኮድ (OTP) በድምፅ አይነበብም"}
+      - {file: "tests/sms.test.mjs", name: "R-37 / LC-08፦ OTP ፈቃድ ቢኖርም በድምፅ አይነበብም"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-09
+    family: LC
+    kind: requirement
+    text: "የአዋቂዎች ትምህርት"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-09]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 113}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-10
+    family: LC
+    kind: requirement
+    text: "የመንግሥት አገልግሎት መረጃ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-10]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 114}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-11
+    family: LC
+    kind: requirement
+    text: "ንግድና የሥራ እድል"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-11]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 115}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-12
+    family: LC
+    kind: requirement
+    text: "የማጭበርበር መከላከል"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-12]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 116}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-13
+    family: LC
+    kind: requirement
+    text: "ማኅበርና ማኅበረሰብ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-13]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 117}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-14
+    family: LC
+    kind: requirement
+    text: "የግል ድምፅ ረዳት"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-14]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 118}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: LC-15
+    family: LC
+    kind: requirement
+    text: "የስልክ እገዛ"
+    owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+    owner_named: null
+    gates: []
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-22"]
+    planned_evidence: [OP-04, OP-22, FD-01–08, LC-15]
+    acceptance_evidence: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 119}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-01
+    family: RU
+    kind: requirement
+    text: "በቦታ የሚደርሱ ጣቢያዎችን መለየት፣ የሞገድ/ቋንቋ መዝገብ"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-05, VE-08]
+    acceptance_evidence: "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 124}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-02
+    family: RU
+    kind: requirement
+    text: "የFM ድምፅ ወደ AI በሕጋዊ መዳረሻ ማስተላለፍ"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-05, VE-02]
+    acceptance_evidence: "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 125}
+    tests:
+      - {file: "tests/fm.test.mjs", name: "F-20 / LC-03 / RU-02፦ ከ24 ሰዓት በላይ የሆነ ማስታወሻ \"ዛሬ\" ተብሎ አይቀርብም"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-03
+    family: RU
+    kind: requirement
+    text: "የብዙ ቋንቋ ሬዲዮ ASR፣ የድምፅ ጥራትና የተሳሳተ ጽሑፍ ማወቅ"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-25"]
+    planned_evidence: [OP-05, OP-25]
+    acceptance_evidence: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 126}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-04
+    family: RU
+    kind: requirement
+    text: "የመረጃ አቤቱታ ማውጣት፣ አስተያየት/ማስታወቂያ መለየት"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-24"]
+    planned_evidence: [OP-05, OP-07, OP-24]
+    acceptance_evidence: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 127}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-05
+    family: RU
+    kind: requirement
+    text: "የSMS የተፈቀደ የመረጃ መዳረሻ፣ የግል መልዕክት ገደብ"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-06, OP-14, OP-26, VE-03]
+    acceptance_evidence: "የፈቃድ ስጦታ/እምቢታ/ስረዛ ሙከራ፣ የግል ውሂብ አለመፍሰስ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 128}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-06
+    family: RU
+    kind: requirement
+    text: "የምንጭ ማስረጃ፣ ጊዜ፣ ቦታ፣ ግጭት፣ የእርግጠኝነት ማጣሪያ"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-24"]
+    planned_evidence: [OP-08, OP-09, OP-24]
+    acceptance_evidence: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 129}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-07
+    family: RU
+    kind: requirement
+    text: "የጊዜ ማብቂያና የወቅታዊነት አስተዳደር"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-24"]
+    planned_evidence: [OP-09, OP-24]
+    acceptance_evidence: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 130}
+    tests:
+      - {file: "tests/etime.test.mjs", name: "NR-02 / RU-07፦ የኢትዮጵያ ዘመን መሠረታዊ እሴት እና እንቁጣጣሽ"}
+      - {file: "tests/etime.test.mjs", name: "NR-02 / RU-07፦ ወደ ኋላና ወደ ፊት ልወጣ ተገላቢጦሽ ነው (round-trip)"}
+      - {file: "tests/etime.test.mjs", name: "NR-02 / RU-07፦ የኢትዮጵያ ሰዓት (+6) ልወጣ"}
+      - {file: "tests/etime.test.mjs", name: "NR-02 / RU-07፦ አርባዊ ወቅቶች በወሩ መሠረት ይለያያሉ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-08
+    family: RU
+    kind: requirement
+    text: "ከነባሩ እውቀት ጋር በፍለጋ ደረጃ ማገናኘት፤ ሞዴል ክብደት አለመቀየር"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-24"]
+    planned_evidence: [OP-07, OP-10, OP-24]
+    acceptance_evidence: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 131}
+    tests:
+      - {file: "tests/server.test.mjs", name: "R-12 / RU-08 / CI-01፦ የምንጭ መስኮች በAPIና በገጹ መካከ ይዛመዳሉ"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-09
+    family: RU
+    kind: requirement
+    text: "በክፍት ውይይት ለተጠቃሚ ተገቢ የሆነ ምላሽ መስጠት"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1]
+    blocked_on_undefined_test: false
+    planned_evidence: [OP-07, OP-01]
+    acceptance_evidence: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 132}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: REQUIRES_EVIDENCE
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-10
+    family: RU
+    kind: requirement
+    text: "በባትሪ/ማከማቻ/RAM የተገደበ የመከታተያ ሥራ"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-23"]
+    planned_evidence: [OP-12, OP-13, OP-23, VE-06]
+    acceptance_evidence: "የምንጭ/ጊዜ/ትክክለኛነት/ግጭት አሉታዊ ናሙና፣ የተጸደቀ ወሰን"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 133}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-11
+    family: RU
+    kind: requirement
+    text: "የቅጂ መብት፣ ፈቃድ፣ ማጥፋት፣ የግል መረጃ ጥበቃ"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-26"]
+    planned_evidence: [OP-14, OP-26]
+    acceptance_evidence: "የፈቃድ ስጦታ/እምቢታ/ስረዛ ሙከራ፣ የግል ውሂብ አለመፍሰስ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 134}
+    tests: []
+    coverage: BLOCKED_ON_UNDEFINED_TEST
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-12
+    family: RU
+    kind: requirement
+    text: "የተፈረመ የሞዴል/የውሂብ ዝማኔ ከተራ መረጃ መለየት"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: true
+    undefined_op_refs: ["OP-21"]
+    planned_evidence: [OP-21, VE-07]
+    acceptance_evidence: "ትክክለኛ/የተሰረዘ/የተደገመ ፊርማ ሙከራ፣ የቁልፍ ለውጥ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 135}
+    tests:
+      - {file: "tests/update.test.mjs", name: "F-15 / RU-12፦ ወደ ኋላ የሄደ counter (replay/rollback attack) ይከለከላል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-13
+    family: RU
+    kind: requirement
+    text: "ጥሪ ቅድሚያ፣ የAI ውድቀት ነጻነት"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-05]
+    acceptance_evidence: "በእውነተኛ ስልክ AI ሲበላሽ የጥሪ ቅድሚያ ማረጋገጫ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 136}
+    tests:
+      - {file: "tests/call.test.mjs", name: "R-04 / RU-13 / CI-13፦ ጥሪ ሲመጣ AI ወዲያውኑ ይቋረጣል"}
+      - {file: "tests/call.test.mjs", name: "R-04 / RU-13፦ የAI ደረጃ ሽግግር መረጃውን አያጣም፣ የማያውቀው ስም ይደፋል"}
+      - {file: "tests/call.test.mjs", name: "R-04 / RU-13፦ ወደ ውጭ የሚደረግ ጥሪም AIን በመላው መረጃ ይቋረጣል (parity with incoming)"}
+      - {file: "tests/server.test.mjs", name: "R-04 / RU-13 / RG-34-01፦ AI ሳሠራ ጥሪ ሲመጣ ይቀበላል፤ ጥሪ ሳለ AI ይከለከላል፤ ሲደምቀስ AI ይቀጥላል"}
+      - {file: "tests/server.test.mjs", name: "R-04 / RU-13 / F-18፦ AI በንግግር ላይ ሳለ ጥሪ ከመጣ ይቋረጣል፤ መታወቂያው ይጠበቃል፤ በፈቃድ ብቻ ይቀጥላል"}
+    coverage: G1_TEST_EXISTS
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: RU-14
+    family: RU
+    kind: requirement
+    text: "የምንጭ ጣቢያ/ሞገድ የክልል ሽፋንና የጎደለ መዳረስ መዝገብ"
+    owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+    owner_named: null
+    gates: [G2, G3]
+    blocked_on_undefined_test: false
+    planned_evidence: [VE-08, OP-05]
+    acceptance_evidence: "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ"
+    doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+    source: {doc: "v2.8", line: 137}
+    tests: []
+    coverage: NOT_COVERED
+    behavior_verification: NOT_AUTHORIZED_AT_G1
+    acceptance_signoff: null
+    evidence_ref: null
+  - id: OP-01
+    family: OP
+    kind: evidence_item
+    text: "ከተለያዩ ቃላትና አነጋገሮች የመጡ አዲስ ያልተለመዱ ጥያቄዎች"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 142}
+    tests:
+      - {file: "tests/voice-check.test.mjs", name: "F-11 / OP-01፦ የትዕዛዝ መረጮች ይተረጎማሉ — ያልታወቀ መረጭ ግን በግልጽ ይከዳል"}
+      - {file: "tests/voice-check.test.mjs", name: "F-11 / OP-01፦ --repeat ጥያቄ ተቆጣጣሪ ነው — የተሳሳተ ቁጥር በግልጽ ይቀረሃል"}
+    coverage: G1_TEST_EXISTS
+    evidence_ref: null
+  - id: OP-02
+    family: OP
+    kind: evidence_item
+    text: "ቢያንስ ለአማርኛና ለአፋን ኦሮሞ የቋንቋ/ዘዬ/የድምፅ ጫጫታ ሙከራ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 143}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "R-05 / OP-02፦ ተከታታይ ጥያቄ የቀድሞውን ርዕስ ይይዛል (multi-turn context)"}
+      - {file: "tests/server.test.mjs", name: "R-05 / CI-01 / OP-02፦ ክፍት ውይይት፣ ተከታታይ ጥያቄና ያልታወቀ ጥያቄ በHTTP ትክክል ይመልሳሉ"}
+    coverage: G1_TEST_EXISTS
+    evidence_ref: null
+  - id: OP-03
+    family: OP
+    kind: evidence_item
+    text: "ተከታታይ ጥያቄ፣ ማስተካከያ፣ የርዕስ ለውጥና ወደ ቀድሞ ርዕስ መመለስ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 144}
+    tests:
+      - {file: "tests/dialogue.test.mjs", name: "OP-03: explicit previous-topic return is narrow and does not consume history on unrelated Amharic"}
+      - {file: "tests/dialogue.test.mjs", name: "OP-03: Afaan Oromo explicit previous-topic return restores Oromo context"}
+    coverage: G1_TEST_EXISTS
+    evidence_ref: null
+  - id: OP-04
+    family: OP
+    kind: evidence_item
+    text: "ከ15ቱ መስኮች አዳዲስ የተቀላቀሉ ጉዳዮች"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 145}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-05
+    family: OP
+    kind: evidence_item
+    text: "ከተቀረጸ የFM ድምፅ አዲስ እውቀት መለየት"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 146}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-06
+    family: OP
+    kind: evidence_item
+    text: "በፈቃድ ከተመረጠ SMS የተለየ መረጃ ማውጣት"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 147}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-07
+    family: OP
+    kind: evidence_item
+    text: "ከቀድሞ የእውቀት መዝገብ ጋር ማዋሃድና በኋላ መጠየቅ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 148}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-08
+    family: OP
+    kind: evidence_item
+    text: "ሁለት የተቃረኑ ስርጭቶች/መልዕክቶች"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 149}
+    tests:
+      - {file: "tests/sms.test.mjs", name: "F-15 / R-37 / OP-08፦ ፈቃድ መሻር የተሠራ ውጤቶችን ማጥፋት አለበት (revocation wipe)"}
+    coverage: G1_TEST_EXISTS
+    evidence_ref: null
+  - id: OP-09
+    family: OP
+    kind: evidence_item
+    text: "ያረጀ የዝናብ/የዋጋ/የመንግሥት ሂደት መረጃ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 150}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-10
+    family: OP
+    kind: evidence_item
+    text: "በስርጭት/SMS ውስጥ የተደበቀ የAI ትዕዛዝ/ማታለያ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 151}
+    tests:
+      - {file: "tests/offline.test.mjs", name: "S-4 / OP-10 / F-15፦ ያልታመነ ግቤት ጽሑፍ ወደ DOM ያለ ጽዳት አይገባም"}
+      - {file: "tests/safety.test.mjs", name: "F-13 / OP-10 / R-24፦ በSMS ውስጥ ያለ ተሰወረ ትእዛዝ የማይታመን ሆኖ ይለያል"}
+    coverage: G1_TEST_EXISTS
+    evidence_ref: null
+  - id: OP-11
+    family: OP
+    kind: evidence_item
+    text: "የጤና፣ አደጋ፣ መድኃኒት፣ ኬሚካልና የገንዘብ ከፍተኛ አደጋ ጥያቄ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 152}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-12
+    family: OP
+    kind: evidence_item
+    text: "የድምፅ ምላሽና የአፈጻጸም መለኪያ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 153}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-13
+    family: OP
+    kind: evidence_item
+    text: "ረዥም ውይይት፣ አካባቢ ማከማቻ መሙላትና መቋረጥ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 154}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-14
+    family: OP
+    kind: evidence_item
+    text: "የግል መረጃ መያዝ/ማጥፋትና የፈቃድ መመለስ"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 155}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-15
+    family: OP
+    kind: evidence_item
+    text: "ረጅም የFM ማዳመጥ፣ ባትሪ፣ የጥሪ መቋረጥ እና መልሶ መጀመር።"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 156}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-16
+    family: OP
+    kind: evidence_item
+    text: "በተሳሳተ የሬዲዮ ትርጉም ምክንያት የውሸት እውቀት እንዳይቀመጥ።"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 157}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-17
+    family: OP
+    kind: evidence_item
+    text: "ከብዙ ጣቢያዎች የተለያዩ የሚጋጩ ዜናዎችን ማስተናገድ።"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 158}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-18
+    family: OP
+    kind: evidence_item
+    text: "የተጋራ ስልክ፣ የግል SMS እና የድምፅ ንባብ ፈቃድ።"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 159}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-19
+    family: OP
+    kind: evidence_item
+    text: "ማከማቻ መሙላት፣ microSD መውጣት፣ የኃይል መቋረጥና የእውቀት መመለስ።"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 160}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: OP-20
+    family: OP
+    kind: evidence_item
+    text: "የተወሰነ የስልክ ሞዴል ላይ ሙሉ ኦፍላይን የድምፅ-ጥያቄ-መልስ ሙከራ።"
+    owner_role: "ገለልተኛ የሙከራ ኃላፊ"
+    owner_named: null
+    gates: [G1, G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 161}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: VE-01
+    family: VE
+    kind: evidence_item
+    text: "የቺፕ፣ RAM፣ Flash፣ CPU፣ OS እና SDK ትክክለኛ መለያ"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 166}
+    tests:
+      - {file: "tests/ledger-evidence.test.mjs", name: "F-19 / VE-01፦ የgit archive tar ማንበብ በNode ብቻ ታሟል፣ ወደ ውጭ የሚወጣ መንገድ ግን ይከለከላል"}
+      - {file: "tests/offline.test.mjs", name: "CI-01 / VE-01 / F-22፦ የተጠቃሚ ገጹ የሚጠራው እያንዳንዱ መንገድ በሰርቨሩ ላይ ተመዝግቧል"}
+      - {file: "tests/server.test.mjs", name: "VE-01 / R-01፦ ሁኔታው ደህንነት-ተኮር መረጃውን ሳይደብቅ ይሰጣል፣ G1 ወሰኑም ግልጽ ነው"}
+      - {file: "tests/server.test.mjs", name: "R-37 / CI-06 / VE-01፦ ፈቃድ በአንድ ክፍለ-ጊዜ ላይ ሲሰጣት በGET መልሶ ሲነበብ ይዛመዳል"}
+      - {file: "tests/server.test.mjs", name: "CI-01 / VE-01 / F-22፦ የደንበኛ ገጹ የሚጠራው እያንዳንዱ መንገድ በሰርቨሩ ላይ ተመዝግቧል"}
+      - {file: "tests/server.test.mjs", name: "VE-01 / CI-01፦ የደምቦ ገጹ ይሰጣል፣ ያልታወቀ መንገድ 404/NO_ROUTE ይመልሳል"}
+    coverage: G1_TEST_EXISTS
+    evidence_ref: null
+  - id: VE-02
+    family: VE
+    kind: evidence_item
+    text: "የFM ተቀባይ ድምፅ ወደ መተግበሪያ ሊደርስ ይችላል? በምን የድምፅ መዳረሻ?"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 167}
+    tests:
+      - {file: "tests/fm.test.mjs", name: "F-12 / VE-02፦ የFM ማስመሰያ ውጤት \"የተረጋገጠ መንገድ\" ተብሎ አይታመንም"}
+    coverage: G1_TEST_EXISTS
+    evidence_ref: null
+  - id: VE-03
+    family: VE
+    kind: evidence_item
+    text: "በተጠቃሚ ፈቃድ የSMS መዳረሻ፣ ማስቀመጥና መሰረዝ"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 168}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: VE-04
+    family: VE
+    kind: evidence_item
+    text: "በmicroSD የሞዴል/የእውቀት ማከማቻ እና የፋይል ደህንነት"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 169}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: VE-05
+    family: VE
+    kind: evidence_item
+    text: "መደበኛ/የአደጋ ጥሪ ሲገባ የAI/FM ሥራ ምን ይሆናል?"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 170}
+    tests:
+      - {file: "tests/call.test.mjs", name: "R-04 / VE-05፦ የክስተት ቅደም ተከተል ማስረጃ ትክክል ነው"}
+    coverage: G1_TEST_EXISTS
+    evidence_ref: null
+  - id: VE-06
+    family: VE
+    kind: evidence_item
+    text: "በተወሰነ የAI ሥራ ጫና የኃይል፣ ሙቀት፣ RAM ልኬት"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 171}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: VE-07
+    family: VE
+    kind: evidence_item
+    text: "የሃርድዌር/OS የደህንነት ማዘመኛ፣ ፊርማ፣ ቁልፍ ማሻሻያ"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 172}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: VE-08
+    family: VE
+    kind: evidence_item
+    text: "የአካባቢ FM ሞገድ ሽፋንና በተለያዩ ጣቢያዎች ማዳመጥ"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 173}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: VE-09
+    family: VE
+    kind: evidence_item
+    text: "የክፍል ዋጋ፣ የአቅርቦት ጊዜ፣ የመለዋወጫ እና የማምረቻ ፈቃድ"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 174}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: VE-10
+    family: VE
+    kind: evidence_item
+    text: "የሶፍትዌር ጭነት መብትና ረጅም ጊዜ ድጋፍ"
+    owner_role: "የሃርድዌር ማስረጃ ኃላፊ"
+    owner_named: null
+    gates: [G2]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 175}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: FD-01
+    family: FD
+    kind: evidence_item
+    text: "የናሙና ዕቅድ፣ የውክልና ምክንያትና የተሳታፊ መምረጫ"
+    owner_role: "የመስክ ምርምር ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 180}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: FD-02
+    family: FD
+    kind: evidence_item
+    text: "የግላዊነት፣ የፈቃድና የመረጃ ጥበቃ ዕቅድ"
+    owner_role: "የመስክ ምርምር ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 181}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: FD-03
+    family: FD
+    kind: evidence_item
+    text: "የመስክ ምልከታ መዝገብ ከማስረጃ ጋር"
+    owner_role: "የመስክ ምርምር ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 182}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: FD-04
+    family: FD
+    kind: evidence_item
+    text: "LC-01–LC-15 ሽፋንና አዲስ LC-CAND መዝገብ"
+    owner_role: "የመስክ ምርምር ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 183}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: FD-05
+    family: FD
+    kind: evidence_item
+    text: "በቋንቋ፣ ዘዬ፣ ቡድን የተከፈለ የክፍት ውይይት ፍላጎት ትንተና"
+    owner_role: "የመስክ ምርምር ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 184}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: FD-06
+    family: FD
+    kind: evidence_item
+    text: "ነጻ የምርምር ጥራትና የማይወከሉ ቡድኖች ፍተሻ"
+    owner_role: "የመስክ ምርምር ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 185}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: FD-07
+    family: FD
+    kind: evidence_item
+    text: "የተሻሻለ የቅድሚያ ምክር ከወጪ/ሃርድዌር ግምት ጋር"
+    owner_role: "የመስክ ምርምር ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 186}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null
+  - id: FD-08
+    family: FD
+    kind: evidence_item
+    text: "ለባለቤት የሚቀርብ የተረጋገጡ/ያልተረጋገጡ ውሳኔዎች መዝገብ"
+    owner_role: "የመስክ ምርምር ኃላፊ"
+    owner_named: null
+    gates: [G3]
+    blocked_on_undefined_test: false
+    planned_evidence: null
+    acceptance_evidence: null
+    doc_status: "REQUIRES EVIDENCE"
+    source: {doc: "v2.8", line: 187}
+    tests: []
+    coverage: NOT_COVERED
+    evidence_ref: null

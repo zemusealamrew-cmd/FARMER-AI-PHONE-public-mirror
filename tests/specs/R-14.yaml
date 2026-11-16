@@ -1,0 +1,21 @@
+# የR-14 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-14
+requirement: "SMS የማይታመን ግቤት ነው፤ የሐሰት መላኪያና ትእዛዝ መከላከል"
+owner_role: "የደህንነት ኃላፊ"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/offline.test.mjs", name: "F-22 / NR-05 / R-14፦ በእውነተኛ ሩጫ የሚፈጠሩ runtime ፍላይዎች scan hashና የፋይል ብዛት አይቀይሩም"}
+  - {file: "tests/server.test.mjs", name: "F-15 / R-14 / R-19፦ የተፈረመ ዝማኔ በHTTP ማረጋገጥ ይችላል፤ ማረጋገጥ ብቻ መዝገብን አይቀይርም"}
+  - {file: "tests/server.test.mjs", name: "F-22 / NR-05 / R-14፦ KB_PATH በኋላ ሳይገለጽ የተሠራ ዝማኔ የመሠዊያ መዝገቡን ፈጽሞ አይነካም"}
+  - {file: "tests/server.test.mjs", name: "R-14 / F-20 / F-22 / CI-01፦ የናሙና ዝርዝር በHTTP ላይ ነው፤ የተጠበቀ ውጤቱ ከማኒፌስት ይዛመዳል"}
+  - {file: "tests/update.test.mjs", name: "F-15 / R-14፦ ለውጥ የተደረገበት payload (silent tamper) በሃሽ ይከላከላል"}
+  - {file: "tests/update.test.mjs", name: "F-15 / R-14፦ ከጊዜ በኋላ የተላከ ዝማኔ አይተገበርም (expiry enforced)"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-26 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

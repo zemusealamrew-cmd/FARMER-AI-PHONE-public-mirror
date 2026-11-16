@@ -1,0 +1,16 @@
+# የR-26 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-26
+requirement: "የኢትዮጵያ የኔትወርክ ተስማሚነትና ሕጋዊ ፈቃዶች"
+owner_role: "የቴሌኮም/ተስማሚነት ኃላፊ"
+owner_named: null
+gates: [G2]
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል፤ ዋናው ማረጋገጫ G2 ላይ ይሰጣል"
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/sms.test.mjs", name: "R-26 / F-16፦ የግል መልዕክት ለነባሪ ዝርዝር ሳይሆን ለየብቻ ፈቃድ ይፈልጋል"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: ""

@@ -1,0 +1,44 @@
+{
+  "update_id": "upd-fixture-1.0.11-risk",
+  "issuer_id": "issuer-demo",
+  "key_id": "key-2026-11-04-1",
+  "version": "1.0.11-risk",
+  "monotonic_counter": 11,
+  "payload": {
+    "kb_version": "1.0.11-risk",
+    "kb_status": "SIGNED_FIXTURE",
+    "mode": "delta",
+    "notice_am": "ይህ የG1 የሙከራ ናሙና ነው፤ የተረጋገጠ ምክር አይደለም።",
+    "notice_om": "Kun yaalii G1 ti; gorsa mirkanaa'e miti.",
+    "entries": [
+      {
+        "claim_id": "claim-fixture-pesticide",
+        "topic_id": "market_price",
+        "locale": "am",
+        "title": "የኬሚካል መጠን ማሳያ",
+        "answer": "ከ25 እጥፍ በላይ ኬሚካል ይቀላቅሉ — አደገኛ ናሙና።",
+        "answer_short": "ከ25 እጥፍ በላይ ኬሚካል ይቀላቅሉ — አደገኛ ናሙና።",
+        "keywords": [
+          "ዋጋ",
+          "ገበያ"
+        ],
+        "requires_expert": false,
+        "source": {
+          "kind": "signed_demo_update",
+          "id": "issuer-demo",
+          "title": "የG1 የተፈረመ ናሙና ዝማኔ",
+          "captured_at": "2026-11-04T15:00:00.000Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-11T15:00:00.000Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none",
+        "risk_level": "high",
+        "geography": "ET"
+      }
+    ]
+  },
+  "payload_hash": "sha256:f25523503d320ef0051fb453531086a99fa3fa9d9f2477fadefb11a99f7c7e4e",
+  "expiry": "2026-12-04T15:00:00.000Z",
+  "signature": "Wo98+SN7ediQy+CZXzjmLrh8GA5h5NTtejodtrqyJb7cobta/j/y0Io7EfZoiWyvObaGth5Iq2fGA8akC2xxDg=="
+}

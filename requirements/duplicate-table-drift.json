@@ -1,0 +1,102 @@
+{
+  "note": "v2.8 §3 ዋና ትርጉም ነው። ታሪካዊ ሰነዶች (v4.4 §12) አይሠረፉም — ስለዚህ የቃላት ልዩነት ይቆጠራል እንጂ አይታረምም። የመለያ ስብስብ ግን ግዴታ እኩል መሆን አለበት (F-04)።",
+  "id_set_mismatch": [],
+  "text_drift": [
+    {
+      "id": "LC-01",
+      "table": "v44",
+      "doc_line": 78,
+      "master_line": 105,
+      "canonical": "የሰብል እርሻ",
+      "tabled": "ሰብል"
+    },
+    {
+      "id": "LC-02",
+      "table": "v44",
+      "doc_line": 79,
+      "master_line": 106,
+      "canonical": "የእንስሳት እርባታ",
+      "tabled": "እንስሳት"
+    },
+    {
+      "id": "LC-03",
+      "table": "v44",
+      "doc_line": 80,
+      "master_line": 107,
+      "canonical": "የአየር ሁኔታና አደጋ",
+      "tabled": "አየር ሁኔታ"
+    },
+    {
+      "id": "LC-04",
+      "table": "v44",
+      "doc_line": 81,
+      "master_line": 108,
+      "canonical": "ገበያና ሽያጭ",
+      "tabled": "ገበያ"
+    },
+    {
+      "id": "LC-05",
+      "table": "v44",
+      "doc_line": 82,
+      "master_line": 109,
+      "canonical": "ገንዘብና ቁጠባ",
+      "tabled": "ገንዘብ"
+    },
+    {
+      "id": "LC-06",
+      "table": "v44",
+      "doc_line": 83,
+      "master_line": 110,
+      "canonical": "ቤተሰብና የቤት ኑሮ",
+      "tabled": "ቤተሰብ"
+    },
+    {
+      "id": "LC-07",
+      "table": "v44",
+      "doc_line": 84,
+      "master_line": 111,
+      "canonical": "መሠረታዊ ጤናና ንጽህና",
+      "tabled": "ጤና/ንጽህና"
+    },
+    {
+      "id": "LC-10",
+      "table": "v44",
+      "doc_line": 87,
+      "master_line": 114,
+      "canonical": "የመንግሥት አገልግሎት መረጃ",
+      "tabled": "የመንግሥት መረጃ"
+    },
+    {
+      "id": "LC-11",
+      "table": "v44",
+      "doc_line": 88,
+      "master_line": 115,
+      "canonical": "ንግድና የሥራ እድል",
+      "tabled": "ሥራ/ንግድ"
+    },
+    {
+      "id": "LC-12",
+      "table": "v44",
+      "doc_line": 89,
+      "master_line": 116,
+      "canonical": "የማጭበርበር መከላከል",
+      "tabled": "ማጭበርበር"
+    },
+    {
+      "id": "LC-13",
+      "table": "v44",
+      "doc_line": 90,
+      "master_line": 117,
+      "canonical": "ማኅበርና ማኅበረሰብ",
+      "tabled": "ማኅበረሰብ/ማኅበር"
+    },
+    {
+      "id": "LC-14",
+      "table": "v44",
+      "doc_line": 91,
+      "master_line": 118,
+      "canonical": "የግል ድምፅ ረዳት",
+      "tabled": "የግል ረዳት"
+    }
+  ]
+}

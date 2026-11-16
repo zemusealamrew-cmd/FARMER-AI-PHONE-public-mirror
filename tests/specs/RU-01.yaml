@@ -1,0 +1,14 @@
+# የRU-01 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: RU-01
+requirement: "በቦታ የሚደርሱ ጣቢያዎችን መለየት፣ የሞገድ/ቋንቋ መዝገብ"
+owner_role: "የሬዲዮ/SMS መረጃ ውህደት ክፍል"
+owner_named: null
+gates: [G2]
+status: NOT_COVERED
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests: []
+doc_acceptance: "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: []
+uncovered_because: "ትክክለኛ ሞዴል/OS/FM መዳረሻ፣ የሽፋንና የምንጭ ማስረጃ"

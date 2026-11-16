@@ -1,0 +1,7 @@
+{
+  "_comment": "TEMPLATE - fill real reference transcripts, one entry per fixture. The transcription must be verbatim (words, spacing) of what is spoken in the wav. Do NOT score any fixture that has no reference. Delete the _comment/_example keys before use.",
+  "_example": {
+    "am-12": "TODO-verbatim-transcription-of-am-12.wav",
+    "om-218": "TODO-verbatim-transcription-of-om-218.wav"
+  }
+}

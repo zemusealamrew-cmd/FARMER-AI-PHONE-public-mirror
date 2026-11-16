@@ -1,0 +1,16 @@
+# የLC-04 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: LC-04
+requirement: "ገበያና ሽያጭ"
+owner_role: "የተጠቃሚ ፍላጎት/የይዘት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/safety.test.mjs", name: "R-09 / LC-04፦ ደህንነቱ የተጠበቀ ጥያቄ አይከለከልም (no false refusal)"}
+doc_acceptance: "በዚህ መስክ የተለየ የአካባቢ/ቋንቋ/አደጋ ናሙና፣ የባለሙያ ጥራት ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

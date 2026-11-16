@@ -1,0 +1,35 @@
+{
+  "stations": [
+    { "id": "FM-ADDIS-1011", "name": "አዲስ ሬዲዮ", "frequency_mhz": 101.1, "region": "አዲስ አበባ", "language": "am" },
+    { "id": "FM-ORO-979", "name": "ኦሮሚያ ሬዲዮ", "frequency_mhz": 97.9, "region": "ኦሮሚያ", "language": "om" }
+  ],
+  "broadcasts": [
+    {
+      "id": "BC-2001",
+      "station_id": "FM-ADDIS-1011",
+      "captured_at": "2026-11-04T04:00:00Z",
+      "signal_quality": 0.82,
+      "topic_id": "weather_advisory",
+      "text": "የአየር ሁኔታ መረጃ፦ በደቡብ ክልል ዛሬ ከሰዓት በኋላ ዝናብ ይጠበቃል። ገበሬዎች ምርታቸውን አስቀድመው ያስቀምጡ።",
+      "verification": "unverified_broadcast"
+    },
+    {
+      "id": "BC-2002",
+      "station_id": "FM-ADDIS-1011",
+      "captured_at": "2026-11-03T04:00:00Z",
+      "signal_quality": 0.55,
+      "topic_id": "market_price",
+      "text": "የበቆሎ ዋጋ በአዳማ ገበያ ትናንት በሁለት ብር ጨምሯል።",
+      "verification": "unverified_broadcast"
+    },
+    {
+      "id": "BC-2003",
+      "station_id": "FM-ORO-979",
+      "captured_at": "2026-11-04T03:30:00Z",
+      "signal_quality": 0.74,
+      "topic_id": "livestock_health",
+      "text": "Odeeffannoo beeyladaa: beeyladni dhukkubsatan ogeessa beeyladaa bira geessaa. Qoricha hamma isaa ofiin hin murin.",
+      "verification": "unverified_broadcast"
+    }
+  ]
+}

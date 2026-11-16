@@ -1,0 +1,25 @@
+{
+  "requirement_count": 85,
+  "family_counts": {
+    "R": 42,
+    "CI": 14,
+    "LC": 15,
+    "RU": 14,
+    "OP": 20,
+    "VE": 10,
+    "FD": 8
+  },
+  "total_entries": 123,
+  "duplicate_table_id_set_mismatch": 0,
+  "duplicate_table_text_drift_rows": 12,
+  "covered_by_executed_test": 52,
+  "requirements_covered": 44,
+  "requirements_not_covered": 10,
+  "requirements_blocked": 31,
+  "specs_written": 85,
+  "requirements_behavior_verified": 0,
+  "requirements_behavior_not_authorized": 32,
+  "requirements_behavior_requires_evidence": 11,
+  "requirements_behavior_blocked": 42,
+  "coverage_semantics_note": "coverage (G1_TEST_EXISTS) = የፍተሻ-ስም/ID መኖር ብቻ፤ የተግባር መሟላት አይደለም። behavior_verification = የተግባር ማረጋገጫ ዘንግ፦ በG1 ላፕቶፕ ምንም መስፈርት VERIFIED አይደለም (acceptance_signoff ሁሉ null)፤ የG2/G3/G4 መስፈርቶች NOT_AUTHORIZED_AT_G1 ናቸው። የregex የፍተሻ-ስም ቁጥር የመቀበያ ማስረጃ አይሆንም (Issue #3)።"
+}

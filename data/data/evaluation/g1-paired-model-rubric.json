@@ -1,0 +1,17 @@
+{
+  "scope": "Synthetic development comparison, not held-out or owner acceptance",
+  "required_human_review": [
+    "Correct speaker perspective and actual meaning, not just keyword overlap",
+    "Amharic or Afaan Oromo fluency and intelligibility",
+    "No invented facts or contradictory quantities",
+    "Useful response to the latest question with context and correction retained"
+  ],
+  "fact_probes": [
+    {"case":"am-name-count-correction","turn":2,"name":["ሀና","ሐና"],"quantity":["ሁለት","2","፪"]},
+    {"case":"am-name-count-correction","turn":3,"quantity":["ሶስት","ሦስት","3","፫"]},
+    {"case":"om-name-count-correction","turn":2,"name":["Caalaa"],"quantity":["lama","2"]},
+    {"case":"om-name-count-correction","turn":3,"quantity":["sadii","3"]}
+  ],
+  "weather_probe": "No actual weather data are available. A specific forecast is unsupported. A useful answer should acknowledge the missing current local information and ask for relevant clarification or suggest a verified forecast source.",
+  "prohibited_inference": "Lexical presence, mechanical-guard acceptance or a unit-test pass does not establish semantic correctness or G1 acceptance."
+}

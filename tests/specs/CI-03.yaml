@@ -1,0 +1,25 @@
+# የCI-03 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: CI-03
+requirement: "ዘዬ፣ አካባቢያዊ ቃላት፣ የቋንቋ መቀላቀል"
+owner_role: "የኦፍላይን ውይይት ክፍል"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/audio-input.test.mjs", name: "F-08 / CI-03፦ ያልሆነ ወይም የቆራረጠ ድምፅ AUDIO_FORMAT_INVALID ይመልሳል"}
+  - {file: "tests/dialogue.test.mjs", name: "R-05 / CI-03፦ በአፋን ኦሮሞ ተከታታይ ጥያቄ ርዕስ ይይዛል (Oromo anaphora)"}
+  - {file: "tests/dialogue.test.mjs", name: "R-07 / CI-03፦ የቋንቋ መለያ ጽሑፍን አይደቀቅም (Amharic vs Afaan Oromo)"}
+  - {file: "tests/server.test.mjs", name: "R-02 / F-08 / CI-03፦ ኢንጂኑ ተጭኖ ሲገኝ የHTTP ድምፅ መንገዱ አልፎ አልፎ አይሆንም (500 የለም)"}
+  - {file: "tests/speech-benchmark.test.mjs", name: "F-08 / CI-03፦ የላቲን ውጤት ከአማርኛ ማጣቀሻ ጋር ያለው ስህተት አይደበቅም"}
+  - {file: "tests/speech.test.mjs", name: "R-02 / CI-03፦ ASR ሁኔታው የተሰነዘ መሆኑንና ኢንተርኔት እንደማያስፈልግ በግልጽ ይናገራል"}
+  - {file: "tests/speech.test.mjs", name: "NR-03 / CI-03፦ የቋንቋ ድጋፍ በኮድ ይለያል — አፋን ኦሮሞ ASR_LOCALE_UNSUPPORTED ይመልሳል"}
+  - {file: "tests/speech.test.mjs", name: "R-03 / CI-03፦ የTTS ድጋፍ መለያ ከተጫኑ ድምጾች ዝርዝር ጋር ይዛመዳል (no self-claim)"}
+  - {file: "tests/speech.test.mjs", name: "F-08 / R-02 / CI-03፦ ኢንጂኑ ተጭኖ ሲገኝ መንገዱ ሳይቋረጥ ውጤት ወይም ግልጽ ኮድ ይመልሳል"}
+  - {file: "tests/speech.test.mjs", name: "F-08 / R-02 / CI-03፦ ዝግ ግብይት ለኢንጂን ሳይደርስ በግልጽ ኮድ ይቆማል (no 6-8s wasted run)"}
+doc_acceptance: "ያልታዩ ባለብዙ ዙር የድምፅ ውይይቶች፣ የትርጉም/አውድ የሰው ምዘና፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""

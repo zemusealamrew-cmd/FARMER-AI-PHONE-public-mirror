@@ -1,0 +1,349 @@
+{
+  "update_id": "upd-457988e1-fc10-4261-aef9-eebc88b6ba6f",
+  "issuer_id": "issuer-demo",
+  "key_id": "key-2026-11-04-1",
+  "version": "1.1.1",
+  "monotonic_counter": 1,
+  "payload": {
+    "kb_version": "1.1.1",
+    "kb_status": "SIGNED_DEMO_UPDATE",
+    "kb_notice": {
+      "am": "ይህ በG1 የተፈረመ ማስመሰያ ዝማኔ ነው፤ የተረጋገጠ የጥናት ውጤት አይደለም።",
+      "om": "Kun G1 mallattoo haqaa mirkaneessaa miti; yaalii quunnamaa miti."
+    },
+    "entries": [
+      {
+        "claim_id": "KB-AM-001",
+        "topic_id": "soil_preparation",
+        "locale": "am",
+        "title": "የእርሻ መሬት ዝግጅት",
+        "keywords": [
+          "እርሻ",
+          "መሬት",
+          "ዝግጅት",
+          "ማረስ",
+          "አፈር",
+          "ለማምረት"
+        ],
+        "answer": "የእርሻ መሬት ከመዝራት በፊት አፈሩን በሚገባ ማረስና ማለስለስ ይመከራል። የአካባቢዎን የግብርና ባለሙያ በመጠየቅ ለአፈርዎ ተስማሚ የሆነውን የማረስ ጊዜ ያረጋግጡ።",
+        "answer_short": "አፈሩን በሚገባ ያርሱና ያለሱለሱ፤ ጊዜውን ከአካባቢ ባለሙያ ያረጋግጡ።",
+        "risk_level": "low",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-AM-SOIL",
+          "title": "የማሳያ ይዘት",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-AM-002",
+        "topic_id": "maize_planting",
+        "locale": "am",
+        "title": "የበቆሎ ዘር አቀማመጥ",
+        "keywords": [
+          "በቆሎ",
+          "ዘር",
+          "መዝራት",
+          "አቀማመጥ",
+          "ረድፍ"
+        ],
+        "answer": "በቆሎ በረድፍ ሲዘራ የአየር እና የፀሐይ ብርሃን እንዲደርስ ይረዳል። የረድፍ ስፋትና የዘር መጠን እንደ አካባቢው የግብርና ምክር ይወሰናል፤ ከባለሙያ ያረጋግጡ።",
+        "answer_short": "በረድፍ ዘሩ፤ ስፋቱን ከአካባቢ ባለሙያ ያረጋግጡ።",
+        "risk_level": "low",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-AM-MAIZE",
+          "title": "የማሳያ ይዘት",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-AM-003",
+        "topic_id": "livestock_water",
+        "locale": "am",
+        "title": "የእንስሳት መጠጫ ውሃ",
+        "keywords": [
+          "እንስሳ",
+          "ላም",
+          "ፍየል",
+          "በግ",
+          "ውሃ",
+          "መጠጫ"
+        ],
+        "answer": "እንስሳት ንጹህና በቂ ውሃ ማግኘት አለባቸው። የውሃው መጠን እንደ እንስሳው ዓይነት፣ ዕድሜና የአየር ሁኔታ ይለያያል፤ ትክክለኛውን መጠን ከእንስሳት ሐኪም ያረጋግጡ።",
+        "answer_short": "ንጹህና በቂ ውሃ ይስጡ፤ መጠኑን ከእንስሳት ሐኪም ያረጋግጡ።",
+        "risk_level": "low",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-AM-WATER",
+          "title": "የማሳያ ይዘት",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-AM-004",
+        "topic_id": "pesticide_safety",
+        "locale": "am",
+        "title": "የግብርና መርዝ ደህንነት",
+        "keywords": [
+          "መርዝ",
+          "ኬሚካል",
+          "መርጨት",
+          "መጠን",
+          "አደጋ",
+          "ጥንቃቄ"
+        ],
+        "answer": "የግብርና መርዝ በሚጠቀሙበት ጊዜ የመርዙን መለያ ያንብቡ፣ ጓንትና የፊት መከላከያ ይጠቀሙ፣ ከልጆችና ከእንስሳት ያርቁ። ትክክለኛውን መጠን ከግብርና ባለሙያ ያረጋግጡ፤ መጠን በግምት አይንገሩ።",
+        "answer_short": "መለያውን ያንብቡ፣ መከላከያ ይጠቀሙ፤ መጠኑን ከባለሙያ ያረጋግጡ።",
+        "risk_level": "high",
+        "requires_expert": true,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-AM-PEST",
+          "title": "የማሳያ ይዘት",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-AM-005",
+        "topic_id": "market_price",
+        "locale": "am",
+        "title": "የገበያ ዋጋ",
+        "keywords": [
+          "ገበያ",
+          "ዋጋ",
+          "ሽያጭ",
+          "ብር",
+          "ተፈላጊ"
+        ],
+        "answer": "የገበያ ዋጋ በየቀኑ ይለወጣል። የዛሬውን ዋጋ ከአካባቢዎ ገበያ ወይም ከተፈቀደ የመረጃ ምንጭ ብቻ ያረጋግጡ፤ የተቀመጠ የቆየ ዋጋ የዛሬ ዋጋ አይደለም።",
+        "answer_short": "የዛሬውን ዋጋ ከገበያ ወይም ከተፈቀደ ምንጭ ያረጋግጡ።",
+        "risk_level": "medium",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-AM-MARKET",
+          "title": "የማሳያ ይዘት",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-05T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none",
+        "freshness_note": "የዋጋ መረጃ በ24 ሰዓት ያለፈ ከሆነ እንደ ያረጀ ይታያል።"
+      },
+      {
+        "claim_id": "KB-AM-006",
+        "topic_id": "phone_help",
+        "locale": "am",
+        "title": "የስልክ እገዛ",
+        "keywords": [
+          "ስልክ",
+          "አጠቃቀም",
+          "ቁልፍ",
+          "አይ ቁልፍ",
+          "እገዛ"
+        ],
+        "answer": "የAI ቁልፍን ተጭነው በድምፅ ጠይቁ። ጥሪና SMS ከAI ተለይተው ይሠራሉ፤ ጥሪ ሲመጣ AI ይቆማል። የSMS ንባብ የሚፈቀደው በፈቃድዎ ብቻ ነው።",
+        "answer_short": "የAI ቁልፍን ተጭነው ይጠይቁ፤ ጥሪ ሁልጊዜ ቅድሚያ አለው።",
+        "risk_level": "low",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-AM-PHONE",
+          "title": "የማሳያ ይዘት",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-OM-001",
+        "topic_id": "soil_preparation",
+        "locale": "om",
+        "title": "Qophii lafa qonnaa",
+        "keywords": [
+          "qonna",
+          "lafa",
+          "qophii",
+          "qotuu",
+          "biyyee",
+          "facaa"
+        ],
+        "answer": "Lafa qonnaa facaasanii dura biyyee qotuu fi salphisuun ni gorfama. Yeroon qotuu naannoo keessaniif mijatu ogeessa qonnaa naannoo keessanii gaafadhaa.",
+        "answer_short": "Biyyee qoti; yeroo qotuu ogeessa naannoo gaafadhu.",
+        "risk_level": "low",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-OM-SOIL",
+          "title": "Qabiyyee agarsiisaa",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-OM-002",
+        "topic_id": "maize_planting",
+        "locale": "om",
+        "title": "Facaa boqqolloo",
+        "keywords": [
+          "boqqolloo",
+          "facaa",
+          "facaa",
+          "tarree",
+          "midhaan"
+        ],
+        "answer": "Boqqolloonni tarreedhaan faca'an yoo ta'e qilleensa fi ifa aduu argachuuf ni gargaara. Bal'inni tarree fi hamma facaa naannoo irratti hundaa'a; ogeessa qonnaa gaafadhaa.",
+        "answer_short": "Tarreedhaan faci; bal'ina isaa ogeessa gaafadhu.",
+        "risk_level": "low",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-OM-MAIZE",
+          "title": "Qabiyyee agarsiisaa",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-OM-003",
+        "topic_id": "livestock_water",
+        "locale": "om",
+        "title": "Bishaan beeyladaa",
+        "keywords": [
+          "beeylada",
+          "loon",
+          "re'ee",
+          "hoolaa",
+          "bishaan",
+          "dhugaatii"
+        ],
+        "answer": "Beeyladni bishaan qulqulluu fi ga'aa argachuu qabu. Hammi bishaanii gosa beeyladaa, umrii fi haala qilleensa irratti hundaa'a; hamma sirrii ogeessa beeyladaa gaafadhaa.",
+        "answer_short": "Bishaan qulqulluu fi ga'aa kenni; hamma isaa ogeessa gaafadhu.",
+        "risk_level": "low",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-OM-WATER",
+          "title": "Qabiyyee agarsiisaa",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-OM-004",
+        "topic_id": "pesticide_safety",
+        "locale": "om",
+        "title": "Nageenya qoricha qonnaa",
+        "keywords": [
+          "qoricha",
+          "kemikaalii",
+          "biifuu",
+          "hamma",
+          "balaa",
+          "ofeeggannoo"
+        ],
+        "answer": "Yeroo qoricha qonnaa itti fayyadamtan mallattoo qorichaa dubbisaa, gaantii fi eegumsa fuulaa fayyadamaa, ijoollee fi beeyladarraa fageessaa. Hamma sirrii ogeessa qonnaa gaafadhaa; hamma tilmaamaan hin himin.",
+        "answer_short": "Mallattoo dubbisi, eegumsa fayyadami; hamma ogeessa gaafadhu.",
+        "risk_level": "high",
+        "requires_expert": true,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-OM-PEST",
+          "title": "Qabiyyee agarsiisaa",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2027-11-04T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none"
+      },
+      {
+        "claim_id": "KB-OM-005",
+        "topic_id": "market_price",
+        "locale": "om",
+        "title": "Gatii gabaa",
+        "keywords": [
+          "gabaa",
+          "gatii",
+          "gurgurtaa",
+          "qarshii",
+          "barbaachisaa"
+        ],
+        "answer": "Gatiin gabaa guyyaa guyyaan jijjiirama. Gatii har'aa gabaa naannoo keessanii ykn madda odeeffannoo hayyamame irraa qofa mirkaneessaa; gatii dursee ka'e gatii har'aa miti.",
+        "answer_short": "Gatii har'aa gabaa ykn madda hayyamame irraa mirkaneessi.",
+        "risk_level": "medium",
+        "requires_expert": false,
+        "source": {
+          "kind": "demo_fixture",
+          "id": "FIX-OM-MARKET",
+          "title": "Qabiyyee agarsiisaa",
+          "captured_at": "2026-11-04T00:00:00Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-05T00:00:00Z",
+        "confidence_basis": "demo_fixture",
+        "conflict_state": "none",
+        "freshness_note": "Odeeffannoon gatii sa'aatii 24 darbe yoo ta'e akka moofaatti ilaallama."
+      },
+      {
+        "id": "entry-signed-0001",
+        "claim_id": "claim-signed-0001",
+        "topic_id": "topic-market-price",
+        "locale": "am",
+        "title": "የተፈረመ የገበያ ዝማኔ ናሙና",
+        "answer": "የጤና ማሳያ፦ የተፈረመ ዝማኔ ሲደርስ አዲሱ መረጃ በእውቀት መዝገብ ውስጥ ይገባል፤ የምንጭና የወቅት ማስረጃ ግን ግዴታ ነው።",
+        "keywords": [
+          "ዝማኔ",
+          "ፈቃድ",
+          "ገበያ",
+          "ናሙና"
+        ],
+        "source": {
+          "kind": "signed_demo_update",
+          "source_id": "issuer-demo",
+          "captured_at": "2026-11-04T14:47:39.619Z",
+          "license_scope": "internal-demo"
+        },
+        "valid_until": "2026-11-11T14:47:39.620Z",
+        "confidence_basis": "demo_fixture",
+        "risk_level": "low",
+        "geography": "ET"
+      }
+    ]
+  },
+  "payload_hash": "sha256:9fdef980385d17682c33bcef294543ba2fee059f70ef065e809a9425fb5d7904",
+  "expiry": "2026-12-04T14:47:39.625Z",
+  "signature": "kK3u2vxBkFpQ6VYHTrH+lHvLcyOYeF/EuTGCvjQ/zo6qTV7fS6RUzOskNLpraXkaC4LKuB9nhTPvEcE6t2gvDw=="
+}

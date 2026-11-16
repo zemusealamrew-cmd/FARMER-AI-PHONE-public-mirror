@@ -1,0 +1,14 @@
+# የR-22 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-22
+requirement: "ስልጠና/ማስማማት፣ የተለየ የመጨረሻ ሙከራ መረጃ"
+owner_role: "የAI ሞዴል ኃላፊ"
+owner_named: null
+gates: [G1, G2]
+status: BLOCKED-ON-UNDEFINED-TEST
+behavior_verification: NOT_AUTHORIZED_AT_G1
+acceptance_signoff: null
+executed_tests: []
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-22 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"

@@ -1,0 +1,17 @@
+# የR-12 የሙከራ መግለጫ — በtools/build-requirements.mjs ተነስቷል (F-19)
+id: R-12
+requirement: "SMS የሚነበበው AI ቁልፍ + የተጠቃሚ ምርጫ ብቻ"
+owner_role: "የመሣሪያ መቆጣጠሪያ ኃላፊ"
+owner_named: null
+gates: []
+status: G1_TEST_EXISTS
+test_scope_note: "በG1 የላፕቶፕ ማሳያ ወሰን ውስጥ ተፈትሟል"
+behavior_verification: BLOCKED_ON_UNDEFINED_TEST
+acceptance_signoff: null
+executed_tests:
+  - {file: "tests/server.test.mjs", name: "R-37 / R-12 / F-15 / S-5፦ የSMS ንባብ በHTTP ላይም ሁለት ማረጋገጫ ይፈልጋል"}
+  - {file: "tests/server.test.mjs", name: "R-12 / RU-08 / CI-01፦ የምንጭ መስኮች በAPIና በገጹ መካከ ይዛመዳሉ"}
+doc_acceptance: "በመስፈርቱ ልዩ የአዎንታዊ/አሉታዊ ናሙና፣ መለኪያ፣ የተጸደቀ ወሰን"
+doc_status: "PARTIAL — የማለፊያ ውል PENDING"
+blocked_on: ["OP-26 — ትርጉም/ባለቤት የለውም (F-02)"]
+uncovered_because: ""
